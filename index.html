@@ -72,7 +72,11 @@ header p {
   scroll-margin-top: 100px;
 }
 
-.gallery a img {
+.item {
+  text-align: center;
+}
+
+.item img {
   width: 100%;
   height: auto;
   border-radius: 10px;
@@ -80,7 +84,13 @@ header p {
   box-shadow: 0 0 8px rgba(255,255,255,0.1);
 }
 
-.gallery a:hover img {
+.item p {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.item:hover img {
   transform: scale(1.05);
 }
 
@@ -124,26 +134,13 @@ select {
   text-align: center;
 }
 
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.95);
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
-}
-
-.lightbox:target {
-  display: flex;
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #666;
+  background-color: #111;
+  margin-top: 40px;
 }
 
   </style>
@@ -157,26 +154,26 @@ select {
     <button onclick="filter('regular')">Regular - 2700DA</button>
     <button onclick="filter('all')">عرض الكل</button>
   </div>  <div class="gallery" id="product-gallery">
-    <!-- Example layout: You’ll replace class manually with 'oversize' or 'regular' as needed -->
-    <a href="#img1" class="oversize"><img src="t1.jpg" alt=""></a>
-    <a href="#img2" class="oversize"><img src="t2.jpg" alt=""></a>
-    <a href="#img3" class="regular"><img src="t3.jpg" alt=""></a>
-    <a href="#img4" class="regular"><img src="t4.jpg" alt=""></a>
-    <a href="#img5" class="oversize"><img src="t5.jpg" alt=""></a>
-    <a href="#img6" class="regular"><img src="t6.jpg" alt=""></a>
-    <a href="#img7" class="oversize"><img src="t7.jpg" alt=""></a>
-    <a href="#img8" class="regular"><img src="t8.jpg" alt=""></a>
-    <a href="#img9" class="oversize"><img src="t9.jpg" alt=""></a>
-    <a href="#img10" class="regular"><img src="t10.jpg" alt=""></a>
-    <a href="#img11" class="oversize"><img src="t11.jpg" alt=""></a>
-    <a href="#img12" class="regular"><img src="t12.jpg" alt=""></a>
-    <a href="#img13" class="oversize"><img src="t13.jpg" alt=""></a>
-    <a href="#img14" class="regular"><img src="t14.jpg" alt=""></a>
-    <a href="#img15" class="oversize"><img src="t15.jpg" alt=""></a>
-    <a href="#img16" class="regular"><img src="t16.jpg" alt=""></a>
-    <a href="#img17" class="oversize"><img src="t17.jpg" alt=""></a>
-    <a href="#img18" class="regular"><img src="t18.jpg" alt=""></a>
-    <a href="#img19" class="oversize"><img src="t19.jpg" alt=""></a>
+    <!-- Add each image with model label -->
+    <div class="item oversize"><a href="#img1"><img src="t1.jpg" alt=""></a><p>Model1 - Oversize</p></div>
+    <div class="item oversize"><a href="#img2"><img src="t2.jpg" alt=""></a><p>Model2 - Oversize</p></div>
+    <div class="item regular"><a href="#img3"><img src="t3.jpg" alt=""></a><p>Model3 - Regular</p></div>
+    <div class="item regular"><a href="#img4"><img src="t4.jpg" alt=""></a><p>Model4 - Regular</p></div>
+    <div class="item oversize"><a href="#img5"><img src="t5.jpg" alt=""></a><p>Model5 - Oversize</p></div>
+    <div class="item regular"><a href="#img6"><img src="t6.jpg" alt=""></a><p>Model6 - Regular</p></div>
+    <div class="item oversize"><a href="#img7"><img src="t7.jpg" alt=""></a><p>Model7 - Oversize</p></div>
+    <div class="item regular"><a href="#img8"><img src="t8.jpg" alt=""></a><p>Model8 - Regular</p></div>
+    <div class="item oversize"><a href="#img9"><img src="t9.jpg" alt=""></a><p>Model9 - Oversize</p></div>
+    <div class="item regular"><a href="#img10"><img src="t10.jpg" alt=""></a><p>Model10 - Regular</p></div>
+    <div class="item oversize"><a href="#img11"><img src="t11.jpg" alt=""></a><p>Model11 - Oversize</p></div>
+    <div class="item regular"><a href="#img12"><img src="t12.jpg" alt=""></a><p>Model12 - Regular</p></div>
+    <div class="item oversize"><a href="#img13"><img src="t13.jpg" alt=""></a><p>Model13 - Oversize</p></div>
+    <div class="item regular"><a href="#img14"><img src="t14.jpg" alt=""></a><p>Model14 - Regular</p></div>
+    <div class="item oversize"><a href="#img15"><img src="t15.jpg" alt=""></a><p>Model15 - Oversize</p></div>
+    <div class="item regular"><a href="#img16"><img src="t16.jpg" alt=""></a><p>Model16 - Regular</p></div>
+    <div class="item oversize"><a href="#img17"><img src="t17.jpg" alt=""></a><p>Model17 - Oversize</p></div>
+    <div class="item regular"><a href="#img18"><img src="t18.jpg" alt=""></a><p>Model18 - Regular</p></div>
+    <div class="item oversize"><a href="#img19"><img src="t19.jpg" alt=""></a><p>Model19 - Oversize</p></div>
   </div>  <div id="order-section"></div>
   <form action="https://formsubmit.co/abgamer0177@gmail.com" method="POST">
     <input type="text" name="الاسم" placeholder="الاسم الكامل" required>
@@ -206,9 +203,11 @@ select {
 
 <button type="submit">أطلب الآن</button>
 
-  </form>  <script>
+  </form>  <footer>
+    Made by EzzineStyle © 2025
+  </footer>  <script>
     function filter(type) {
-      const items = document.querySelectorAll('.gallery a');
+      const items = document.querySelectorAll('.gallery .item');
       items.forEach(item => {
         if (type === 'all') {
           item.style.display = 'block';
