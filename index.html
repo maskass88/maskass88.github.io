@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EzzineStyle - T-Shirt Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #f2f2f2;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+    }
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .product {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .product h2 {
+      margin-top: 0;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, select, textarea {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>EzzineStyle</h1>
+    <p>T-Shirts - Oversize: 2900 DA | Regular: 2700 DA</p>
+  </header>
+
+  <div class="container">
+    <div class="product">
+      <h2>Oversize T-Shirt</h2>
+      <p>Comfort fit, stylish and soft material. Price: 2900 DA</p>
+    </div>
+
+    <div class="product">
+      <h2>Regular T-Shirt</h2>
+      <p>Classic fit, lightweight and breathable. Price: 2700 DA</p>
+    </div>
+
+    <form action="https://formsubmit.co/abgamer0177@gmail.com" method="POST">
+      <input type="text" name="Name" placeholder="Your full name" required>
+      <input type="text" name="Phone" placeholder="Phone number" required>
+      <textarea name="Address" placeholder="Delivery address" required></textarea>
+      <select name="T-Shirt Type" required>
+        <option value="Oversize T-Shirt">Oversize T-Shirt - 2900 DA</option>
+        <option value="Regular T-Shirt">Regular T-Shirt - 2700 DA</option>
+      </select>
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
+</body>
+</html>
