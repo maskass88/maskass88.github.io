@@ -12,10 +12,10 @@
       color: #fff;
       margin: 0;
       padding: 0;
-      text-align: center;
     }
 
     header {
+      text-align: center;
       padding: 30px 10px;
     }
 
@@ -31,23 +31,23 @@
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      padding: 20px;
       max-width: 1200px;
       margin: auto;
     }
 
-    .gallery img {
+    .gallery a img {
       width: 100%;
+      height: auto;
       border-radius: 10px;
-      cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      box-shadow: 0 0 8px rgba(255,255,255,0.1);
     }
 
-    .gallery img:hover {
-      transform: scale(1.03);
+    .gallery a:hover img {
+      transform: scale(1.05);
     }
 
     form {
@@ -91,20 +91,21 @@
     }
 
     .lightbox {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
       display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
       justify-content: center;
       align-items: center;
-      z-index: 999;
     }
 
     .lightbox img {
       max-width: 90%;
       max-height: 90%;
-      border-radius: 15px;
+      border-radius: 12px;
     }
 
     .lightbox:target {
@@ -120,39 +121,42 @@
   </header>
 
   <div class="gallery">
-    <!-- Loop images t1 to t19 -->
-    <!-- Also lightbox links -->
-    <!-- Grid view -->
-    <!-- You can replace jpg with png if needed -->
-    <!-- Clickable -->
-    <!-- Auto scale -->
-    <!-- Arabic friendly -->
-    <!-- Compact and fast -->
-    <!-- Start -->
-    ${[...Array(19)].map((_, i) => `
-      <a href="#img${i+1}"><img src="t${i+1}.jpg" alt="T-shirt ${i+1}"></a>
-    `).join('')}
+    <!-- 19 images clickable -->
+    <a href="#img1"><img src="t1.jpg" alt=""></a>
+    <a href="#img2"><img src="t2.jpg" alt=""></a>
+    <a href="#img3"><img src="t3.jpg" alt=""></a>
+    <a href="#img4"><img src="t4.jpg" alt=""></a>
+    <a href="#img5"><img src="t5.jpg" alt=""></a>
+    <a href="#img6"><img src="t6.jpg" alt=""></a>
+    <a href="#img7"><img src="t7.jpg" alt=""></a>
+    <a href="#img8"><img src="t8.jpg" alt=""></a>
+    <a href="#img9"><img src="t9.jpg" alt=""></a>
+    <a href="#img10"><img src="t10.jpg" alt=""></a>
+    <a href="#img11"><img src="t11.jpg" alt=""></a>
+    <a href="#img12"><img src="t12.jpg" alt=""></a>
+    <a href="#img13"><img src="t13.jpg" alt=""></a>
+    <a href="#img14"><img src="t14.jpg" alt=""></a>
+    <a href="#img15"><img src="t15.jpg" alt=""></a>
+    <a href="#img16"><img src="t16.jpg" alt=""></a>
+    <a href="#img17"><img src="t17.jpg" alt=""></a>
+    <a href="#img18"><img src="t18.jpg" alt=""></a>
+    <a href="#img19"><img src="t19.jpg" alt=""></a>
   </div>
 
-  <!-- Lightboxes for each image -->
-  ${[...Array(19)].map((_, i) => `
-    <div id="img${i+1}" class="lightbox">
-      <img src="t${i+1}.jpg" alt="T-shirt ${i+1}">
-    </div>
-  `).join('')}
-
-  <form action="https://formsubmit.co/abgamer0177@gmail.com" method="POST">
-    <input type="text" name="الاسم" placeholder="الاسم الكامل" required>
-    <input type="text" name="رقم الهاتف" placeholder="رقم الهاتف" required>
-    <textarea name="العنوان" placeholder="العنوان الكامل للتوصيل" required></textarea>
-
-    <select name="موديل التيشيرت" required>
-      <option value="" disabled selected>اختر الموديل</option>
-      ${[...Array(19)].map((_, i) => `<option>Model${i+1}</option>`).join('')}
-    </select>
-
-    <button type="submit">أطلب الآن</button>
-  </form>
-
-</body>
-</html>
+  <!-- Lightbox viewer -->
+  <div id="img1" class="lightbox"><a href="#"><img src="t1.jpg" alt=""></a></div>
+  <div id="img2" class="lightbox"><a href="#"><img src="t2.jpg" alt=""></a></div>
+  <div id="img3" class="lightbox"><a href="#"><img src="t3.jpg" alt=""></a></div>
+  <div id="img4" class="lightbox"><a href="#"><img src="t4.jpg" alt=""></a></div>
+  <div id="img5" class="lightbox"><a href="#"><img src="t5.jpg" alt=""></a></div>
+  <div id="img6" class="lightbox"><a href="#"><img src="t6.jpg" alt=""></a></div>
+  <div id="img7" class="lightbox"><a href="#"><img src="t7.jpg" alt=""></a></div>
+  <div id="img8" class="lightbox"><a href="#"><img src="t8.jpg" alt=""></a></div>
+  <div id="img9" class="lightbox"><a href="#"><img src="t9.jpg" alt=""></a></div>
+  <div id="img10" class="lightbox"><a href="#"><img src="t10.jpg" alt=""></a></div>
+  <div id="img11" class="lightbox"><a href="#"><img src="t11.jpg" alt=""></a></div>
+  <div id="img12" class="lightbox"><a href="#"><img src="t12.jpg" alt=""></a></div>
+  <div id="img13" class="lightbox"><a href="#"><img src="t13.jpg" alt=""></a></div>
+  <div id="img14" class="lightbox"><a href="#"><img src="t14.jpg" alt=""></a></div>
+  <div id="img15" class="lightbox"><a href="#"><img src="t15.jpg" alt=""></a></div>
+  <div id="img16" class="lightbox"><a href="#"><img src="t16.jpg" alt=""></a></div>
