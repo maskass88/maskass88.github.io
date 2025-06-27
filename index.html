@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EzzineStyle</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Cairo', sans-serif;
-      background-color: #111;
-      color: #f0f0f0;
+      background-color: #000;
+      color: #fff;
       margin: 0;
       padding: 0;
+      text-align: center;
     }
 
     header {
-      text-align: center;
       padding: 30px 10px;
-      background: #000 url('https://i.ibb.co/7yht7pt/skull-bg.png') no-repeat center center;
-      background-size: cover;
-      color: #fff;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
     }
 
     header h1 {
-      margin: 0;
       font-size: 3rem;
+      margin: 0;
     }
 
     header p {
@@ -44,20 +40,21 @@
 
     .gallery img {
       width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-      transition: transform 0.3s;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
     }
 
     .gallery img:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
 
     form {
       max-width: 500px;
       margin: 40px auto;
       padding: 25px;
-      background-color: #1a1a1a;
+      background-color: #111;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
     }
@@ -78,10 +75,9 @@
 
     button {
       background-color: #fff;
-      color: #111;
+      color: #000;
       font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     button:hover {
@@ -94,8 +90,26 @@
       text-align: center;
     }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 15px;
+    }
+
+    .lightbox:target {
+      display: flex;
     }
   </style>
 </head>
@@ -107,24 +121,37 @@
   </header>
 
   <div class="gallery">
-    <img src="zorroo.jpg" alt="Model1">
-    <img src="the last of usss-1.jpg" alt="Model2">
-    <img src="the last of us-1.jpg" alt="Model3">
-    <img src="the boys-1.png" alt="Model4">
-    <img src="Stranger thing-1.jpg" alt="Model5">
-    <img src="oversize tshirt Mockup 2-2.png" alt="Model6">
-    <img src="mix anime-1.jpg" alt="Model7">
-    <img src="hisoka-1.jpg" alt="Model8">
-    <img src="gta gta gta-1.jpg" alt="Model9">
-    <img src="goku mnayak-1.jpg" alt="Model10">
-    <img src="bilel 2 2 - copie-1.jpg" alt="Model11">
+    <a href="#img1"><img src="zorroo.jpg" alt=""></a>
+    <a href="#img2"><img src="the last of usss-1.jpg" alt=""></a>
+    <a href="#img3"><img src="the last of us-1.jpg" alt=""></a>
+    <a href="#img4"><img src="the boys-1.png" alt=""></a>
+    <a href="#img5"><img src="Stranger thing-1.jpg" alt=""></a>
+    <a href="#img6"><img src="oversize tshirt Mockup 2-2.png" alt=""></a>
+    <a href="#img7"><img src="mix anime-1.jpg" alt=""></a>
+    <a href="#img8"><img src="hisoka-1.jpg" alt=""></a>
+    <a href="#img9"><img src="gta gta gta-1.jpg" alt=""></a>
+    <a href="#img10"><img src="goku mnayak-1.jpg" alt=""></a>
+    <a href="#img11"><img src="bilel 2 2 - copie-1.jpg" alt=""></a>
   </div>
+
+  <!-- Lightboxes -->
+  <div id="img1" class="lightbox"><img src="zorroo.jpg" alt=""></div>
+  <div id="img2" class="lightbox"><img src="the last of usss-1.jpg" alt=""></div>
+  <div id="img3" class="lightbox"><img src="the last of us-1.jpg" alt=""></div>
+  <div id="img4" class="lightbox"><img src="the boys-1.png" alt=""></div>
+  <div id="img5" class="lightbox"><img src="Stranger thing-1.jpg" alt=""></div>
+  <div id="img6" class="lightbox"><img src="oversize tshirt Mockup 2-2.png" alt=""></div>
+  <div id="img7" class="lightbox"><img src="mix anime-1.jpg" alt=""></div>
+  <div id="img8" class="lightbox"><img src="hisoka-1.jpg" alt=""></div>
+  <div id="img9" class="lightbox"><img src="gta gta gta-1.jpg" alt=""></div>
+  <div id="img10" class="lightbox"><img src="goku mnayak-1.jpg" alt=""></div>
+  <div id="img11" class="lightbox"><img src="bilel 2 2 - copie-1.jpg" alt=""></div>
 
   <form action="https://formsubmit.co/abgamer0177@gmail.com" method="POST">
     <input type="text" name="الاسم" placeholder="الاسم الكامل" required>
     <input type="text" name="رقم الهاتف" placeholder="رقم الهاتف" required>
     <textarea name="العنوان" placeholder="العنوان الكامل للتوصيل" required></textarea>
-    
+
     <select name="موديل التيشيرت" required>
       <option value="" disabled selected>اختر الموديل</option>
       <option>Model1</option>
@@ -139,7 +166,7 @@
       <option>Model10</option>
       <option>Model11</option>
     </select>
-    
+
     <button type="submit">أطلب الآن</button>
   </form>
 
