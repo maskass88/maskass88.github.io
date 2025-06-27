@@ -1,57 +1,101 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EzzineStyle</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       font-family: 'Cairo', sans-serif;
-      background-color: #ffffff;
-      color: #222;
+      background-color: #111;
+      color: #f0f0f0;
       margin: 0;
       padding: 0;
-      text-align: center;
     }
+
     header {
-      background-color: #f7f7f7;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 30px 10px;
+      background: #000 url('https://i.ibb.co/7yht7pt/skull-bg.png') no-repeat center center;
+      background-size: cover;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
     }
-    h1 {
-      font-size: 2.5rem;
+
+    header h1 {
       margin: 0;
-      color: #111;
+      font-size: 3rem;
     }
-    p {
+
+    header p {
       font-size: 1.2rem;
-      color: #555;
+      margin-top: 10px;
     }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
     form {
       max-width: 500px;
-      margin: 30px auto;
-      background-color: #fafafa;
-      padding: 20px;
+      margin: 40px auto;
+      padding: 25px;
+      background-color: #1a1a1a;
       border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
     }
+
     input, textarea, select, button {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
-      border: 1px solid #ccc;
+      border: none;
       border-radius: 10px;
       font-size: 1rem;
     }
-    button {
-      background-color: #111;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s;
+
+    input, textarea, select {
+      background-color: #222;
+      color: #fff;
     }
+
+    button {
+      background-color: #fff;
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
     button:hover {
       background-color: #444;
+      color: #fff;
+    }
+
+    select {
+      direction: ltr;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
     }
   </style>
 </head>
@@ -59,18 +103,43 @@
 
   <header>
     <h1>EzzineStyle</h1>
-    <p>Oversize T-Shirt: 2900DA | Regular T-Shirt: 2700DA</p>
+    <p>Oversize: 2900DA | Regular: 2700DA</p>
   </header>
+
+  <div class="gallery">
+    <img src="zorroo.jpg" alt="Model1">
+    <img src="the last of usss-1.jpg" alt="Model2">
+    <img src="the last of us-1.jpg" alt="Model3">
+    <img src="the boys-1.png" alt="Model4">
+    <img src="Stranger thing-1.jpg" alt="Model5">
+    <img src="oversize tshirt Mockup 2-2.png" alt="Model6">
+    <img src="mix anime-1.jpg" alt="Model7">
+    <img src="hisoka-1.jpg" alt="Model8">
+    <img src="gta gta gta-1.jpg" alt="Model9">
+    <img src="goku mnayak-1.jpg" alt="Model10">
+    <img src="bilel 2 2 - copie-1.jpg" alt="Model11">
+  </div>
 
   <form action="https://formsubmit.co/abgamer0177@gmail.com" method="POST">
     <input type="text" name="الاسم" placeholder="الاسم الكامل" required>
     <input type="text" name="رقم الهاتف" placeholder="رقم الهاتف" required>
     <textarea name="العنوان" placeholder="العنوان الكامل للتوصيل" required></textarea>
-    <select name="نوع التيشيرت" required>
-      <option value="" disabled selected>اختر نوع التيشيرت</option>
-      <option value="Oversize T-Shirt">Oversize T-Shirt - 2900DA</option>
-      <option value="Regular T-Shirt">Regular T-Shirt - 2700DA</option>
+    
+    <select name="موديل التيشيرت" required>
+      <option value="" disabled selected>اختر الموديل</option>
+      <option>Model1</option>
+      <option>Model2</option>
+      <option>Model3</option>
+      <option>Model4</option>
+      <option>Model5</option>
+      <option>Model6</option>
+      <option>Model7</option>
+      <option>Model8</option>
+      <option>Model9</option>
+      <option>Model10</option>
+      <option>Model11</option>
     </select>
+    
     <button type="submit">أطلب الآن</button>
   </form>
 
