@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,151 +11,213 @@
       color: #fff;
       margin: 0;
       padding: 0;
-    }
+    }header {
+  text-align: center;
+  padding: 30px 10px;
+}
 
-    header {
-      text-align: center;
-      padding: 30px 10px;
-    }
+header h1 {
+  font-size: 3rem;
+  margin: 0;
+}
 
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
+header p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
 
-    header p {
-      font-size: 1.2rem;
-      margin-top: 10px;
-    }
+.order-btn {
+  display: block;
+  margin: 20px auto;
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+  padding: 15px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  width: max-content;
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
+.order-btn:hover {
+  background-color: #444;
+  color: #fff;
+}
 
-    .gallery a img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      transition: 0.3s;
-      box-shadow: 0 0 8px rgba(255,255,255,0.1);
-    }
+.filters {
+  text-align: center;
+  margin: 20px;
+}
 
-    .gallery a:hover img {
-      transform: scale(1.05);
-    }
+.filters button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-    form {
-      max-width: 500px;
-      margin: 40px auto;
-      padding: 25px;
-      background-color: #111;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
-    }
+.filters button:hover {
+  background-color: #333;
+  color: #fff;
+}
 
-    input, textarea, select, button {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  scroll-margin-top: 100px;
+}
 
-    input, textarea, select {
-      background-color: #222;
-      color: #fff;
-    }
+.gallery a img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: 0.3s;
+  box-shadow: 0 0 8px rgba(255,255,255,0.1);
+}
 
-    button {
-      background-color: #fff;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.gallery a:hover img {
+  transform: scale(1.05);
+}
 
-    button:hover {
-      background-color: #444;
-      color: #fff;
-    }
+form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #111;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
 
-    select {
-      direction: ltr;
-      text-align: center;
-    }
+input, textarea, select, button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+}
 
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.95);
-      justify-content: center;
-      align-items: center;
-    }
+input, textarea, select {
+  background-color: #222;
+  color: #fff;
+}
 
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 12px;
-    }
+button {
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .lightbox:target {
-      display: flex;
-    }
+button:hover {
+  background-color: #444;
+  color: #fff;
+}
+
+select {
+  direction: ltr;
+  text-align: center;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+.lightbox:target {
+  display: flex;
+}
+
   </style>
 </head>
-<body>
-
-  <header>
+<body>  <header>
     <h1>EzzineStyle</h1>
     <p>Oversize: 2900DA | Regular: 2700DA</p>
-  </header>
+    <a href="#order-section" class="order-btn">اطلب الآن</a>
+  </header>  <div class="filters">
+    <button onclick="filter('oversize')">Oversize - 2900DA</button>
+    <button onclick="filter('regular')">Regular - 2700DA</button>
+    <button onclick="filter('all')">عرض الكل</button>
+  </div>  <div class="gallery" id="product-gallery">
+    <!-- Example layout: You’ll replace class manually with 'oversize' or 'regular' as needed -->
+    <a href="#img1" class="oversize"><img src="t1.jpg" alt=""></a>
+    <a href="#img2" class="oversize"><img src="t2.jpg" alt=""></a>
+    <a href="#img3" class="regular"><img src="t3.jpg" alt=""></a>
+    <a href="#img4" class="regular"><img src="t4.jpg" alt=""></a>
+    <a href="#img5" class="oversize"><img src="t5.jpg" alt=""></a>
+    <a href="#img6" class="regular"><img src="t6.jpg" alt=""></a>
+    <a href="#img7" class="oversize"><img src="t7.jpg" alt=""></a>
+    <a href="#img8" class="regular"><img src="t8.jpg" alt=""></a>
+    <a href="#img9" class="oversize"><img src="t9.jpg" alt=""></a>
+    <a href="#img10" class="regular"><img src="t10.jpg" alt=""></a>
+    <a href="#img11" class="oversize"><img src="t11.jpg" alt=""></a>
+    <a href="#img12" class="regular"><img src="t12.jpg" alt=""></a>
+    <a href="#img13" class="oversize"><img src="t13.jpg" alt=""></a>
+    <a href="#img14" class="regular"><img src="t14.jpg" alt=""></a>
+    <a href="#img15" class="oversize"><img src="t15.jpg" alt=""></a>
+    <a href="#img16" class="regular"><img src="t16.jpg" alt=""></a>
+    <a href="#img17" class="oversize"><img src="t17.jpg" alt=""></a>
+    <a href="#img18" class="regular"><img src="t18.jpg" alt=""></a>
+    <a href="#img19" class="oversize"><img src="t19.jpg" alt=""></a>
+  </div>  <div id="order-section"></div>
+  <form action="https://formsubmit.co/abgamer0177@gmail.com" method="POST">
+    <input type="text" name="الاسم" placeholder="الاسم الكامل" required>
+    <input type="text" name="رقم الهاتف" placeholder="رقم الهاتف" required>
+    <textarea name="العنوان" placeholder="العنوان الكامل للتوصيل" required></textarea><select name="موديل التيشيرت" required>
+  <option value="" disabled selected>اختر الموديل</option>
+  <option>Model1</option>
+  <option>Model2</option>
+  <option>Model3</option>
+  <option>Model4</option>
+  <option>Model5</option>
+  <option>Model6</option>
+  <option>Model7</option>
+  <option>Model8</option>
+  <option>Model9</option>
+  <option>Model10</option>
+  <option>Model11</option>
+  <option>Model12</option>
+  <option>Model13</option>
+  <option>Model14</option>
+  <option>Model15</option>
+  <option>Model16</option>
+  <option>Model17</option>
+  <option>Model18</option>
+  <option>Model19</option>
+</select>
 
-  <div class="gallery">
-    <!-- 19 images clickable -->
-    <a href="#img1"><img src="t1.jpg" alt=""></a>
-    <a href="#img2"><img src="t2.jpg" alt=""></a>
-    <a href="#img3"><img src="t3.jpg" alt=""></a>
-    <a href="#img4"><img src="t4.jpg" alt=""></a>
-    <a href="#img5"><img src="t5.jpg" alt=""></a>
-    <a href="#img6"><img src="t6.jpg" alt=""></a>
-    <a href="#img7"><img src="t7.jpg" alt=""></a>
-    <a href="#img8"><img src="t8.jpg" alt=""></a>
-    <a href="#img9"><img src="t9.jpg" alt=""></a>
-    <a href="#img10"><img src="t10.jpg" alt=""></a>
-    <a href="#img11"><img src="t11.jpg" alt=""></a>
-    <a href="#img12"><img src="t12.jpg" alt=""></a>
-    <a href="#img13"><img src="t13.jpg" alt=""></a>
-    <a href="#img14"><img src="t14.jpg" alt=""></a>
-    <a href="#img15"><img src="t15.jpg" alt=""></a>
-    <a href="#img16"><img src="t16.jpg" alt=""></a>
-    <a href="#img17"><img src="t17.jpg" alt=""></a>
-    <a href="#img18"><img src="t18.jpg" alt=""></a>
-    <a href="#img19"><img src="t19.jpg" alt=""></a>
-  </div>
+<button type="submit">أطلب الآن</button>
 
-  <!-- Lightbox viewer -->
-  <div id="img1" class="lightbox"><a href="#"><img src="t1.jpg" alt=""></a></div>
-  <div id="img2" class="lightbox"><a href="#"><img src="t2.jpg" alt=""></a></div>
-  <div id="img3" class="lightbox"><a href="#"><img src="t3.jpg" alt=""></a></div>
-  <div id="img4" class="lightbox"><a href="#"><img src="t4.jpg" alt=""></a></div>
-  <div id="img5" class="lightbox"><a href="#"><img src="t5.jpg" alt=""></a></div>
-  <div id="img6" class="lightbox"><a href="#"><img src="t6.jpg" alt=""></a></div>
-  <div id="img7" class="lightbox"><a href="#"><img src="t7.jpg" alt=""></a></div>
-  <div id="img8" class="lightbox"><a href="#"><img src="t8.jpg" alt=""></a></div>
-  <div id="img9" class="lightbox"><a href="#"><img src="t9.jpg" alt=""></a></div>
-  <div id="img10" class="lightbox"><a href="#"><img src="t10.jpg" alt=""></a></div>
-  <div id="img11" class="lightbox"><a href="#"><img src="t11.jpg" alt=""></a></div>
-  <div id="img12" class="lightbox"><a href="#"><img src="t12.jpg" alt=""></a></div>
-  <div id="img13" class="lightbox"><a href="#"><img src="t13.jpg" alt=""></a></div>
-  <div id="img14" class="lightbox"><a href="#"><img src="t14.jpg" alt=""></a></div>
-  <div id="img15" class="lightbox"><a href="#"><img src="t15.jpg" alt=""></a></div>
-  <div id="img16" class="lightbox"><a href="#"><img src="t16.jpg" alt=""></a></div>
+  </form>  <script>
+    function filter(type) {
+      const items = document.querySelectorAll('.gallery a');
+      items.forEach(item => {
+        if (type === 'all') {
+          item.style.display = 'block';
+        } else if (item.classList.contains(type)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script></body>
+</html>
