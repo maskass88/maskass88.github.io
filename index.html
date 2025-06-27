@@ -31,7 +31,7 @@
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       padding: 30px;
       max-width: 1200px;
@@ -90,7 +90,6 @@
       text-align: center;
     }
 
-    /* Lightbox */
     .lightbox {
       position: fixed;
       top: 0; left: 0;
@@ -121,31 +120,26 @@
   </header>
 
   <div class="gallery">
-    <a href="#img1"><img src="zorroo.jpg" alt=""></a>
-    <a href="#img2"><img src="the last of usss-1.jpg" alt=""></a>
-    <a href="#img3"><img src="the last of us-1.jpg" alt=""></a>
-    <a href="#img4"><img src="the boys-1.png" alt=""></a>
-    <a href="#img5"><img src="Stranger thing-1.jpg" alt=""></a>
-    <a href="#img6"><img src="oversize tshirt Mockup 2-2.png" alt=""></a>
-    <a href="#img7"><img src="mix anime-1.jpg" alt=""></a>
-    <a href="#img8"><img src="hisoka-1.jpg" alt=""></a>
-    <a href="#img9"><img src="gta gta gta-1.jpg" alt=""></a>
-    <a href="#img10"><img src="goku mnayak-1.jpg" alt=""></a>
-    <a href="#img11"><img src="bilel 2 2 - copie-1.jpg" alt=""></a>
+    <!-- Loop images t1 to t19 -->
+    <!-- Also lightbox links -->
+    <!-- Grid view -->
+    <!-- You can replace jpg with png if needed -->
+    <!-- Clickable -->
+    <!-- Auto scale -->
+    <!-- Arabic friendly -->
+    <!-- Compact and fast -->
+    <!-- Start -->
+    ${[...Array(19)].map((_, i) => `
+      <a href="#img${i+1}"><img src="t${i+1}.jpg" alt="T-shirt ${i+1}"></a>
+    `).join('')}
   </div>
 
-  <!-- Lightboxes -->
-  <div id="img1" class="lightbox"><img src="zorroo.jpg" alt=""></div>
-  <div id="img2" class="lightbox"><img src="the last of usss-1.jpg" alt=""></div>
-  <div id="img3" class="lightbox"><img src="the last of us-1.jpg" alt=""></div>
-  <div id="img4" class="lightbox"><img src="the boys-1.png" alt=""></div>
-  <div id="img5" class="lightbox"><img src="Stranger thing-1.jpg" alt=""></div>
-  <div id="img6" class="lightbox"><img src="oversize tshirt Mockup 2-2.png" alt=""></div>
-  <div id="img7" class="lightbox"><img src="mix anime-1.jpg" alt=""></div>
-  <div id="img8" class="lightbox"><img src="hisoka-1.jpg" alt=""></div>
-  <div id="img9" class="lightbox"><img src="gta gta gta-1.jpg" alt=""></div>
-  <div id="img10" class="lightbox"><img src="goku mnayak-1.jpg" alt=""></div>
-  <div id="img11" class="lightbox"><img src="bilel 2 2 - copie-1.jpg" alt=""></div>
+  <!-- Lightboxes for each image -->
+  ${[...Array(19)].map((_, i) => `
+    <div id="img${i+1}" class="lightbox">
+      <img src="t${i+1}.jpg" alt="T-shirt ${i+1}">
+    </div>
+  `).join('')}
 
   <form action="https://formsubmit.co/abgamer0177@gmail.com" method="POST">
     <input type="text" name="الاسم" placeholder="الاسم الكامل" required>
@@ -154,17 +148,7 @@
 
     <select name="موديل التيشيرت" required>
       <option value="" disabled selected>اختر الموديل</option>
-      <option>Model1</option>
-      <option>Model2</option>
-      <option>Model3</option>
-      <option>Model4</option>
-      <option>Model5</option>
-      <option>Model6</option>
-      <option>Model7</option>
-      <option>Model8</option>
-      <option>Model9</option>
-      <option>Model10</option>
-      <option>Model11</option>
+      ${[...Array(19)].map((_, i) => `<option>Model${i+1}</option>`).join('')}
     </select>
 
     <button type="submit">أطلب الآن</button>
