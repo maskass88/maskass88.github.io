@@ -7,182 +7,121 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
             color: #333;
-            line-height: 1.6;
         }
         
         header {
             text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(135deg, #007bff 0%, #00bfff 100%);
+            padding: 20px;
+            background-color: #007bff;
             color: white;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .logo {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 5px;
         }
         
         .welcome {
-            font-size: 1.2rem;
-            margin-top: 0;
-            opacity: 0.9;
-        }
-        
-        .slogan {
-            font-style: italic;
-            margin-top: 10px;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
         
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            padding: 20px;
-            max-width: 1300px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 15px;
         }
         
         .product {
-            border: 1px solid #e0e0e0;
+            background: white;
             border-radius: 8px;
             overflow: hidden;
-            text-align: center;
-            transition: all 0.3s ease;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .product img {
             width: 100%;
-            height: 280px;
+            height: 150px;
             object-fit: cover;
-            display: block;
-            border-bottom: 1px solid #eee;
         }
         
         .product-info {
-            padding: 15px;
+            padding: 10px;
+            text-align: center;
         }
         
         .model-number {
             font-weight: bold;
             color: #007bff;
-            margin: 8px 0;
-            font-size: 1.1rem;
+            margin: 5px 0;
         }
         
-        .product-type {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 8px 0;
-        }
-        
-        .type-badge {
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            background: #f0f0f0;
-            color: #555;
+        .price {
+            color: #28a745;
+            font-weight: bold;
+            margin: 5px 0;
         }
         
         .buy-btn {
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 8px;
             width: 100%;
+            border-radius: 4px;
+            margin-top: 5px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            border-radius: 0 0 8px 8px;
         }
         
-        .buy-btn:hover {
-            background-color: #0069d9;
-        }
-        
+        /* النافذة المنبثقة */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
+            z-index: 1000;
+            overflow-y: auto;
         }
         
         .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 25px;
-            border-radius: 10px;
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
             width: 90%;
             max-width: 500px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-            animation: modalFadeIn 0.3s;
-        }
-        
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            border-radius: 8px;
         }
         
         .close {
-            color: #aaa;
             float: left;
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: color 0.3s;
-        }
-        
-        .close:hover {
-            color: #333;
         }
         
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: bold;
-            color: #555;
         }
         
         input, select {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 16px;
-            transition: border 0.3s;
-        }
-        
-        input:focus, select:focus {
-            border-color: #007bff;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+            border-radius: 4px;
         }
         
         .quantity-control {
@@ -193,236 +132,139 @@
         }
         
         .quantity-btn {
-            background-color: #007bff;
+            width: 30px;
+            height: 30px;
+            background: #007bff;
             color: white;
             border: none;
-            width: 35px;
-            height: 35px;
-            font-size: 18px;
+            border-radius: 4px;
             cursor: pointer;
-            border-radius: 6px;
-            transition: background-color 0.3s;
-        }
-        
-        .quantity-btn:hover {
-            background-color: #0069d9;
         }
         
         .quantity-input {
-            width: 60px;
+            width: 50px;
             text-align: center;
-            margin: 0 12px;
-            font-size: 16px;
+            margin: 0 10px;
         }
         
         .submit-btn {
-            background-color: #28a745;
+            background: #28a745;
             color: white;
             border: none;
-            padding: 12px 15px;
+            padding: 10px;
             width: 100%;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
-            border-radius: 6px;
-            margin-top: 15px;
-            transition: background-color 0.3s;
             font-weight: bold;
-        }
-        
-        .submit-btn:hover {
-            background-color: #218838;
-        }
-        
-        .hidden-message {
-            color: #dc3545;
-            text-align: center;
-            margin-top: 10px;
-            display: none;
-            font-size: 14px;
-        }
-        
-        .thank-you {
-            text-align: center;
-            font-size: 22px;
-            color: #28a745;
-            display: none;
-            padding: 20px;
-        }
-        
-        .thank-you i {
-            margin-left: 10px;
         }
         
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background-color: #25D366;
+            bottom: 20px;
+            left: 20px;
+            background: #25D366;
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            text-align: center;
-            font-size: 28px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.1);
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 100;
         }
         
         footer {
             text-align: center;
-            padding: 25px;
-            margin-top: 50px;
-            color: #666;
+            padding: 15px;
+            background: white;
+            margin-top: 20px;
             border-top: 1px solid #eee;
-            background-color: #f9f9f9;
-            font-size: 14px;
-        }
-        
-        .selected-product {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-        
-        .error-message {
-            color: #dc3545;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        @media (max-width: 768px) {
-            .products {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            .modal-content {
-                width: 95%;
-                margin: 10% auto;
-            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">EzzineStyle</div>
-        <p class="welcome">مرحباً بكم في متجر EzzineStyle</p>
-        <p class="slogan">جودة عالية - تصميمات مميزة - أسعار تنافسية</p>
+        <div class="welcome">موضة تميزك بأسلوب</div>
     </header>
     
     <div class="products" id="productsContainer">
-        <!-- سيتم إضافة المنتجات ديناميكيًا -->
+        <!-- سيتم ملؤها بالجافاسكريبت -->
     </div>
     
     <div id="orderModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>طلب التيشيرت</h2>
-            <div class="selected-product" id="selectedProductInfo">
-                <!-- سيتم عرض معلومات المنتج المختار هنا -->
+            <h2 style="text-align: center;">طلب التيشيرت</h2>
+            
+            <div id="selectedProductInfo" style="text-align: center; margin: 15px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+                <!-- سيتم عرض معلومات المنتج هنا -->
             </div>
+            
             <form id="orderForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">الاسم الكامل:</label>
-                        <input type="text" id="name" required>
-                        <div class="error-message" id="nameError">الرجاء إدخال الاسم الكامل</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">رقم الهاتف:</label>
-                        <input type="tel" id="phone" required>
-                        <div class="error-message" id="phoneError">الرجاء إدخال رقم هاتف صحيح</div>
-                    </div>
+                <div class="form-group">
+                    <label for="name">الاسم الكامل:</label>
+                    <input type="text" id="name" required>
                 </div>
                 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="wilaya">الولاية:</label>
-                        <select id="wilaya" required>
-                            <option value="">اختر الولاية</option>
-                            <!-- سيتم ملء الولايات -->
-                        </select>
-                        <div class="error-message" id="wilayaError">الرجاء اختيار الولاية</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="commune">البلدية:</label>
-                        <select id="commune" required disabled>
-                            <option value="">اختر البلدية</option>
-                        </select>
-                        <div class="error-message" id="communeError">الرجاء اختيار البلدية</div>
-                    </div>
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف:</label>
+                    <input type="tel" id="phone" required>
                 </div>
                 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="size">المقاس:</label>
-                        <select id="size" required>
-                            <option value="">اختر المقاس</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
-                        </select>
-                        <div class="error-message" id="sizeError">الرجاء اختيار المقاس</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="type">النوع:</label>
-                        <select id="type" required>
-                            <option value="">اختر النوع</option>
-                            <option value="Oversize">Oversize</option>
-                            <option value="Regular">Regular</option>
-                        </select>
-                        <div class="error-message" id="typeError">الرجاء اختيار النوع</div>
-                    </div>
+                <div class="form-group">
+                    <label for="wilaya">الولاية:</label>
+                    <select id="wilaya" required>
+                        <option value="">اختر الولاية</option>
+                        <!-- سيتم ملؤها بالجافاسكريبت -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="commune">البلدية:</label>
+                    <select id="commune" required disabled>
+                        <option value="">اختر البلدية</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="size">المقاس:</label>
+                    <select id="size" required>
+                        <option value="">اختر المقاس</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="type">النوع:</label>
+                    <select id="type" required>
+                        <option value="">اختر النوع</option>
+                        <option value="Oversize">Oversize - 2900 دج</option>
+                        <option value="Regular">Regular - 2700 دج</option>
+                    </select>
                 </div>
                 
                 <div class="form-group">
                     <label>الكمية:</label>
                     <div class="quantity-control">
-                        <button type="button" class="quantity-btn" id="decrease">-</button>
+                        <button type="button" class="quantity-btn" id="decreaseQty">-</button>
                         <input type="number" class="quantity-input" id="quantity" value="1" min="1">
-                        <button type="button" class="quantity-btn" id="increase">+</button>
+                        <button type="button" class="quantity-btn" id="increaseQty">+</button>
                     </div>
-                    <p class="hidden-message" id="quantityMessage">الحد الأقصى للطلب هو 30 قطعة</p>
+                </div>
+                
+                <div id="totalPrice" style="text-align: center; margin: 15px 0; font-weight: bold;">
+                    المجموع: 0 دج
                 </div>
                 
                 <button type="submit" class="submit-btn">تأكيد الطلب</button>
             </form>
-            
-            <div class="thank-you" id="thankYou">
-                شكراً لك على طلبك! <i class="fas fa-heart"></i><br>
-                سنتواصل معك قريباً لتأكيد التفاصيل
-            </div>
         </div>
     </div>
     
@@ -431,308 +273,201 @@
     </a>
     
     <footer>
-        <div>Made with <i class="fas fa-heart" style="color: #dc3545;"></i> by EzzineStyle</div>
-        <div style="margin-top: 10px;">© 2023 جميع الحقوق محفوظة</div>
+        Made by EzzineStyle
     </footer>
-    
+
     <script>
         // بيانات المنتجات
-        const products = [
-            { id: 1, name: "تيشيرت Model 1", types: ["Oversize", "Regular"], price: 1200 },
-            { id: 2, name: "تيشيرت Model 2", types: ["Oversize", "Regular"], price: 1200 },
-            // ... أضف باقي المنتجات بنفس الهيكل حتى 19
-        ];
-        
-        // إنشاء قائمة المنتجات
-        function createProducts() {
-            const container = document.getElementById('productsContainer');
-            container.innerHTML = '';
-            
-            products.forEach((product, index) => {
-                const productDiv = document.createElement('div');
-                productDiv.className = 'product';
-                
-                const img = document.createElement('img');
-                img.src = `t${index+1}.jpg`;
-                img.alt = product.name;
-                img.onerror = function() {
-                    this.src = 'https://via.placeholder.com/300x400?text=EzzineStyle+' + (index+1);
-                };
-                
-                const productInfo = document.createElement('div');
-                productInfo.className = 'product-info';
-                
-                const modelNumber = document.createElement('div');
-                modelNumber.className = 'model-number';
-                modelNumber.textContent = `Model ${index+1}`;
-                
-                const productType = document.createElement('div');
-                productType.className = 'product-type';
-                product.types.forEach(type => {
-                    const typeBadge = document.createElement('span');
-                    typeBadge.className = 'type-badge';
-                    typeBadge.textContent = type;
-                    productType.appendChild(typeBadge);
-                });
-                
-                const price = document.createElement('div');
-                price.textContent = `${product.price} دج`;
-                price.style.margin = '8px 0';
-                price.style.fontWeight = 'bold';
-                price.style.color = '#28a745';
-                
-                const buyBtn = document.createElement('button');
-                buyBtn.className = 'buy-btn';
-                buyBtn.textContent = 'اشترِ الآن';
-                buyBtn.dataset.productId = product.id;
-                buyBtn.onclick = function() {
-                    openModal(product);
-                };
-                
-                productInfo.appendChild(modelNumber);
-                productInfo.appendChild(productType);
-                productInfo.appendChild(price);
-                
-                productDiv.appendChild(img);
-                productDiv.appendChild(productInfo);
-                productDiv.appendChild(buyBtn);
-                
-                container.appendChild(productDiv);
+        const products = [];
+        for (let i = 1; i <= 19; i++) {
+            products.push({
+                id: i,
+                name: `تيشيرت Model ${i}`,
+                oversizePrice: 2900,
+                regularPrice: 2700
             });
         }
         
-        // فتح نافذة الطلب مع بيانات المنتج المحدد
-        let selectedProduct = null;
+        // عرض المنتجات
+        function displayProducts() {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+            
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                
+                productDiv.innerHTML = `
+                    <img src="t${product.id}.jpg" onerror="this.src='https://via.placeholder.com/300x400?text=Model+${product.id}'">
+                    <div class="product-info">
+                        <div class="model-number">Model ${product.id}</div>
+                        <div class="price">Oversize: 2900 دج</div>
+                        <div class="price">Regular: 2700 دج</div>
+                        <button class="buy-btn" data-id="${product.id}">اشترِ الآن</button>
+                    </div>
+                `;
+                
+                container.appendChild(productDiv);
+            });
+            
+            // إضافة حدث النقر لجميع أزرار الشراء
+            document.querySelectorAll('.buy-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const product = products.find(p => p.id === productId);
+                    openOrderModal(product);
+                });
+            });
+        }
         
-        function openModal(product) {
-            selectedProduct = product;
+        // فتح نافذة الطلب
+        let currentProduct = null;
+        
+        function openOrderModal(product) {
+            currentProduct = product;
             const modal = document.getElementById('orderModal');
             const productInfo = document.getElementById('selectedProductInfo');
             
             productInfo.innerHTML = `
-                <div>${product.name}</div>
-                <div style="font-size: 0.9rem; color: #666;">السعر: ${product.price} دج</div>
+                <div style="font-weight: bold;">${product.name}</div>
             `;
             
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
+            calculateTotal();
         }
         
-        // إدارة النافذة المنبثقة
-        const modal = document.getElementById('orderModal');
-        const closeBtn = document.querySelector('.close');
-        const orderForm = document.getElementById('orderForm');
-        const thankYou = document.getElementById('thankYou');
-        
-        closeBtn.onclick = function() {
-            closeModal();
-        };
-        
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        };
-        
-        function closeModal() {
-            modal.style.display = 'none';
-            orderForm.style.display = 'block';
-            thankYou.style.display = 'none';
-            orderForm.reset();
+        // إغلاق النافذة المنبثقة
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
             document.body.style.overflow = 'auto';
-            clearErrors();
+            document.getElementById('orderForm').reset();
         }
         
         // إدارة الكمية
-        const decreaseBtn = document.getElementById('decrease');
-        const increaseBtn = document.getElementById('increase');
-        const quantityInput = document.getElementById('quantity');
-        const quantityMessage = document.getElementById('quantityMessage');
-        
-        decreaseBtn.addEventListener('click', function() {
-            let value = parseInt(quantityInput.value);
-            if (value > 1) {
-                quantityInput.value = value - 1;
-            }
-            checkQuantity();
+        document.getElementById('increaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantity');
+            qtyInput.value = parseInt(qtyInput.value) + 1;
+            calculateTotal();
         });
         
-        increaseBtn.addEventListener('click', function() {
-            let value = parseInt(quantityInput.value);
-            quantityInput.value = value + 1;
-            checkQuantity();
+        document.getElementById('decreaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantity');
+            if (parseInt(qtyInput.value) > 1) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+                calculateTotal();
+            }
         });
         
-        function checkQuantity() {
-            if (parseInt(quantityInput.value) > 30) {
-                quantityMessage.style.display = 'block';
-            } else {
-                quantityMessage.style.display = 'none';
+        document.getElementById('quantity').addEventListener('change', calculateTotal);
+        document.getElementById('type').addEventListener('change', calculateTotal);
+        
+        // حساب السعر الإجمالي
+        function calculateTotal() {
+            if (!currentProduct) return;
+            
+            const type = document.getElementById('type').value;
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            let price = 0;
+            
+            if (type === 'Oversize') {
+                price = currentProduct.oversizePrice;
+            } else if (type === 'Regular') {
+                price = currentProduct.regularPrice;
             }
+            
+            const total = price * quantity;
+            document.getElementById('totalPrice').textContent = `المجموع: ${total} دج`;
         }
         
-        // الولايات والبلديات الجزائرية
+        // جميع الولايات الجزائرية الـ58
         const wilayas = {
-            "1": "أدرار", "2": "الشلف", "3": "الأغواط", "4": "أم البواقي", "5": "باتنة",
-            "6": "بجاية", "7": "بسكرة", "8": "بشار", "9": "البليدة", "10": "البويرة",
-            // ... جميع الولايات حتى 58
+            "1": "أدرار",
+            "2": "الشلف",
+            "3": "الأغواط",
+            "4": "أم البواقي",
+            "5": "باتنة",
+            "6": "بجاية",
+            "7": "بسكرة",
+            "8": "بشار",
+            "9": "البليدة",
+            "10": "البويرة",
+            "11": "تمنراست",
+            "12": "تبسة",
+            "13": "تلمسان",
+            "14": "تيارت",
+            "15": "تيزي وزو",
+            "16": "الجزائر",
+            "17": "الجلفة",
+            "18": "جيجل",
+            "19": "سطيف",
+            "20": "سعيدة",
+            "21": "سكيكدة",
+            "22": "سيدي بلعباس",
+            "23": "عنابة",
+            "24": "قالمة",
+            "25": "قسنطينة",
+            "26": "المدية",
+            "27": "مستغانم",
+            "28": "المسيلة",
+            "29": "معسكر",
+            "30": "ورقلة",
+            "31": "وهران",
+            "32": "البيض",
+            "33": "إليزي",
+            "34": "برج بوعريريج",
+            "35": "بومرداس",
+            "36": "الطارف",
+            "37": "تندوف",
+            "38": "تيسمسيلت",
+            "39": "الوادي",
+            "40": "خنشلة",
+            "41": "سوق أهراس",
+            "42": "تيبازة",
+            "43": "ميلة",
+            "44": "عين الدفلى",
+            "45": "النعامة",
+            "46": "عين تموشنت",
+            "47": "غرداية",
+            "48": "غليزان",
+            "49": "تيميمون",
+            "50": "برج باجي مختار",
+            "51": "أولاد جلال",
+            "52": "بني عباس",
+            "53": "عين صالح",
+            "54": "عين قزام",
+            "55": "تقرت",
+            "56": "جانت",
+            "57": "المغير",
+            "58": "المنيعة"
         };
         
+        // البلديات لكل ولاية (مثال لبعض الولايات، يمكنك إضافة الباقي بنفس الطريقة)
         const communes = {
-            "1": ["أدرار", "تمقطن", "زاوية كنتة", "رقان", "تسابيت"],
-            "2": ["الشلف", "وادي الفضة", "بني حواء", "الكريمية", "الزبوجة"],
-            // ... جميع البلديات لكل ولاية
-        };
-        
-        // ملء قائمة الولايات
-        const wilayaSelect = document.getElementById('wilaya');
-        for (const [code, name] of Object.entries(wilayas)) {
-            const option = document.createElement('option');
-            option.value = code;
-            option.textContent = name;
-            wilayaSelect.appendChild(option);
-        }
-        
-        // تحديث البلديات عند اختيار الولاية
-        wilayaSelect.addEventListener('change', function() {
-            const communeSelect = document.getElementById('commune');
-            communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
-            
-            if (this.value && communes[this.value]) {
-                communeSelect.disabled = false;
-                communes[this.value].forEach(commune => {
-                    const option = document.createElement('option');
-                    option.value = commune;
-                    option.textContent = commune;
-                    communeSelect.appendChild(option);
-                });
-            } else {
-                communeSelect.disabled = true;
-            }
-        });
-        
-        // التحقق من صحة البيانات
-        function validateForm() {
-            let isValid = true;
-            clearErrors();
-            
-            if (!document.getElementById('name').value.trim()) {
-                document.getElementById('nameError').style.display = 'block';
-                isValid = false;
-            }
-            
-            const phone = document.getElementById('phone').value.trim();
-            if (!phone || !/^(\+?\d{10,12})$/.test(phone)) {
-                document.getElementById('phoneError').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (!document.getElementById('wilaya').value) {
-                document.getElementById('wilayaError').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (!document.getElementById('commune').value) {
-                document.getElementById('communeError').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (!document.getElementById('size').value) {
-                document.getElementById('sizeError').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (!document.getElementById('type').value) {
-                document.getElementById('typeError').style.display = 'block';
-                isValid = false;
-            }
-            
-            return isValid;
-        }
-        
-        function clearErrors() {
-            document.querySelectorAll('.error-message').forEach(el => {
-                el.style.display = 'none';
-            });
-        }
-        
-        // إرسال الطلب
-        orderForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (!validateForm()) return;
-            
-            // جمع بيانات الطلب
-            const orderData = {
-                product: selectedProduct.name,
-                model: `Model ${selectedProduct.id}`,
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                wilaya: document.getElementById('wilaya').options[document.getElementById('wilaya').selectedIndex].text,
-                commune: document.getElementById('commune').options[document.getElementById('commune').selectedIndex].text,
-                size: document.getElementById('size').value,
-                type: document.getElementById('type').value,
-                quantity: document.getElementById('quantity').value,
-                totalPrice: selectedProduct.price * parseInt(document.getElementById('quantity').value),
-                date: new Date().toLocaleString('ar-DZ')
-            };
-            
-            // هنا يمكنك إرسال البيانات إلى الخادم أو خدمة خارجية
-            sendOrderToServer(orderData);
-            
-            // عرض رسالة الشكر
-            orderForm.style.display = 'none';
-            thankYou.style.display = 'block';
-            
-            // إغلاق النافذة بعد 3 ثواني
-            setTimeout(closeModal, 3000);
-        });
-        
-        // دالة محاكاة لإرسال الطلب (استبدلها بالحل الحقيقي)
-        function sendOrderToServer(orderData) {
-            console.log('تم إرسال الطلب:', orderData);
-            
-            // حل باستخدام Formspree (يحتاج إلى استبدال بالإيميل الخاص بك)
-            const formData = new FormData();
-            for (const key in orderData) {
-                formData.append(key, orderData[key]);
-            }
-            
-            fetch('https://formspree.io/f/your-form-id', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('تم إرسال الطلب بنجاح');
-                } else {
-                    console.error('خطأ في إرسال الطلب');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-        
-        // تهيئة الصفحة عند التحميل
-        window.onload = function() {
-            createProducts();
-            
-            // يمكنك إضافة هذا للتحقق من ظهور الصور
-            console.log('تم تحميل الصفحة بنجاح');
-            
-            // اختبار ظهور الصور في الكونسول
-            for (let i = 1; i <= 19; i++) {
-                const img = new Image();
-                img.src = `t${i}.jpg`;
-                img.onerror = function() {
-                    console.warn(`الصورة t${i}.jpg غير موجودة`);
-                };
-            }
-        };
-    </script>
-</body>
-</html>
+            "1": ["أدرار", "تمقطن", "زاوية كنتة", "رقان", "تسابيت", "أولف", "تيميمون", "أوقروت", "برج باجي مختار", "فنوغيل"],
+            "2": ["الشلف", "وادي الفضة", "بني حواء", "الكريمية", "الزبوجة", "بوعينان", "أولاد فارس", "أولاد بن عبد القادر", "تاجنة", "المرسى"],
+            "3": ["الأغواط", "قصر الحيران", "حاسي الدلاعة", "تاجموت", "أفلو", "سيدي مخلوف", "الحويطة", "الغيشة", "سبقاق", "بريان"],
+            "4": ["أم البواقي", "عين البيضاء", "سوق نعمان", "عين مليلة", "سيقوس", "مسكيانة", "فكيرينة", "عين فكرون", "بئر الشهداء", "العامرية"],
+            "5": ["باتنة", "فسديس", "مروانة", "رأس العيون", "تازولت", "نقاوس", "إشمول", "بريكة", "الجزار", "تكوت"],
+            "6": ["بجاية", "أقبو", "تازمالت", "خراطة", "صدوق", "سيدي عيش", "أوزلاقن", "تيمزريت", "أيت سماعيل", "توجة"],
+            "7": ["بسكرة", "أورلال", "زريبة الوادي", "ليشانة", "مليلي", "القنطرة", "أوماش", "الوطاية", "سيدي عقبة", "فوغالة"],
+            "8": ["بشار", "بني ونيف", "تاغيت", "بوكايس", "القنادسة", "موغل", "عرق فراج", "العبادلة", "تيمودي", "كرزاز"],
+            "9": ["البليدة", "بوفاريك", "بوعينان", "الأربعاء", "مفتاح", "بوقرة", "حمام ملوان", "وادي العلايق", "بني تامو", "بني مراد"],
+            "10": ["البويرة", "الأخضرية", "سور الغزلان", "بشلول", "الأصنام", "المعمورة", "حيزر", "سوق الخميس", "الهاشمية", "روراوة"],
+            "11": ["تمنراست", "عين غار", "إينغر", "تاظروك", "عين صالح", "إين أمقل", "تاهيفاوين", "أبلسة", "تيمياوين", "تيت"],
+            "12": ["تبسة", "بئر الذهب", "مرسط", "العوينات", "بئر مقدم", "العقلة", "الشريعة", "نقرين", "بوقاعة", "الونزة"],
+            "13": ["تلمسان", "بني سنوس", "الرمشي", "صبرة", "غزوات", "سيدي الجيلالي", "باب العسة", "الفحول", "عين تالوت", "عين غرابة"],
+            "14": ["تيارت", "مدروسة", "عين الذهب", "قصر الشلالة", "فرندة", "عين كرمس", "رحوية", "السوقر", "مشرع الصفا", "توسنينة"],
+            "15": ["تيزي وزو", "عزازقة", "أزفون", "ذراع الميزان", "بني دوالة", "بني زمنزار", "مقلع", "واقنون", "مشطرا", "إيفيغاء"],
+            "16": ["الجزائر الوسطى", "باب الوادي", "الحراش", "بئر مراد رايس", "بئر خادم", "الدار البيضاء", "بولوغين", "القبة", "الحمامات", "الرويبة"],
+            "17": ["الجلفة", "حاسي بحبح", "عين وسارة", "دار الشيوخ", "الشارف", "حد الصحاري", "مسعد", "زعفران", "سيدي لعجال", "عين الإبل"],
+            "18": ["جيجل", "الميلية", "الطاهير", "الشقفة", "سيدي معروف", "العنصر", "القالة", "الطاهير", "الشقفة", "سيدي معروف"],
+            "19": ["سطيف", "عين أرنات", "بئر العرش", "بني عزيز", "بني ورتيلان", "جميلة", "قنزات", "صالح باي", "العلمة", "حمام قرقور"],
+            "20": ["سعيدة", "يوب", "سيدي عمر", "حاسي زهانة", "أولاد براهيم", "المعمورة", "سيدي أحمد", "عين السلطان", "البيض", "بوقايد"],
+            "21": ["سكيكدة", "الحدائق", "عزابة", "بن عزوز", "الرمكة", "تمالوس", "الولجة", "أولاد عطية", "الزيتونة", "جمور"],
+            "22": ["سيدي بلعباس", "تسالة", "عين البرد", "سيدي علي بوسيدي", "تغاليمت", "مرين", "رأس الماء", "سيدي لحسن", "مزاورو", "عين الثريد"],
+            "23": ["عنابة", "برحال", "الحجار", "البوني", "العلمة", "الشرفة", "وادي العنب", "سرايدي", "شطايبي", "عين الباردة"],
+            "24": ["قالمة", "هيليوبوليس", "بوشقوف", "حمام النبايل", "قلعة بوصبع", "مجاز الصفاء", "عين بن بيضاء", "وادي الزناتي", "بومهرة أحمد", "عين مخلوف"],
+            "25": ["قسنطينة", "الخروب", "عين عبيد", "زيغود يوسف", "ابن زياد", "بني حميدان", "حامة بوزيان", "المرسى", "عين السمارة", "الرأس الأسود"],
+            "26": ["المدية", "برج الأمير خالد", "بني سليمان", "العزيزية", "الشيخ", "وزرة", "سيدي نعمان", "تابنة", "العوينات", "العمارية"],
+            "27": ["مستغانم", "حجاج", "سيدي علي", "عشعاشة", "خير الدين", "سيدي لخضر", "ماسكار", "ح
