@@ -5,300 +5,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>EzzineStyle - متجر تيشيرتات</title>
 <style>
-  body {
-    background: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    margin: 0; padding: 0; line-height: 1.6;
-  }
-  header {
-    text-align: center;
-    padding: 2rem 1rem;
-    background: #f8f9fa;
-    border-bottom: 1px solid #eaeaea;
-  }
-  .logo {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #1a56db;
-    margin-bottom: 0.5rem;
-  }
-  .welcome {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: #444;
-  }
-  .tagline {
-    font-size: 1.1rem;
-    color: #666;
-  }
-  h2.section-title {
-    max-width: 1400px;
-    margin: 2rem auto 1rem;
-    padding: 0 1rem;
-    font-weight: bold;
-    color: #1a56db;
-  }
-  .products-grid {
-    max-width: 1400px;
-    margin: 0 auto 3rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
-    gap: 1.8rem;
-    padding: 0 1rem;
-  }
-  .product-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  .product-image {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    border-bottom: 1px solid #eee;
-    background: #f7f7f7;
-  }
-  .product-info {
-    padding: 1rem 1.2rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .product-model {
-    font-weight: bold;
-    font-size: 1.15rem;
-    margin-bottom: 0.5rem;
-    color: #222;
-  }
-  .type-switch {
-    margin-bottom: 0.7rem;
-    display: flex;
-    gap: 1rem;
-  }
-  .type-option {
-    cursor: pointer;
-    padding: 0.3rem 1.1rem;
-    border-radius: 20px;
-    font-size: 0.95rem;
-    border: 2px solid #eee;
-    background: #f6f6f6;
-    color: #444;
-    transition: all 0.2s;
-    font-weight: 600;
-    user-select: none;
-  }
-  .type-option.selected, .type-option:hover {
-    border-color: #1a56db;
-    background: #e0e7ff;
-    color: #1a56db;
-  }
-  .product-price {
-    font-weight: bold;
-    font-size: 1.25rem;
-    margin: 0.4rem 0 1rem;
-    color: #1a56db;
-  }
-  .buy-button {
-    width: 100%;
-    background-color: #1a56db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 0.8rem;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: auto;
-  }
-  .buy-button:hover {
-    background-color: #1e40af;
-  }
-  .whatsapp-button {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    width: 60px;
-    height: 60px;
-    background: #25d366;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
-    z-index: 9999;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .whatsapp-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 12px rgb(0 0 0 / 0.3);
-  }
-  .whatsapp-icon {
-    width: 36px;
-    height: 36px;
-    filter: brightness(0) invert(1);
-  }
-  .modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 10000;
-    overflow-y: auto;
-    justify-content: center;
-    align-items: center;
-  }
-  .modal.show {
-    display: flex;
-  }
-  .modal-content {
-    background: white;
-    max-width: 600px;
-    width: 95%;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgb(0 0 0 / 0.3);
-    animation: modalopen 0.4s ease forwards;
-    padding-bottom: 1.5rem;
-  }
-  @keyframes modalopen {
-    from {opacity:0; transform: translateY(-50px);}
-    to {opacity:1; transform: translateY(0);}
-  }
-  .modal-header {
-    background: #1a56db;
-    color: white;
-    padding: 1.2rem 1.5rem;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    position: relative;
-    font-size: 1.4rem;
-    font-weight: bold;
-  }
-  .close-modal {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: white;
-    background: none;
-    border: none;
-  }
-  .modal-body {
-    padding: 1.5rem 2rem;
-  }
-  .form-group {
-    margin-bottom: 1.3rem;
-  }
-  label.form-label {
-    display: block;
-    margin-bottom: 0.4rem;
-    font-weight: 600;
-    color: #444;
-  }
-  input.form-input, select.form-input {
-    width: 100%;
-    padding: 0.7rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  input.form-input:focus, select.form-input:focus {
-    outline: none;
-    border-color: #1a56db;
-    box-shadow: 0 0 0 3px rgba(29,78,216,0.15);
-  }
-  .quantity-control {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-  }
-  .quantity-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: none;
-    background: #e5e7eb;
-    font-size: 1.3rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-  }
-  .quantity-btn:hover {
-    background: #d1d5db;
-  }
-  .quantity-input {
-    width: 65px;
-    text-align: center;
-    font-size: 1.1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 0.4rem;
-    pointer-events: none;
-  }
-  .funny-message {
-    color: #dc2626;
-    font-weight: bold;
-    margin-top: 0.5rem;
-    display: none;
-  }
-  .submit-button {
-    width: 100%;
-    padding: 1rem 1.5rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    background-color: #1a56db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .submit-button:hover {
-    background-color: #1e40af;
-  }
-  .message {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-    display: none;
-  }
-  .success-message {
-    background: #dcfce7;
-    color: #166534;
-    border: 1px solid #bbf7d0;
-  }
-  .error-message {
-    background: #fee2e2;
-    color: #b91c1c;
-    border: 1px solid #fecaca;
-  }
-  @media (max-width: 768px) {
-    .products-grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
-      padding: 0 1rem;
-      gap: 1.5rem;
-    }
-    .product-image {
-      height: 250px;
-    }
-    .logo {
-      font-size: 2rem;
-    }
-    .welcome {
-      font-size: 1.2rem;
-    }
-    .tagline {
-      font-size: 1rem;
-    }
+  /* تنسيقات المتجر */
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; background:#fff; color:#333; }
+  header { text-align:center; padding:2rem 1rem; background:#f8f9fa; border-bottom:1px solid #eaeaea; }
+  .logo { font-size:2.5rem; font-weight:bold; color:#1a56db; margin-bottom:0.5rem; }
+  .welcome { font-size:1.5rem; margin-bottom:0.5rem; color:#444; }
+  .tagline { font-size:1.1rem; color:#666; }
+  h2.section-title { max-width:1400px; margin:2rem auto 1rem; padding:0 1rem; font-weight:bold; color:#1a56db; }
+  .products-grid { max-width:1400px; margin:0 auto 3rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.8rem; padding:0 1rem; }
+  .product-card { background:#fff; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1); overflow:hidden; display:flex; flex-direction:column; }
+  .product-image { width:100%; height:280px; object-fit:cover; border-bottom:1px solid #eee; background:#f7f7f7; }
+  .product-info { padding:1rem 1.2rem; flex-grow:1; display:flex; flex-direction:column; }
+  .product-model { font-weight:bold; font-size:1.15rem; margin-bottom:0.5rem; color:#222; }
+  .type-switch { margin-bottom:0.7rem; display:flex; gap:1rem; }
+  .type-option { cursor:pointer; padding:0.3rem 1.1rem; border-radius:20px; font-size:0.95rem; border:2px solid #eee; background:#f6f6f6; color:#444; transition:all 0.2s; font-weight:600; user-select:none; }
+  .type-option.selected, .type-option:hover { border-color:#1a56db; background:#e0e7ff; color:#1a56db; }
+  .product-price { font-weight:bold; font-size:1.25rem; margin:0.4rem 0 1rem; color:#1a56db; }
+  .buy-button { width:100%; background:#1a56db; color:#fff; border:none; border-radius:5px; padding:0.8rem; font-weight:bold; font-size:1rem; cursor:pointer; transition:background-color 0.3s; margin-top:auto; }
+  .buy-button:hover { background:#1e40af; }
+  .whatsapp-button { position:fixed; bottom:30px; left:30px; width:60px; height:60px; background:#25d366; border-radius:50%; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 8px rgba(0,0,0,0.2); z-index:9999; transition:transform 0.3s, box-shadow 0.3s; }
+  .whatsapp-button:hover { transform:scale(1.1); box-shadow:0 6px 12px rgba(0,0,0,0.3); }
+  .whatsapp-icon { width:36px; height:36px; filter:brightness(0) invert(1); }
+  .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:10000; overflow-y:auto; justify-content:center; align-items:center; }
+  .modal.show { display:flex; }
+  .modal-content { background:#fff; max-width:600px; width:95%; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.3); animation:modalopen 0.4s ease forwards; padding-bottom:1.5rem; }
+  @keyframes modalopen { from {opacity:0; transform:translateY(-50px);} to {opacity:1; transform:translateY(0);} }
+  .modal-header { background:#1a56db; color:#fff; padding:1.2rem 1.5rem; border-top-left-radius:10px; border-top-right-radius:10px; position:relative; font-size:1.4rem; font-weight:bold; }
+  .close-modal { position:absolute; top:15px; left:15px; font-size:1.8rem; cursor:pointer; color:#fff; background:none; border:none; }
+  .modal-body { padding:1.5rem 2rem; }
+  .form-group { margin-bottom:1.3rem; }
+  label.form-label { display:block; margin-bottom:0.4rem; font-weight:600; color:#444; }
+  input.form-input, select.form-input { width:100%; padding:0.7rem 1rem; border:1px solid #ddd; border-radius:5px; font-size:1rem; }
+  input.form-input:focus, select.form-input:focus { outline:none; border-color:#1a56db; box-shadow:0 0 0 3px rgba(29,78,216,0.15); }
+  .quantity-control { display:flex; align-items:center; gap:0.7rem; }
+  .quantity-btn { width:38px; height:38px; border-radius:50%; border:none; background:#e5e7eb; font-size:1.3rem; cursor:pointer; display:flex; justify-content:center; align-items:center; user-select:none; }
+  .quantity-btn:hover { background:#d1d5db; }
+  .quantity-input { width:65px; text-align:center; font-size:1.1rem; border:1px solid #ddd; border-radius:5px; padding:0.4rem; pointer-events:none; }
+  .funny-message { color:#dc2626; font-weight:bold; margin-top:0.5rem; display:none; }
+  .submit-button { width:100%; padding:1rem 1.5rem; font-size:1.1rem; font-weight:bold; background:#1a56db; color:#fff; border:none; border-radius:5px; cursor:pointer; transition:background-color 0.3s; }
+  .submit-button:hover { background:#1e40af; }
+  .message { margin-top:1rem; padding:1rem; border-radius:5px; font-weight:bold; text-align:center; display:none; }
+  .success-message { background:#dcfce7; color:#166534; border:1px solid #bbf7d0; }
+  .error-message { background:#fee2e2; color:#b91c1c; border:1px solid #fecaca; }
+  @media (max-width:768px) {
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); padding:0 1rem; gap:1.5rem; }
+    .product-image { height:250px; }
+    .logo { font-size:2rem; }
+    .welcome { font-size:1.2rem; }
+    .tagline { font-size:1rem; }
   }
 </style>
 </head>
@@ -310,7 +64,6 @@
   <div class="tagline">جودة عالية - تصميمات مميزة - أسعار تنافسية</div>
 </header>
 
-<!-- أقسام المنتجات -->
 <h2 class="section-title">قسم الأنمي</h2>
 <div id="anime-section" class="products-grid"></div>
 
@@ -323,7 +76,6 @@
 <h2 class="section-title">قسم الإكسترا (السكول)</h2>
 <div id="extra-section" class="products-grid"></div>
 
-<!-- نافذة الطلب -->
 <div id="order-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal-content">
     <div class="modal-header">
@@ -391,16 +143,15 @@
 </a>
 
 <script>
-  // بيانات الولايات والبلديات (مقتطف، أضف باقي الولايات حسب الحاجة)
+  // بيانات الولايات والبلديات (مقتطف)
   const algeriaStates = [
     {name:"أدرار",municipalities:["أدرار","تامست","شروين","رقان","إن زغمير","تيت","قصر قدور","تسابيت","تيميمون","أولاد السعيد","زاوية كنتة","أولف","تيمقطن","تامنطيط","فنوغيل","تنركوك","دلدول","سالي","اقبلي","أولاد أحمد تيمي","بودة","سبع"]},
     {name:"الشلف",municipalities:["الشلف","تنس","بنايرية","الكريمية","تاجنة","تاقريت","بني حواء","صبحة","حرشون","أولاد فارس","سيدي عكاشة","بوقادير","بني راشد","تلعصة","الهرنفة","وادي قوسين","الظهر","أولاد عباس","السنجاس","الزبوجة","وادي سلي"]},
-    // أكمل باقي الولايات والبلديات هنا
+    // أضف باقي الولايات والبلديات حسب حاجتك
   ];
 
-  // بيانات المنتجات مع تصنيفها حسب بادئة اسم الصورة
+  // بيانات المنتجات مع الأقسام
   const products = [
-    // anime (t1, t2, ...)
     {id:"t1", model:"Solo Leaving", image:"t1 solo leaving.png", section:"anime"},
     {id:"t2", model:"Goku", image:"t2 goku.png", section:"anime"},
     {id:"t2-2", model:"Goku 2", image:"t2 goku 2.png", section:"anime"},
@@ -416,14 +167,12 @@
     {id:"t14", model:"The Last of Us Mode2", image:"t14 the last of us mode2.png", section:"anime"},
     {id:"t14-2", model:"The Last of Us Mode2 2", image:"t14 the last of us mode2 2.png", section:"anime"},
     {id:"t15", model:"Sheep", image:"t15 sheep.png", section:"anime"},
-    // foot (tf1, tf2, ...)
     {id:"tf1", model:"CR7", image:"tf1 cr7.png", section:"foot"},
     {id:"tf1-2", model:"CR7 2", image:"tf1 cr7 2.png", section:"foot"},
     {id:"tf2", model:"Real Madrid", image:"tf2 real madrid.png", section:"foot"},
     {id:"tf2-2", model:"Real Madrid 2", image:"tf2 real madrid 2.png", section:"foot"},
     {id:"tf3", model:"Real Mod", image:"tf3 real mod.png", section:"foot"},
     {id:"tf3-2", model:"Real Mod 2", image:"tf3 real mod 2.png", section:"foot"},
-    // rap (tr1, tr2, ...)
     {id:"tr1", model:"Billie", image:"tr1 billlie.png", section:"rap"},
     {id:"tr1-2", model:"Billie 2", image:"tr1 billie 2.png", section:"rap"},
     {id:"tr2", model:"Eminem", image:"tr2 eminem.png", section:"rap"},
@@ -435,7 +184,6 @@
     {id:"tr5", model:"Toto", image:"tr5 toto.png", section:"rap"},
     {id:"tr6", model:"Skorp", image:"tr6 skorp.png", section:"rap"},
     {id:"tr6-2", model:"Skorp 2", image:"tr6 skorp 2.png", section:"rap"},
-    // extra (te1, te2, ...)
     {id:"te1", model:"Constantine B", image:"te1 constontine B.png", section:"extra"},
     {id:"te2", model:"Constantine W", image:"te2 constontine W.png", section:"extra"},
     {id:"te3", model:"Chill", image:"te3 chill.png", section:"extra"},
@@ -454,11 +202,7 @@
     {id:"te13-2", model:"The Boys 2", image:"te13 the boys 2.png", section:"extra"}
   ];
 
-  // أسعار حسب النوع
-  const prices = {
-    Regular: "2700 دج",
-    Oversize: "2900 دج"
-  };
+  const prices = { Regular: "2700 دج", Oversize: "2900 دج" };
 
   document.addEventListener("DOMContentLoaded", () => {
     const animeSection = document.getElementById("anime-section");
@@ -481,7 +225,6 @@
     const productTypeInput = document.getElementById("productType");
     const typeSelect = document.getElementById("type");
 
-    // دالة لإنشاء بطاقة منتج
     function createProductCard(product) {
       const card = document.createElement("div");
       card.className = "product-card";
@@ -498,7 +241,6 @@
         </div>
       `;
 
-      // التحكم في اختيار النوع والسعر
       const typeOptions = card.querySelectorAll(".type-option");
       const priceDiv = card.querySelector(".product-price");
       let selectedType = "Regular";
@@ -511,7 +253,6 @@
         });
       });
 
-      // فتح نافذة الطلب عند الضغط على زر الشراء
       card.querySelector(".buy-button").addEventListener("click", () => {
         modelInput.value = product.model;
         productTypeInput.value = selectedType;
@@ -530,7 +271,6 @@
       return card;
     }
 
-    // عرض المنتجات في الأقسام المناسبة
     products.forEach(product => {
       let section;
       switch(product.section) {
@@ -539,12 +279,9 @@
         case "rap": section = rapSection; break;
         case "extra": section = extraSection; break;
       }
-      if(section) {
-        section.appendChild(createProductCard(product));
-      }
+      if(section) section.appendChild(createProductCard(product));
     });
 
-    // تعبئة الولايات
     algeriaStates.forEach(state => {
       const option = document.createElement("option");
       option.value = state.name;
@@ -552,7 +289,6 @@
       stateSelect.appendChild(option);
     });
 
-    // تحديث البلديات عند اختيار الولاية
     stateSelect.addEventListener("change", () => {
       municipalitySelect.innerHTML = '<option value="">اختر البلدية</option>';
       municipalitySelect.disabled = true;
@@ -570,7 +306,6 @@
       }
     });
 
-    // التحكم في الكمية
     decreaseBtn.addEventListener("click", () => {
       let val = parseInt(quantityInput.value);
       if(val > 1){
@@ -588,7 +323,6 @@
       }
     });
 
-    // إغلاق النافذة
     closeModalBtn.addEventListener("click", () => {
       modal.classList.remove("show");
     });
@@ -598,7 +332,6 @@
       }
     });
 
-    // إرسال الطلب عبر Formspree
     form.addEventListener("submit", async e => {
       e.preventDefault();
       successMessage.style.display = "none";
