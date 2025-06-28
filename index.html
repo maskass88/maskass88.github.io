@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -13,22 +14,18 @@
       margin: 0;
       padding: 0;
     }
-
     header {
       text-align: center;
       padding: 20px 10px;
     }
-
     header img {
       width: 100px;
       margin-bottom: 10px;
     }
-
     header h1 {
       font-size: 2.5rem;
       margin: 0;
     }
-
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -37,20 +34,17 @@
       max-width: 1200px;
       margin: auto;
     }
-
     .item {
       text-align: center;
       background-color: #f5f5f5;
       padding: 10px;
       border-radius: 12px;
     }
-
     .item img {
       width: 100%;
       height: auto;
       border-radius: 8px;
     }
-
     .buy-btn {
       background-color: #007BFF;
       color: #fff;
@@ -61,11 +55,9 @@
       cursor: pointer;
       width: 100%;
     }
-
     .buy-btn:hover {
       background-color: #0056b3;
     }
-
     .popup {
       display: none;
       position: fixed;
@@ -76,7 +68,6 @@
       align-items: center;
       z-index: 9999;
     }
-
     .popup-content {
       background: #fff;
       padding: 20px;
@@ -86,7 +77,6 @@
       text-align: center;
       position: relative;
     }
-
     .close-btn {
       position: absolute;
       top: 10px; left: 10px;
@@ -98,20 +88,19 @@
       font-size: 18px;
       cursor: pointer;
     }
-
     form input, form select {
       width: 100%;
       padding: 10px;
       margin: 8px 0;
       border: 1px solid #ccc;
       border-radius: 8px;
-    }.qty-container {
+    }
+    .qty-container {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
     }
-
     .qty-btn {
       padding: 5px 10px;
       background-color: #007BFF;
@@ -121,33 +110,28 @@
       font-size: 18px;
       cursor: pointer;
     }
-
     #hidden-message {
       display: none;
       color: red;
       margin-top: 10px;
       font-weight: bold;
     }
-
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
       left: 20px;
       z-index: 10000;
     }
-
     .whatsapp-float img {
       width: 50px;
       height: 50px;
     }
-
     footer {
       text-align: center;
       margin: 30px 0;
       font-size: 14px;
       color: #555;
     }
-
     .success-msg {
       display: none;
       color: green;
@@ -158,180 +142,136 @@
 </head>
 <body>
 
-  <header>
-    <img src="logggo.png" alt="EzzineStyle Logo">
-    <h1>EzzineStyle</h1>
-  </header>
+<header>
+  <img src="logoa.webp" alt="EzzineStyle Logo">
+  <h1>EzzineStyle</h1>
+</header>
 
-  <div class="gallery"><!-- Start of T-shirt Models -->
-    <div class="item">
-      <img src="t1.jpg" alt="Model 1">
-      <button class="buy-btn" onclick="openPopup('Model1')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t2.jpg" alt="Model 2">
-      <button class="buy-btn" onclick="openPopup('Model2')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t3.jpg" alt="Model 3">
-      <button class="buy-btn" onclick="openPopup('Model3')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t4.jpg" alt="Model 4">
-      <button class="buy-btn" onclick="openPopup('Model4')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t5.jpg" alt="Model 5">
-      <button class="buy-btn" onclick="openPopup('Model5')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t6.jpg" alt="Model 6">
-      <button class="buy-btn" onclick="openPopup('Model6')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t7.jpg" alt="Model 7">
-      <button class="buy-btn" onclick="openPopup('Model7')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t8.jpg" alt="Model 8">
-      <button class="buy-btn" onclick="openPopup('Model8')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t9.jpg" alt="Model 9">
-      <button class="buy-btn" onclick="openPopup('Model9')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t10.jpg" alt="Model 10">
-      <button class="buy-btn" onclick="openPopup('Model10')">اشترِ الآن</button>
-    </div><div class="item">
-      <img src="t11.jpg" alt="Model 11">
-      <button class="buy-btn" onclick="openPopup('Model11')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t12.jpg" alt="Model 12">
-      <button class="buy-btn" onclick="openPopup('Model12')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t13.jpg" alt="Model 13">
-      <button class="buy-btn" onclick="openPopup('Model13')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t14.jpg" alt="Model 14">
-      <button class="buy-btn" onclick="openPopup('Model14')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t15.jpg" alt="Model 15">
-      <button class="buy-btn" onclick="openPopup('Model15')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t16.jpg" alt="Model 16">
-      <button class="buy-btn" onclick="openPopup('Model16')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t17.jpg" alt="Model 17">
-      <button class="buy-btn" onclick="openPopup('Model17')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t18.jpg" alt="Model 18">
-      <button class="buy-btn" onclick="openPopup('Model18')">اشترِ الآن</button>
-    </div>
-    <div class="item">
-      <img src="t19.jpg" alt="Model 19">
-      <button class="buy-btn" onclick="openPopup('Model19')">اشترِ الآن</button>
-    </div>
-  </div> <!-- نهاية .gallery --><div class="popup" id="orderPopup">
-    <div class="popup-content">
-      <button class="close-btn" onclick="closePopup()">×</button>
-      <h3>طلب تيشيرت</h3>
-      <form action="https://formsubmit.co/abgamer0177@gmail.com" method="POST">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="text" name="الاسم" placeholder="الاسم" required>
-        <input type="text" name="رقم الهاتف" placeholder="رقم الهاتف" required>
+<div class="gallery">
+<div class="item"><img src="t1.jpg" alt="Model 1"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t2.jpg" alt="Model 2"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t3.jpg" alt="Model 3"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t4.jpg" alt="Model 4"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t5.jpg" alt="Model 5"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t6.jpg" alt="Model 6"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t7.jpg" alt="Model 7"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t8.jpg" alt="Model 8"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t9.jpg" alt="Model 9"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t10.jpg" alt="Model 10"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t11.jpg" alt="Model 11"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t12.jpg" alt="Model 12"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t13.jpg" alt="Model 13"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t14.jpg" alt="Model 14"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t15.jpg" alt="Model 15"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t16.jpg" alt="Model 16"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t17.jpg" alt="Model 17"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t18.jpg" alt="Model 18"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+<div class="item"><img src="t19.jpg" alt="Model 19"><button class="buy-btn" onclick="openPopup()">Ø§Ø´ØªØ±Ù Ø§Ù„Ø¢Ù†</button></div>
+</div>
 
-        <select name="الولاية" id="wilaya" required onchange="loadBaladiya()">
-          <option value="">اختر الولاية</option>
-        </select>
-
-        <select name="البلدية" id="baladiya" required>
-          <option value="">اختر البلدية</option>
-        </select>
-
-        <select name="المقاس" required>
-          <option value="">المقاس</option>
-          <option value="XXL">XXL</option>
-          <option value="XL">XL</option>
-          <option value="L">L</option>
-          <option value="M">M</option>
-          <option value="S">S</option>
-        </select>
-
-        <div class="qty-container">
-          <button type="button" class="qty-btn" onclick="decreaseQty()">-</button>
-          <input type="number" name="العدد" id="quantity" value="1" readonly>
-          <button type="button" class="qty-btn" onclick="increaseQty()">+</button>
-        </div>
-
-        <div id="hidden-message">راك منيتك صاحبي</div>
-
-        <button type="submit" class="buy-btn">اطلب</button>
-        <div class="success-msg" id="successMessage">EzzineStyle تشكركم على الطلب 💜</div>
-      </form>
-    </div>
+<div class="popup" id="orderPopup">
+  <div class="popup-content">
+    <button class="close-btn" onclick="closePopup()">Ã—</button>
+    <h3>Ø·Ù„Ø¨ ØªÙŠØ´ÙŠØ±Øª</h3>
+    <form action="https://formsubmit.co/abgamer0177@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="Ø§Ù„Ø§Ø³Ù…" placeholder="Ø§Ù„Ø§Ø³Ù…" required>
+      <input type="text" name="Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ" placeholder="Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ" required>
+      <select name="Ø§Ù„ÙˆÙ„Ø§ÙŠØ©" id="wilaya" required onchange="loadBaladiya()">
+        <option value="">Ø§Ø®ØªØ± Ø§Ù„ÙˆÙ„Ø§ÙŠØ©</option>
+      </select>
+      <select name="Ø§Ù„Ø¨Ù„Ø¯ÙŠØ©" id="baladiya" required>
+        <option value="">Ø§Ø®ØªØ± Ø§Ù„Ø¨Ù„Ø¯ÙŠØ©</option>
+      </select>
+      <select name="Ø§Ù„Ù…Ù‚Ø§Ø³" required>
+        <option value="">Ø§Ù„Ù…Ù‚Ø§Ø³</option>
+        <option value="XXL">XXL</option>
+        <option value="XL">XL</option>
+        <option value="L">L</option>
+        <option value="M">M</option>
+        <option value="S">S</option>
+      </select>
+      <div class="qty-container">
+        <button type="button" class="qty-btn" onclick="decreaseQty()">-</button>
+        <input type="number" name="Ø§Ù„Ø¹Ø¯Ø¯" id="quantity" value="1" readonly>
+        <button type="button" class="qty-btn" onclick="increaseQty()">+</button>
+      </div>
+      <div id="hidden-message">Ø±Ø§Ùƒ Ù…Ù†ÙŠØªÙƒ ØµØ§Ø­Ø¨ÙŠ</div>
+      <button type="submit" class="buy-btn">Ø§Ø·Ù„Ø¨</button>
+      <div class="success-msg" id="successMessage">EzzineStyle ØªØ´ÙƒØ±ÙƒÙ… Ø¹Ù„Ù‰ Ø§Ù„Ø·Ù„Ø¨ ðŸ’œ</div>
+    </form>
   </div>
+</div>
 
-  <div class="whatsapp-float">
-    <a href="https://wa.me/213781059339" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
-  </div>
+<div class="whatsapp-float">
+  <a href="https://wa.me/213781059339" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+</div>
 
-  <footer>Made by EzzineStyle</footer><script>
-  const wilayas = {
-    "أدرار": ["أدرار", "زاوية كنتة", "رقان"],
-    "الشلف": ["الشلف", "تنس", "بوقادير"],
-    "الأغواط": ["الأغواط", "قصر الحيران", "حاسي الدلاعة"],
-    "أم البواقي": ["أم البواقي", "عين البيضاء", "عين مليلة"],
-    "باتنة": ["باتنة", "أريس", "مروانة"],
-    "بجاية": ["بجاية", "أميزور", "سيدي عيش"],
-    // (يمكنك لاحقاً نضيف كل الولايات والبلديات)
-  };
+<footer>Made by EzzineStyle</footer>
 
-  function openPopup(modelName) {
-    document.getElementById('orderPopup').style.display = 'flex';
+<script>
+const wilayas = {
+  "Ø£Ø¯Ø±Ø§Ø±": ["Ø£Ø¯Ø±Ø§Ø±", "Ø²Ø§ÙˆÙŠØ© ÙƒÙ†ØªØ©", "Ø±Ù‚Ø§Ù†"],
+  "Ø§Ù„Ø´Ù„Ù": ["Ø§Ù„Ø´Ù„Ù", "ØªÙ†Ø³", "Ø¨ÙˆÙ‚Ø§Ø¯ÙŠØ±"],
+  "Ø§Ù„Ø£ØºÙˆØ§Ø·": ["Ø§Ù„Ø£ØºÙˆØ§Ø·", "Ù‚ØµØ± Ø§Ù„Ø­ÙŠØ±Ø§Ù†", "Ø­Ø§Ø³ÙŠ Ø§Ù„Ø¯Ù„Ø§Ø¹Ø©"],
+};
+
+function openPopup() {
+  document.getElementById('orderPopup').style.display = 'flex';
+}
+function closePopup() {
+  document.getElementById('orderPopup').style.display = 'none';
+}
+function loadBaladiya() {
+  const wilayaSelect = document.getElementById('wilaya');
+  const baladiyaSelect = document.getElementById('baladiya');
+  const selectedWilaya = wilayaSelect.value;
+  baladiyaSelect.innerHTML = '<option value="">Ø§Ø®ØªØ± Ø§Ù„Ø¨Ù„Ø¯ÙŠØ©</option>';
+  if (wilayas[selectedWilaya]) {
+    wilayas[selectedWilaya].forEach(b => {
+      const option = document.createElement('option');
+      option.value = b;
+      option.textContent = b;
+      baladiyaSelect.appendChild(option);
+    });
   }
-
-  function closePopup() {
-    document.getElementById('orderPopup').style.display = 'none';
+}
+function increaseQty() {
+  const qty = document.getElementById('quantity');
+  qty.value = parseInt(qty.value) + 1;
+  if (qty.value > 30) {
+    document.getElementById('hidden-message').style.display = 'block';
   }
-
-  function loadBaladiya() {
-    const wilayaSelect = document.getElementById('wilaya');
-    const baladiyaSelect = document.getElementById('baladiya');
-    const selectedWilaya = wilayaSelect.value;
-
-    baladiyaSelect.innerHTML = '<option value="">اختر البلدية</option>';
-
-    if (wilayas[selectedWilaya]) {
-      wilayas[selectedWilaya].forEach(b => {
-        const option = document.createElement('option');
-        option.value = b;
-        option.textContent = b;
-        baladiyaSelect.appendChild(option);
-      });
-    }
+}
+function decreaseQty() {
+  const qty = document.getElementById('quantity');
+  if (qty.value > 1) {
+    qty.value = parseInt(qty.value) - 1;
   }
-
-  function increaseQty() {
-    const qty = document.getElementById('quantity');
-    qty.value = parseInt(qty.value) + 1;
-    if (qty.value > 30) {
-      document.getElementById('hidden-message').style.display = 'block';
-    }
+  if (qty.value <= 30) {
+    document.getElementById('hidden-message').style.display = 'none';
   }
-
-  function decreaseQty() {
-    const qty = document.getElementById('quantity');
-    if (qty.value > 1) {
-      qty.value = parseInt(qty.value) - 1;
-    }
-    if (qty
+}
+document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  document.getElementById('successMessage').style.display = 'block';
+  setTimeout(() => {
+    document.getElementById('successMessage').style.display = 'none';
+    closePopup();
+    this.reset();
+  }, 4000);
+});
+window.onload = () => {
+  const wilayaSelect = document.getElementById("wilaya");
+  for (let w in wilayas) {
+    let option = document.createElement("option");
+    option.value = w;
+    option.textContent = w;
+    wilayaSelect.appendChild(option);
+  }
+}
+</script>
+</body>
+</html>
