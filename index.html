@@ -237,14 +237,6 @@
         .thank-you-message {
             display: none;
             text-align: center;
-            padding: 20px;
-            color: #28a745;
-            font-weight: bold;
-        }
-        
-        .success-message {
-            display: none;
-            text-align: center;
             padding: 15px;
             background: #28a745;
             color: white;
@@ -272,7 +264,7 @@
                 <div id="selectedModel" class="selected-model"></div>
                 <div id="priceDisplay" class="price-display"></div>
                 
-                <form id="orderForm" action="https://formspree.io/f/xqkrrewq" method="POST">
+                <form id="orderForm">
                     <input type="hidden" name="product" id="formProduct">
                     <input type="hidden" name="price" id="formPrice">
                     
@@ -337,14 +329,10 @@
                     
                     <button type="submit" class="submit-btn" id="submitBtn">تأكيد الطلب</button>
                     
-                    <div id="successMessage" class="success-message">
+                    <div id="thankYou" class="thank-you-message">
                         EzzineStyle تشكركم على الطلب 💜
                     </div>
                 </form>
-                
-                <div id="thankYouMessage" class="thank-you-message">
-                    شكراً لك على طلبك! سنتواصل معك قريباً
-                </div>
             </div>
         </div>
     </div>
@@ -404,9 +392,7 @@
             updatePrice();
             document.getElementById('orderModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
-            document.getElementById('thankYouMessage').style.display = 'none';
-            document.getElementById('orderForm').style.display = 'block';
-            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('thankYou').style.display = 'none';
             document.getElementById('submitBtn').style.display = 'block';
         }
         
@@ -493,96 +479,4 @@
             "27": {name: "مستغانم", communes: ["مستغانم", "حجاج", "سيدي علي", "عشعاشة", "خير الدين", "سيدي لخضر", "ماسكار", "حاسي مماش", "أولاد مع الله", "سيدي بلعطار"]},
             "28": {name: "المسيلة", communes: ["المسيلة", "بوسعادة", "أولاد دراج", "بن سرور", "جبل مساعد", "المعاضيد", "الهامل", "خضرة", "مقرة", "سيدي عامر"]},
             "29": {name: "معسكر", communes: ["معسكر", "سيق", "غريس", "وادي الأبطال", "عين فراح", "ماوسة", "المحمدية", "تيغنيف", "البرج", "زهانة"]},
-            "30": {name: "ورقلة", communes: ["ورقلة", "عين البيضاء", "تقورت", "حاسي مسعود", "البرمة", "النزلة", "سيدي خويلد", "بلدة", "تماسين", "الرويسات"]},
-            "31": {name: "وهران", communes: ["وهران", "عين الترك", "أرزيو", "بطيوة", "السانية", "بئر الجير", "حاسي بونيف", "بوسفر", "العنصر", "قديل"]},
-            "32": {name: "البيض", communes: ["البيض", "بوقطب", "البنود", "بريزينة", "الغاسول", "الأبيض سيدي الشيخ", "بوسمغون", "الخيثر", "الرجم", "الطوابين"]},
-            "33": {name: "إيليزي", communes: ["إيليزي", "جانت", "برج الحواس", "عين أمقل", "تيمياوين", "أبلسة", "تاهيفاوين", "تيت", "تاظروك", "إينغر"]},
-            "34": {name: "برج بوعريريج", communes: ["برج بوعريريج", "رأس الوادي", "برج الغدير", "المنصورة", "مجانة", "بئر قاصد علي", "الحمادية", "الأصنام", "بليمور", "تكل"]}
-        };
-
-        // ملء قائمة الولايات
-        function populateWilayas() {
-            const wilayaSelect = document.getElementById('wilaya');
-            for (const [code, wilaya] of Object.entries(wilayas)) {
-                const option = document.createElement('option');
-                option.value = wilaya.name;
-                option.textContent = wilaya.name;
-                wilayaSelect.appendChild(option);
-            }
-            
-            wilayaSelect.addEventListener('change', function() {
-                const communeSelect = document.getElementById('commune');
-                communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
-                communeSelect.disabled = !this.value;
-                
-                if (this.value) {
-                    const selectedWilaya = Object.values(wilayas).find(w => w.name === this.value);
-                    selectedWilaya.communes.forEach(commune => {
-                        const option = document.createElement('option');
-                        option.value = commune;
-                        option.textContent = commune;
-                        communeSelect.appendChild(option);
-                    });
-                }
-            });
-        }
-        
-        // إعداد النموذج مع Formspree
-        function setupForm() {
-            const form = document.getElementById('orderForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const successMessage = document.getElementById('successMessage');
-            
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // تعطيل الزر أثناء الإرسال
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'جاري الإرسال...';
-                
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: new FormData(form),
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-                    
-                    if (response.ok) {
-                        // إظهار رسالة النجاح
-                        successMessage.style.display = 'block';
-                        submitBtn.style.display = 'none';
-                        
-                        // إعادة تعيين النموذج بعد 3 ثواني
-                        setTimeout(() => {
-                            form.reset();
-                            successMessage.style.display = 'none';
-                            submitBtn.style.display = 'block';
-                            submitBtn.disabled = false;
-                            submitBtn.textContent = 'تأكيد الطلب';
-                            closeOrderModal();
-                        }, 3000);
-                    } else {
-                        alert('حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى');
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = 'تأكيد الطلب';
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('حدث خطأ في الاتصال، يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'تأكيد الطلب';
-                }
-            });
-        }
-        
-        // تهيئة الصفحة
-        window.onload = function() {
-            displayProducts();
-            populateWilayas();
-            setupForm();
-        };
-    </script>
-</body>
-</html>
+            "30": {name: "ورقلة", communes: ["ورقلة", "عين البيضاء", "تقورت", "حاسي مسعود", "البرمة", "النزلة", "سيدي خويلد", "بلدة", "تماسين", "الرويسات
