@@ -1,676 +1,590 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EzzineStyle - متجر تيشيرتات</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: white;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        /* التصميم العام */
-        header {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #eaeaea;
-        }
-        
-        .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #1a56db;
-            margin-bottom: 0.5rem;
-        }
-        
-        .welcome {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #444;
-        }
-        
-        .tagline {
-            font-size: 1.1rem;
-            color: #666;
-        }
-        
-        /* تصميم المنتجات */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-        }
-        
-        .product-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .product-info {
-            padding: 1.2rem;
-        }
-        
-        .product-model {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #222;
-        }
-        
-        .product-type {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .oversize {
-            background-color: #dbeafe;
-            color: #1d4ed8;
-        }
-        
-        .regular {
-            background-color: #f0fdf4;
-            color: #047857;
-        }
-        
-        .product-price {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin: 0.5rem 0;
-            color: #1a56db;
-        }
-        
-        .buy-button {
-            display: block;
-            width: 100%;
-            padding: 0.8rem;
-            background-color: #1a56db; /* اللون الأزرق المطلوب */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .buy-button:hover {
-            background-color: #1e40af; /* اللون عند التحويم */
-        }
-        
-        /* تصميم النافذة المنبثقة */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            width: 90%;
-            max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            animation: modalopen 0.4s;
-        }
-        
-        @keyframes modalopen {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .modal-header {
-            padding: 1.2rem;
-            background-color: #1a56db;
-            color: white;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            position: relative;
-        }
-        
-        .modal-title {
-            font-size: 1.4rem;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: white;
-        }
-        
-        .modal-body {
-            padding: 1.5rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #444;
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #1a56db;
-            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
-        }
-        
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        
-        .quantity-btn {
-            width: 40px;
-            height: 40px;
-            border: none;
-            border-radius: 50%;
-            background-color: #e5e7eb;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .quantity-btn:hover {
-            background-color: #d1d5db;
-        }
-        
-        .quantity-input {
-            width: 70px;
-            text-align: center;
-            font-size: 1.1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 0.5rem;
-        }
-        
-        .funny-message {
-            color: #dc2626;
-            font-weight: bold;
-            margin-top: 0.5rem;
-            display: none;
-        }
-        
-        .submit-button {
-            background-color: #1a56db; /* اللون الأزرق المطلوب */
-            color: white;
-            border: none;
-            padding: 1rem 1.5rem;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .submit-button:hover {
-            background-color: #1e40af; /* اللون عند التحويم */
-        }
-        
-        .message {
-            padding: 1rem;
-            border-radius: 5px;
-            margin-top: 1rem;
-            text-align: center;
-            font-weight: bold;
-            display: none;
-        }
-        
-        .success-message {
-            background-color: #dcfce7;
-            color: #166534;
-            border: 1px solid #bbf7d0;
-        }
-        
-        .error-message {
-            background-color: #fee2e2;
-            color: #b91c1c;
-            border: 1px solid #fecaca;
-        }
-        
-        /* زر واتساب */
-        .whatsapp-button {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25d366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .whatsapp-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .whatsapp-icon {
-            width: 36px;
-            height: 36px;
-            filter: brightness(0) invert(1);
-        }
-        
-        /* تصميم الجهاز المحمول */
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                padding: 1rem;
-                gap: 1.5rem;
-            }
-            
-            .product-image {
-                height: 250px;
-            }
-            
-            .logo {
-                font-size: 2rem;
-            }
-            
-            .welcome {
-                font-size: 1.2rem;
-            }
-            
-            .tagline {
-                font-size: 1rem;
-            }
-            
-            .modal-content {
-                width: 95%;
-                margin: 2% auto;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EzzineStyle - متجر تيشيرتات</title>
+<style>
+  body {
+    background: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0; padding: 0; line-height: 1.6;
+  }
+  header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eaeaea;
+  }
+  .logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1a56db;
+    margin-bottom: 0.5rem;
+  }
+  .welcome {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+  .tagline {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  .products-grid {
+    max-width: 1400px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+  .product-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+    transition: 0.3s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.12);
+  }
+  .product-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+  }
+  .product-info {
+    padding: 1.2rem;
+  }
+  .product-model {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+  }
+  .product-type {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+  .oversize {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+  }
+  .regular {
+    background-color: #f0fdf4;
+    color: #047857;
+  }
+  .product-price {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin: 0.5rem 0;
+    color: #1a56db;
+  }
+  .buy-button {
+    width: 100%;
+    background-color: #1a56db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .buy-button:hover {
+    background-color: #1e40af;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    overflow-y: auto;
+  }
+  .modal-content {
+    background: white;
+    max-width: 600px;
+    margin: 5% auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 0.3);
+    animation: modalopen 0.4s ease forwards;
+  }
+  @keyframes modalopen {
+    from {opacity:0; transform: translateY(-50px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+  .modal-header {
+    background: #1a56db;
+    color: white;
+    padding: 1.2rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative;
+  }
+  .modal-title {
+    font-size: 1.4rem;
+  }
+  .close-modal {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: white;
+    background: none;
+    border: none;
+  }
+  .modal-body {
+    padding: 1.5rem;
+  }
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  label.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #444;
+  }
+  input.form-input, select.form-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  input.form-input:focus, select.form-input:focus {
+    outline: none;
+    border-color: #1a56db;
+    box-shadow: 0 0 0 3px rgba(29,78,216,0.1);
+  }
+  .quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .quantity-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #e5e7eb;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .quantity-btn:hover {
+    background: #d1d5db;
+  }
+  .quantity-input {
+    width: 70px;
+    text-align: center;
+    font-size: 1.1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.5rem;
+    pointer-events: none;
+  }
+  .funny-message {
+    color: #dc2626;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    display: none;
+  }
+  .submit-button {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #1a56db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .submit-button:hover {
+    background-color: #1e40af;
+  }
+  .message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: none;
+  }
+  .success-message {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+  }
+  .error-message {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+  }
+  .whatsapp-button {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
+    z-index: 999;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgb(0 0 0 / 0.3);
+  }
+  .whatsapp-icon {
+    width: 36px;
+    height: 36px;
+    filter: brightness(0) invert(1);
+  }
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+      padding: 0 1rem;
+      gap: 1.5rem;
+    }
+    .product-image {
+      height: 250px;
+    }
+    .logo {
+      font-size: 2rem;
+    }
+    .welcome {
+      font-size: 1.2rem;
+    }
+    .tagline {
+      font-size: 1rem;
+    }
+    .modal-content {
+      width: 95%;
+      margin: 2% auto;
+    }
+  }
+</style>
 </head>
 <body>
-    <!-- الهيدر -->
-    <header>
-        <div class="logo">EzzineStyle</div>
-        <div class="welcome">مرحباً بكم في متجر EzzineStyle</div>
-        <div class="tagline">جودة عالية - تصميمات مميزة - أسعار تنافسية</div>
-    </header>
-    
-    <!-- المنتجات -->
-    <main class="products-grid" id="products-container">
-        <!-- سيتم إضافة المنتجات ديناميكياً بواسطة الجافاسكريبت -->
-    </main>
-    
-    <!-- نافذة الطلب المنبثقة -->
-    <div id="order-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">اكمل طلبك</h2>
-                <span class="close-modal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <form id="order-form">
-                    <div class="form-group">
-                        <label for="fullname" class="form-label">الاسم الكامل</label>
-                        <input type="text" id="fullname" class="form-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone" class="form-label">رقم الهاتف</label>
-                        <input type="tel" id="phone" class="form-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="state" class="form-label">الولاية</label>
-                        <select id="state" class="form-input" required>
-                            <option value="">اختر الولاية</option>
-                            <!-- سيتم تعبئة الولايات بواسطة الجافاسكريبت -->
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="municipality" class="form-label">البلدية</label>
-                        <select id="municipality" class="form-input" required disabled>
-                            <option value="">اختر البلدية</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="size" class="form-label">المقاس</label>
-                        <select id="size" class="form-input" required>
-                            <option value="">اختر المقاس</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="type" class="form-label">النوع</label>
-                        <select id="type" class="form-input" required>
-                            <option value="">اختر النوع</option>
-                            <option value="Oversize">Oversize</option>
-                            <option value="Regular">Regular</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">الكمية</label>
-                        <div class="quantity-control">
-                            <button type="button" class="quantity-btn" id="decrease-qty">-</button>
-                            <input type="number" id="quantity" class="quantity-input" value="1" min="1" readonly>
-                            <button type="button" class="quantity-btn" id="increase-qty">+</button>
-                        </div>
-                        <div id="funny-message" class="funny-message">راك منيتك صاحبي 😂</div>
-                    </div>
-                    
-                    <button type="submit" class="submit-button">إرسال الطلب</button>
-                </form>
-                
-                <div id="success-message" class="message success-message">
-                    EzzineStyle تشكركم على الطلب 💜
-                </div>
-                
-                <div id="error-message" class="message error-message">
-                    حدثت مشكلة، حاول مرة أخرى
-                </div>
-            </div>
-        </div>
+
+<header>
+  <div class="logo">EzzineStyle</div>
+  <div class="welcome">مرحباً بكم في متجر EzzineStyle</div>
+  <div class="tagline">جودة عالية - تصميمات مميزة - أسعار تنافسية</div>
+</header>
+
+<main class="products-grid" id="products-container"></main>
+
+<div id="order-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modal-title" class="modal-title">اكمل طلبك</h2>
+      <button type="button" class="close-modal" aria-label="إغلاق">&times;</button>
     </div>
-    
-    <!-- زر واتساب -->
-    <a href="https://wa.me/213123456789" class="whatsapp-button" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384023.png" alt="واتساب" class="whatsapp-icon">
-    </a>
-    
-    <script>
-        // بيانات الولايات والبلديات الجزائرية (58 ولاية كاملة)
-        const algeriaStates = [
-            {name: "أدرار", municipalities: ["أدرار", "أولف", "رقان", "تسابيت", "زاوية كنتة", "تيميمون", "تيت", "أولاد أحمد تيمي", "بودة", "تمقطن", "فنوغيل", "تامست", "تامنطيط", "أولاد السعيد", "أقبلي", "سالي", "أولاد عيسى", "تيمقتن"]},
-            {name: "الشلف", municipalities: ["الشلف", "وادي الفضة", "بني حواء", "الكريمية", "الزبوجة", "أولاد بن عبد القادر", "بوزغاية", "الهرانفة", "تاوقريت", "سيدي عكاشة", "بنايرية", "المرسى", "أولاد فارس", "سيدي عبد الرحمان", "بني راشد", "تاجنة"]},
-            {name: "الأغواط", municipalities: ["الأغواط", "عين ماضي", "حاسي الرمل", "قصر الحيران", "سيدي مخلوف", "تاويالة", "تاجموت", "الغيشة", "الحويطة", "بريدة", "سيدي بوزيد", "تاجرونة"]},
-            {name: "أم البواقي", municipalities: ["أم البواقي", "عين مليلة", "سوق نعمان", "عين البيضاء", "الفجوج", "سيقوس", "مسكيانة", "العامرية", "بريش", "الضلعة", "عين فكرون", "الرحية"]},
-            {name: "باتنة", municipalities: ["باتنة", "مروانة", "رأس العيون", "سريانة", "منعة", "تيمقاد", "نقاوس", "شير", "تكوت", "غسيرة", "إشمول", "تازولت", "أولاد سي سليمان", "بني فضالة", "تالخمت", "أولاد عمار", "أولاد فاضل", "أولاد سلام"]},
-            {name: "بجاية", municipalities: ["بجاية", "أقبو", "صدوق", "تازمالت", "أوزلاقن", "خراطة", "برباشة", "تيمزريت", "أمالو", "سيدي عيش", "توجة", "إيفري"]},
-            {name: "بسكرة", municipalities: ["بسكرة", "أورلال", "طولقة", "ليشانة", "زريبة الوادي", "مشونش", "القنطرة", "أوماش", "الحاجب", "الوطاية", "سيدي عقبة", "جمورة"]},
-            {name: "بشار", municipalities: ["بشار", "لقواسم", "بني ونيف", "بوكايس", "تبلبالة", "تاغيت", "بني عباس", "كرزاز", "موغل", "تامترت"]},
-            {name: "البليدة", municipalities: ["البليدة", "بوعرفة", "بوقرة", "الأربعاء", "موزاية", "بني تامو", "بوعينان", "جبابرة", "الشفة", "العفرون", "الأربعاء", "وادي العلايق"]},
-            {name: "البويرة", municipalities: ["البويرة", "الأصنام", "الهاشمية", "سور الغزلان", "معالة", "بئر غبالو", "الأخضرية", "سوق الخميس", "برج أوخريص", "الروراوة", "بشلول", "المقراني"]},
-            {name: "تمنراست", municipalities: ["تمنراست", "عين صالح", "عين قزام", "إدلس", "تاظروك", "تين زاوتين", "سيلت", "تاهيفت"]},
-            {name: "تبسة", municipalities: ["تبسة", "بئر العاتر", "الشريعة", "العوينات", "نقرين", "بئر مقدم", "مرسط", "العقلة", "الكويف", "بوقاعة", "الونزة", "بئر الذهب"]},
-            {name: "تلمسان", municipalities: ["تلمسان", "الرمشي", "بني بوسعيد", "سبدو", "الفحول", "بني سنوس", "عمير", "غزوات", "بني خلاد", "باب العسة", "سيدي الجيلالي", "السواني"]},
-            {name: "تيارت", municipalities: ["تيارت", "قصر الشلالة", "مدروسة", "مهدية", "وادي ليلي", "رحوية", "سيدي علي ملال", "سيدي بوتخيل", "توسنينة", "فريحة", "عين دزاريت", "الناظورة"]},
-            {name: "تيزي وزو", municipalities: ["تيزي وزو", "واقنون", "بوزقن", "بني دوالة", "أزفون", "ذراع الميزان", "معاتقة", "بني يني", "إيفيغاء", "تيزي راشد", "أيت يحيى", "ياطافان"]},
-            {name: "الجزائر", municipalities: ["الجزائر الوسطى", "سيدي امحمد", "المدنية", "الحراش", "بئر مراد رايس", "بئر خادم", "الدار البيضاء", "باب الزوار", "براقي", "الرويبة", "الشراقة", "دالي إبراهيم"]},
-            {name: "الجلفة", municipalities: ["الجلفة", "عين الإبل", "حد الصحاري", "مسعد", "سيدي لعجال", "عين وسارة", "دار الشيوخ", "الشارف", "زعفران", "تعظميت", "القديد", "حاسي بحبح"]},
-            {name: "جيجل", municipalities: ["جيجل", "الميلية", "الطاهير", "العنصر", "الشقفة", "سيدي معروف", "القالة", "الطاهير", "زيامة المنصورية", "جميلة", "بوشقوف", "سلمى بن زيادة"]},
-            {name: "سطيف", municipalities: ["سطيف", "عين أرنات", "بئر العرش", "بئر حدادة", "بوقاعة", "جميلة", "قنزات", "حمام السخنة", "حمام قرقور", "العلمة", "بني عزيز", "بني ورتيلان"]},
-            {name: "سعيدة", municipalities: ["سعيدة", "يوب", "سيدي بوبكر", "حاسي زهانة", "سيدي أحمد", "أولاد خالد", "عين الحجر", "البيض", "الهامل", "المعمورة", "سيدي عمر", "البلاعة"]},
-            {name: "سكيكدة", municipalities: ["سكيكدة", "الحدائق", "القل", "الزيتونة", "أم الطوب", "بني زيد", "الغدير", "السبت", "عزابة", "جمورة", "بني بشير", "فلفلة"]},
-            {name: "سيدي بلعباس", municipalities: ["سيدي بلعباس", "تسالة", "تغاليمت", "عين أدن", "مرحوم", "سيدي علي بن يوب", "سيدي لحسن", "سفيزف", "تلاغ", "رأس الماء", "سيدي حمادوش", "تلموني"]},
-            {name: "عنابة", municipalities: ["عنابة", "برحال", "الحجار", "البوني", "سرايدي", "الشرفة", "وادي العنب", "العلمة", "شطايبي", "عين الباردة", "تريعات", "العلمة"]},
-            {name: "قالمة", municipalities: ["قالمة", "وادي الزناتي", "بوشقوف", "حمام النبايل", "قلعة بوصبع", "عين مخلوف", "هيليوبوليس", "بومهرة أحمد", "مجاز الصفاء", "الركنية", "خيري واد عجول", "بن جراح"]},
-            {name: "قسنطينة", municipalities: ["قسنطينة", "الخروب", "عين السمارة", "زيغود يوسف", "بني حميدان", "ديدوش مراد", "ابن زياد", "علي منجلي", "حامة بوزيان", "الخروبة", "أولاد رحمون", "الزهور"]},
-            {name: "المدية", municipalities: ["المدية", "وزرة", "العيساوية", "سيدي نعمان", "تابلة", "العزيزية", "الشهبونية", "سغوان", "قصر البخاري", "أولاد عنتر", "العامرية", "بوغار"]},
-            {name: "مستغانم", municipalities: ["مستغانم", "حجاج", "عين تادلس", "بوقيرات", "سيدي علي", "صيادة", "خير الدين", "سيدي لخضر", "عشعاشة", "منصورة", "مزغران", "وادي الخير"]},
-            {name: "المسيلة", municipalities: ["المسيلة", "بوسعادة", "أولاد دراج", "بن سرور", "المعاضيد", "الهامل", "خبانة", "المطارفة", "سيدي عامر", "مقرة", "عين الحجل", "الخبانة"]},
-            {name: "معسكر", municipalities: ["معسكر", "بوحنيفية", "سيق", "غريس", "البرج", "المحمدية", "تيغنيف", "زلامطة", "عوف", "عقاز", "القرط", "سيدي قادة"]},
-            {name: "ورقلة", municipalities: ["ورقلة", "عين البيضاء", "تقرت", "تماسين", "الحجيرة", "البرمة", "سيدي خويلد", "انقوسة", "الحويجبات", "الرويسات", "النزلة", "السبع"]},
-            {name: "وهران", municipalities: ["وهران", "عين الترك", "أرزيو", "بطيوة", "السانية", "بئر الجير", "حاسي بونيف", "قديل", "العنصر", "الكرمة", "بوتليليس", "مرسى الحجاج"]},
-            {name: "البيض", municipalities: ["البيض", "البرج", "بوقطب", "البنود", "بريزينة", "الشلالة", "الغاسول", "كراكدة", "رأس الماء", "سيدي سليمان", "سيدي طيفور", "الطالب العربي"]},
-            {name: "إيليزي", municipalities: ["إيليزي", "جانت", "برج الحواس", "عين أمقل", "برج عمر إدريس", "إن أميناس", "تاظروك", "تادميت", "تيمياوين", "إينغر", "تيمتر", "أبلسة"]},
-            {name: "برج بوعريريج", municipalities: ["برج بوعريريج", "رأس الوادي", "برج الغدير", "المنصورة", "مجانة", "بليمور", "الحرش", "الرصفة", "تسامرت", "أولاد براهم", "تيكستار", "تاسمرت"]},
-            {name: "بومرداس", municipalities: ["بومرداس", "بودواو", "بغلية", "الثنية", "خميس الخشنة", "دلس", "القرارم قوقة", "الناصرية", "ثنية بني عائشة", "يسر", "زموري", "أولاد هداج"]},
-            {name: "الطارف", municipalities: ["الطارف", "بوحجار", "البسباس", "بوثلجة", "الشط", "العيون", "الذرعان", "القالة", "بحيرة الطيور", "شبيطة مختار", "الزيتونة", "الطارف البحرية"]},
-            {name: "تندوف", municipalities: ["تندوف", "أم العسل", "تندوف", "أولاد خضير", "تندوف", "أولاد خضير", "أم العسل", "تندوف", "أولاد خضير", "أم العسل", "تندوف", "أولاد خضير"]},
-            {name: "تيسمسيلت", municipalities: ["تيسمسيلت", "الخضارة", "ثنية الأحد", "العيون", "الأزهرية", "برج الأمير خالد", "بني شعيب", "لرجام", "سيدي بوتوشنت", "سيدي عابد", "تملاحت", "ثنية الأحد"]},
-            {name: "الوادي", municipalities: ["الوادي", "البياضة", "الدبيلة", "حاسي خليفة", "المقرن", "الرباح", "الطريفاوي", "الجامعة", "الطيبات", "الرقيبة", "السبت", "كوينين"]},
-            {name: "خنشلة", municipalities: ["خنشلة", "قايس", "بابار", "ششار", "تاكسلانت", "يابوس", "تالة إيفاسن", "بومقر", "الحامة", "أولاد رشاش", "بوحمامة", "خيران"]},
-            {name: "سوق أهراس", municipalities: ["سوق أهراس", "سيدي فرج", "الحدادة", "الولجة", "تاورة", "أم العظائم", "بئر بوحوش", "المشروحة", "الراقوبة", "المراهنة", "سدراتة", "الخضارة"]},
-            {name: "تيبازة", municipalities: ["تيبازة", "شرشال", "الداموس", "فوكة", "سيدي عمار", "بوهارون", "حمر العين", "بورقيقة", "القليعة", "عين تاقورايت", "سيدي غيلاس", "الناظور"]},
-            {name: "ميلة", municipalities: ["ميلة", "فرجيوة", "شلغوم العيد", "تاجنانت", "سيدي مروان", "ترعي باينان", "أولاد اخلوف", "تسدان حدادة", "مشيرة", "عين البيضاء أحريش", "الرواشد", "الزهانة"]},
-            {name: "عين الدفلى", municipalities: ["عين الدفلى", "جندل", "بطحية", "العامرية", "بربوش", "العبادية", "بومدفع", "بوراشد", "خميس مليانة", "المخاطرية", "الرئيسية", "سيدي لخضر"]},
-            {name: "النعامة", municipalities: ["النعامة", "مغرار", "عين الصفراء", "تيمودي", "سفيسيفة", "مشرية", "عسلة", "جنين بورزق", "مكمن بن عمار", "عقلة", "مغرار", "عين الصفراء"]},
-            {name: "عين تموشنت", municipalities: ["عين تموشنت", "بني صاف", "الحشادنة", "عين الأربعاء", "الأمير عبد القادر", "عين الكيحل", "عين تيدلس", "بوهجار", "الصبحة", "سيدي بوجنان", "تامزورة", "وادي الصباح"]},
-            {name: "غرداية", municipalities: ["غرداية", "بونورة", "ضاية بن ضحوة", "المنيعة", "زلفانة", "متليلي", "القرارة", "برج سبعة", "بريان", "الضاية", "حاسي لفحل", "حاسي القارة"]},
-            {name: "غليزان", municipalities: ["غليزان", "زمورة", "مديونة", "منصورة", "وادي الجمعة", "الحمري", "عمي موسى", "واريزان", "القلعة", "الرمكة", "سيدي سعادة", "الولجة"]},
-            {name: "تيميمون", municipalities: ["تيميمون", "أولاد سعيد", "أولاد عيسى", "تامست", "تامنطيط", "أدرار", "أولف", "رقان", "تسابيت", "زاوية كنتة", "تيميمون", "تيت"]},
-            {name: "برج باجي مختار", municipalities: ["برج باجي مختار", "تيمياوين", "إن غار", "تيمتر", "أبلسة", "تيمياوين", "إن غار", "تيمتر", "أبلسة", "تيمياوين", "إن غار", "تيمتر"]},
-            {name: "أولاد جلال", municipalities: ["أولاد جلال", "دوار الماء", "البيض", "بوقطب", "البنود", "بريزينة", "الشلالة", "الغاسول", "كراكدة", "رأس الماء", "سيدي سليمان", "سيدي طيفور"]},
-            {name: "بني عباس", municipalities: ["بني عباس", "كرزاز", "موغل", "تامترت", "بني عباس", "كرزاز", "موغل", "تامترت", "بني عباس", "كرزاز", "موغل", "تامترت"]},
-            {name: "عين صالح", municipalities: ["عين صالح", "إن أميناس", "تاظروك", "تادميت", "تيمياوين", "إنغر", "تيمتر", "أبلسة", "عين صالح", "إن أميناس", "تاظروك", "تادميت"]},
-            {name: "عين قزام", municipalities: ["عين قزام", "إن غار", "تيمتر", "أبلسة", "عين قزام", "إن غار", "تيمتر", "أبلسة", "عين قزام", "إن غار", "تيمتر", "أبلسة"]},
-            {name: "توقرت", municipalities: ["توقرت", "الزيبان", "تماسين", "البرمة", "النزلة", "السبع", "توقرت", "الزيبان", "تماسين", "البرمة", "النزلة", "السبع"]},
-            {name: "جانت", municipalities: ["جانت", "برج الحواس", "عين أمقل", "برج عمر إدريس", "إن أميناس", "تاظروك", "تادميت", "تيمياوين", "إنغر", "تيمتر", "أبلسة", "جانت"]},
-            {name: "المغير", municipalities: ["المغير", "الوادي", "البياضة", "الدبيلة", "حاسي خليفة", "المقرن", "الرباح", "الطريفاوي", "الجامعة", "الطيبات", "الرقيبة", "السبت"]},
-            {name: "المنيعة", municipalities: ["المنيعة", "حاسي القارة", "حاسي لفحل", "غرداية", "بونورة", "ضاية بن ضحوة", "المنيعة", "زلفانة", "متليلي", "القرارة", "برج سبعة", "بريان"]}
-        ];
+    <div class="modal-body">
+      <form id="order-form" novalidate>
+        <div class="form-group">
+          <label for="fullname" class="form-label">الاسم الكامل</label>
+          <input type="text" id="fullname" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label for="phone" class="form-label">رقم الهاتف</label>
+          <input type="tel" id="phone" class="form-input" required pattern="[\d\s\+\-]+" />
+        </div>
+        <div class="form-group">
+          <label for="state" class="form-label">الولاية</label>
+          <select id="state" class="form-input" required>
+            <option value="">اختر الولاية</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="municipality" class="form-label">البلدية</label>
+          <select id="municipality" class="form-input" required disabled>
+            <option value="">اختر البلدية</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="size" class="form-label">المقاس</label>
+          <select id="size" class="form-input" required>
+            <option value="">اختر المقاس</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="type" class="form-label">النوع</label>
+          <select id="type" class="form-input" required>
+            <option value="">اختر النوع</option>
+            <option value="Oversize">Oversize</option>
+            <option value="Regular">Regular</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">الكمية</label>
+          <div class="quantity-control">
+            <button type="button" id="decrease-qty" class="quantity-btn" aria-label="نقص الكمية">-</button>
+            <input type="number" id="quantity" class="quantity-input" value="1" min="1" readonly aria-live="polite" />
+            <button type="button" id="increase-qty" class="quantity-btn" aria-label="زيادة الكمية">+</button>
+          </div>
+          <div id="funny-message" class="funny-message" aria-live="polite">راك منيتك صاحبي 😂</div>
+        </div>
+        <button type="submit" class="submit-button">إرسال الطلب</button>
 
-        // بيانات المنتجات
-        const products = [];
-        for (let i = 1; i <= 19; i++) {
-            const type = i % 2 === 0 ? "Oversize" : "Regular";
-            const price = type === "Oversize" ? "2900 دج" : "2700 دج";
-            
-            products.push({
-                id: i,
-                image: `t${i}.jpg`,
-                model: `Model ${i}`,
-                type: type,
-                price: price
-            });
+        <div id="success-message" class="message success-message" style="display:none">
+          EzzineStyle تشكركم على الطلب 💜
+        </div>
+        <div id="error-message" class="message error-message" style="display:none">
+          حدثت مشكلة، حاول مرة أخرى
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/213123456789" target="_blank" class="whatsapp-button" aria-label="واتساب">
+  <img src="https://cdn-icons-png.flaticon.com/512/1384/1384023.png" alt="واتساب" class="whatsapp-icon" />
+</a>
+
+<script>
+  const algeriaStates = [
+    {name: "أدرار", municipalities: ["أدرار", "أولف", "رقان", "تسابيت", "زاوية كنتة", "تيميمون", "تيت", "أولاد أحمد تيمي", "بودة", "تمقطن", "فنوغيل", "تامست", "تامنطيط", "أولاد السعيد", "أقبلي", "سالي", "أولاد عيسى", "تيمقتن"]},
+    {name: "الشلف", municipalities: ["الشلف", "وادي الفضة", "بني حواء", "الكريمية", "الزبوجة", "أولاد بن عبد القادر", "بوزغاية", "الهرانفة", "تاوقريت", "سيدي عكاشة", "بنايرية", "المرسى", "أولاد فارس", "سيدي عبد الرحمان", "بني راشد", "تاجنة"]},
+    {name: "الأغواط", municipalities: ["الأغواط", "عين ماضي", "حاسي الرمل", "قصر الحيران", "سيدي مخلوف", "تاويالة", "تاجموت", "الغيشة", "الحويطة", "بريدة", "سيدي بوزيد", "تاجرونة"]},
+    {name: "أم البواقي", municipalities: ["أم البواقي", "عين مليلة", "سوق نعمان", "عين البيضاء", "الفجوج", "سيقوس", "مسكيانة", "العامرية", "بريش", "الضلعة", "عين فكرون", "الرحية"]},
+    {name: "باتنة", municipalities: ["باتنة", "مروانة", "رأس العيون", "سريانة", "منعة", "تيمقاد", "نقاوس", "شير", "تكوت", "غسيرة", "إشمول", "تازولت", "أولاد سي سليمان", "بني فضالة", "تالخمت", "أولاد عمار", "أولاد فاضل", "أولاد سلام"]},
+    {name: "بجاية", municipalities: ["بجاية", "أقبو", "صدوق", "تازمالت", "أوزلاقن", "خراطة", "برباشة", "تيمزريت", "أمالو", "سيدي عيش", "توجة", "إيفري"]},
+    {name: "بسكرة", municipalities: ["بسكرة", "أورلال", "طولقة", "ليشانة", "زريبة الوادي", "مشونش", "القنطرة", "أوماش", "الحاجب", "الوطاية", "سيدي عقبة", "جمورة"]},
+    {name: "بشار", municipalities: ["بشار", "لقواسم", "بني ونيف", "بوكايس", "تبلبالة", "تاغيت", "بني عباس", "كرزاز", "موغل", "تامترت"]},
+    {name: "البليدة", municipalities: ["البليدة", "بوعرفة", "بوقرة", "الأربعاء", "موزاية", "بني تامو", "بوعينان", "جبابرة", "الشفة", "العفرون", "الأربعاء", "وادي العلايق"]},
+    {name: "البويرة", municipalities: ["البويرة", "الأصنام", "الهاشمية", "سور الغزلان", "معالة", "بئر غبالو", "الأخضرية", "سوق الخميس", "برج أوخريص", "الروراوة", "بشلول", "المقراني"]},
+    {name: "تمنراست", municipalities: ["تمنراست", "عين صالح", "عين قزام", "إدلس", "تاظروك", "تين زاوتين", "سيلت", "تاهيفت"]},
+    {name: "تبسة", municipalities: ["تبسة", "بئر العاتر", "الشريعة", "العوينات", "نقرين", "بئر مقدم", "مرسط", "العقلة", "الكويف", "بوقاعة", "الونزة", "بئر الذهب"]},
+    {name: "تلمسان", municipalities: ["تلمسان", "الرمشي", "بني بوسعيد", "سبدو", "الفحول", "بني سنوس", "عمير", "غزوات", "بني خلاد", "باب العسة", "سيدي الجيلالي", "السواني"]},
+    {name: "تيارت", municipalities: ["تيارت", "قصر الشلالة", "مدروسة", "مهدية", "وادي ليلي", "رحوية", "سيدي علي ملال", "سيدي بوتخيل", "توسنينة", "فريحة", "عين دزاريت", "الناظورة"]},
+    {name: "تيزي وزو", municipalities: ["تيزي وزو", "واقنون", "بوزقن", "بني دوالة", "أزفون", "ذراع الميزان", "معاتقة", "بني يني", "إيفيغاء", "تيزي راشد", "أيت يحيى", "ياطافان"]},
+    {name: "الجزائر", municipalities: ["الجزائر الوسطى", "سيدي امحمد", "المدنية", "الحراش", "بئر مراد رايس", "بئر خادم", "الدار البيضاء", "باب الزوار", "براقي", "الرويبة", "الشراقة", "دالي إبراهيم"]},
+    {name: "الجلفة", municipalities: ["الجلفة", "عين الإبل", "حد الصحاري", "مسعد", "سيدي لعجال", "عين وسارة", "دار الشيوخ", "الشارف", "زعفران", "تعظميت", "القديد", "حاسي بحبح"]},
+    {name: "جيجل", municipalities: ["جيجل", "الميلية", "الطاهير", "العنصر", "الشقفة", "سيدي معروف", "القالة", "الطاهير", "زيامة المنصورية", "جميلة", "بوشقوف", "سلمى بن زيادة"]},
+    {name: "سطيف", municipalities: ["سطيف", "عين أرنات", "بئر العرش", "بئر حدادة", "بوقاعة", "جميلة", "قنزات", "حمام السخنة", "حمام قرقور", "العلمة", "بني عزيز", "بني ورتيلان"]},
+    {name: "سعيدة", municipalities: ["سعيدة", "يوب", "سيدي بوبكر", "حاسي زهانة", "سيدي أحمد", "أولاد خالد", "عين الحجر", "البيض", "الهامل", "المعمورة", "سيدي عمر", "البلاعة"]},
+    {name: "سكيكدة", municipalities: ["سكيكدة", "الحدائق", "القل", "الزيتونة", "أم الطوب", "بني زيد", "الغدير", "السبت", "عزابة", "جمورة", "بني بشير", "فلفلة"]},
+    {name: "سيدي بلعباس", municipalities: ["سيدي بلعباس", "تسالة", "تغاليمت", "عين أدن", "مرحوم", "سيدي علي بن يوب", "سيدي لحسن", "سفيزف", "تلاغ", "رأس الماء", "سيدي حمادوش", "تلموني"]},
+    {name: "عنابة", municipalities: ["عنابة", "برحال", "الحجار", "البوني", "سرايدي", "الشرفة", "وادي العنب", "العلمة", "شطايبي", "عين الباردة", "تريعات", "العلمة"]},
+    {name: "قالمة", municipalities: ["قالمة", "وادي الزناتي", "بوشقوف", "حمام النبايل", "قلعة بوصبع", "عين مخلوف", "هيليوبوليس", "بومهرة أحمد", "مجاز الصفاء", "الركنية", "خيري واد عجول", "بن جراح"]},
+    {name: "قسنطينة", municipalities: ["قسنطينة", "الخروب", "عين السمارة", "زيغود يوسف", "بني حميدان", "ديدوش مراد", "ابن زياد", "علي منجلي", "حامة بوزيان", "الخروبة", "أولاد رحمون", "الزهور"]},
+    {name: "المدية", municipalities: ["المدية", "وزرة", "العيساوية", "سيدي نعمان", "تابلة", "العزيزية", "الشهبونية", "سغوان", "قصر البخاري", "أولاد عنتر", "العامرية", "بوغار"]},
+    {name: "مستغانم", municipalities: ["مستغانم", "حجاج", "عين تادلس", "بوقيرات", "سيدي علي", "صيادة", "خير الدين", "سيدي لخضر", "عشعاشة", "منصورة", "مزغران", "وادي الخير"]},
+    {name: "المسيلة", municipalities: ["المسيلة", "بوسعادة", "أولاد دراج", "بن سرور", "المعاضيد", "الهامل", "خبانة", "المطارفة", "سيدي عامر", "مقرة", "عين الحجل", "الخبانة"]},
+    {name: "معسكر", municipalities: ["معسكر", "بوحنيفية", "سيق", "غريس", "البرج", "المحمدية", "تيغنيف", "زلامطة", "عوف", "عقاز", "القرط", "سيدي قادة"]},
+    {name: "ورقلة", municipalities: ["ورقلة", "عين البيضاء", "تقرت", "تماسين", "الحجيرة", "البرمة", "سيدي خويلد", "انقوسة", "الحويجبات", "الرويسات", "النزلة", "السبع"]},
+    {name: "وهران", municipalities: ["وهران", "عين الترك", "أرزيو", "بطيوة", "السانية", "بئر الجير", "حاسي بونيف", "قديل", "العنصر", "الكرمة", "بوتليليس", "مرسى الحجاج"]},
+    {name: "البيض", municipalities: ["البيض", "البرج", "بوقطب", "البنود", "بريزينة", "الشلالة", "الغاسول", "كراكدة", "رأس الماء", "سيدي سليمان", "سيدي طيفور", "الطالب العربي"]},
+    {name: "إيليزي", municipalities: ["إيليزي", "جانت", "برج الحواس", "عين أمقل", "برج عمر إدريس", "إن أميناس", "تاظروك", "تادميت", "تيمياوين", "إينغر", "تيمتر", "أبلسة"]},
+    {name: "برج بوعريريج", municipalities: ["برج بوعريريج", "رأس الوادي", "برج الغدير", "المنصورة", "مجانة", "بليمور", "الحرش", "الرصفة", "تسامرت", "أولاد براهم", "تيكستار", "تاسمرت"]},
+    {name: "بومرداس", municipalities: ["بومرداس", "بودواو", "بغلية", "الثنية", "خميس الخشنة", "دلس", "القرارم قوقة", "الناصرية", "ثنية بني عائشة", "يسر", "زموري", "أولاد هداج"]},
+    {name: "الطارف", municipalities: ["الطارف", "بوحجار", "البسباس", "بوثلجة", "الشط", "العيون", "الذرعان", "القالة", "بحيرة الطيور", "شبيطة مختار", "الزيتونة", "الطارف البحرية"]},
+    {name: "تندوف", municipalities: ["تندوف", "أم العسل", "تندوف", "أولاد خضير", "تندوف", "أولاد خضير", "أم العسل", "تندوف", "أولاد خضير", "أم العسل", "تندوف", "أولاد خضير"]},
+    {name: "تيسمسيلت", municipalities: ["تيسمسيلت", "الخضارة", "ثنية الأحد", "العيون", "الأزهرية", "برج الأمير خالد", "بني شعيب", "لرجام", "سيدي بوتوشنت", "سيدي عابد", "تملاحت", "ثنية الأحد"]},
+    {name: "الوادي", municipalities: ["الوادي", "البياضة", "الدبيلة", "حاسي خليفة", "المقرن", "الرباح", "الطريفاوي", "الجامعة", "الطيبات", "الرقيبة", "السبت", "كوينين"]},
+    {name: "خنشلة", municipalities: ["خنشلة", "قايس", "بابار", "ششار", "تاكسلانت", "يابوس", "تالة إيفاسن", "بومقر", "الحامة", "أولاد رشاش", "بوحمامة", "خيران"]},
+    {name: "سوق أهراس", municipalities: ["سوق أهراس", "سيدي فرج", "الحدادة", "الولجة", "تاورة", "أم العظائم", "بئر بوحوش", "المشروحة", "الراقوبة", "المراهنة", "سدراتة", "الخضارة"]},
+    {name: "تيبازة", municipalities: ["تيبازة", "شرشال", "الداموس", "فوكة", "سيدي عمار", "بوهارون", "حمر العين", "بورقيقة", "القليعة", "عين تاقورايت", "سيدي غيلاس", "الناظور"]},
+    {name: "ميلة", municipalities: ["ميلة", "فرجيوة", "شلغوم العيد", "تاجنانت", "سيدي مروان", "ترعي باينان", "أولاد اخلوف", "تسدان حدادة", "مشيرة", "عين البيضاء أحريش", "الرواشد", "الزهانة"]},
+    {name: "عين الدفلى", municipalities: ["عين الدفلى", "جندل", "بطحية", "العامرية", "بربوش", "العبادية", "بومدفع", "بوراشد", "خميس مليانة", "المخاطرية", "الرئيسية", "سيدي لخضر"]},
+    {name: "النعامة", municipalities: ["النعامة", "مغرار", "عين الصفراء", "تيمودي", "سفيسيفة", "مشرية", "عسلة", "جنين بورزق", "مكمن بن عمار", "عقلة", "مغرار", "عين الصفراء"]},
+    {name: "عين تموشنت", municipalities: ["عين تموشنت", "بني صاف", "الحشادنة", "عين الأربعاء", "الأمير عبد القادر", "عين الكيحل", "عين تيدلس", "بوهجار", "الصبحة", "سيدي بوجنان", "تامزورة", "وادي الصباح"]},
+    {name: "غرداية", municipalities: ["غرداية", "بونورة", "ضاية بن ضحوة", "المنيعة", "زلفانة", "متليلي", "القرارة", "برج سبعة", "بريان", "الضاية", "حاسي لفحل", "حاسي القارة"]},
+    {name: "غليزان", municipalities: ["غليزان", "زمورة", "مديونة", "منصورة", "وادي الجمعة", "الحمري", "عمي موسى", "واريزان", "القلعة", "الرمكة", "سيدي سعادة", "الولجة"]},
+    {name: "تيميمون", municipalities: ["تيميمون", "أولاد سعيد", "أولاد عيسى", "تامست", "تامنطيط", "أدرار", "أولف", "رقان", "تسابيت", "زاوية كنتة", "تيميمون", "تيت"]},
+    {name: "برج باجي مختار", municipalities: ["برج باجي مختار", "تيمياوين", "إن غار", "تيمتر", "أبلسة", "تيمياوين", "إن غار", "تيمتر", "أبلسة", "تيمياوين", "إن غار", "تيمتر"]},
+    {name: "أولاد جلال", municipalities: ["أولاد جلال", "دوار الماء", "البيض", "بوقطب", "البنود", "بريزينة", "الشلالة", "الغاسول", "كراكدة", "رأس الماء", "سيدي سليمان", "سيدي طيفور"]},
+    {name: "بني عباس", municipalities: ["بني عباس", "كرزاز", "موغل", "تامترت", "بني عباس", "كرزاز", "موغل", "تامترت", "بني عباس", "كرزاز", "موغل", "تامترت"]},
+    {name: "عين صالح", municipalities: ["عين صالح", "إن أميناس", "تاظروك", "تادميت", "تيمياوين", "إنغر", "تيمتر", "أبلسة", "عين صالح", "إن أميناس", "تاظروك", "تادميت"]},
+    {name: "عين قزام", municipalities: ["عين قزام", "إن غار", "تيمتر", "أبلسة", "عين قزام", "إن غار", "تيمتر", "أبلسة", "عين قزام", "إن غار", "تيمتر", "أبلسة"]},
+    {name: "توقرت", municipalities: ["توقرت", "الزيبان", "تماسين", "البرمة", "النزلة", "السبع", "توقرت", "الزيبان", "تماسين", "البرمة", "النزلة", "السبع"]},
+    {name: "جانت", municipalities: ["جانت", "برج الحواس", "عين أمقل", "برج عمر إدريس", "إن أميناس", "تاظروك", "تادميت", "تيمياوين", "إنغر", "تيمتر", "أبلسة", "جانت"]},
+    {name: "المغير", municipalities: ["المغير", "الوادي", "البياضة", "الدبيلة", "حاسي خليفة", "المقرن", "الرباح", "الطريفاوي", "الجامعة", "الطيبات", "الرقيبة", "السبت"]},
+    {name: "المنيعة", municipalities: ["المنيعة", "حاسي القارة", "حاسي لفحل", "غرداية", "بونورة", "ضاية بن ضحوة", "المنيعة", "زلفانة", "متليلي", "القرارة", "برج سبعة", "بريان"]}
+  ];
+
+  const products = [];
+  for(let i=1; i<=19; i++){
+    const type = i % 2 === 0 ? "Oversize" : "Regular";
+    const price = type === "Oversize" ? "2900 دج" : "2700 دج";
+    products.push({
+      id: i,
+      image: `t${i}.jpg`,
+      model: `Model ${i}`,
+      type: type,
+      price: price
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const productsContainer = document.getElementById("products-container");
+    const stateSelect = document.getElementById("state");
+    const municipalitySelect = document.getElementById("municipality");
+    const quantityInput = document.getElementById("quantity");
+    const decreaseBtn = document.getElementById("decrease-qty");
+    const increaseBtn = document.getElementById("increase-qty");
+    const funnyMessage = document.getElementById("funny-message");
+    const modal = document.getElementById("order-modal");
+    const closeModalBtn = document.querySelector(".close-modal");
+    const form = document.getElementById("order-form");
+    const successMessage = document.getElementById("success-message");
+    const errorMessage = document.getElementById("error-message");
+    const typeSelect = document.getElementById("type");
+
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.model}" class="product-image" onerror="this.src='https://via.placeholder.com/300x400?text=EzzineStyle'"/>
+        <div class="product-info">
+          <div class="product-model">${product.model}</div>
+          <div class="product-type ${product.type.toLowerCase()}">${product.type}</div>
+          <div class="product-price">${product.price}</div>
+          <button class="buy-button" data-id="${product.id}">اشترِ الآن</button>
+        </div>
+      `;
+      productsContainer.appendChild(card);
+    });
+
+    algeriaStates.forEach(state => {
+      const option = document.createElement("option");
+      option.value = state.name;
+      option.textContent = state.name;
+      stateSelect.appendChild(option);
+    });
+
+    stateSelect.addEventListener("change", () => {
+      municipalitySelect.innerHTML = '<option value="">اختر البلدية</option>';
+      municipalitySelect.disabled = true;
+      if(stateSelect.value){
+        const selected = algeriaStates.find(s => s.name === stateSelect.value);
+        if(selected){
+          selected.municipalities.forEach(mun => {
+            const opt = document.createElement("option");
+            opt.value = mun;
+            opt.textContent = mun;
+            municipalitySelect.appendChild(opt);
+          });
+          municipalitySelect.disabled = false;
         }
+      }
+    });
 
-        // تهيئة المتجر
-        document.addEventListener('DOMContentLoaded', function() {
-            const productsContainer = document.getElementById('products-container');
-            
-            // عرض المنتجات
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                
-                productCard.innerHTML = `
-                    <img src="${product.image}" alt="${product.model}" class="product-image" onerror="this.src='https://via.placeholder.com/300x400?text=EzzineStyle'">
-                    <div class="product-info">
-                        <div class="product-model">${product.model}</div>
-                        <div class="product-type ${product.type.toLowerCase()}">${product.type}</div>
-                        <div class="product-price">${product.price}</div>
-                        <button class="buy-button" data-id="${product.id}">اشترِ الآن</button>
-                    </div>
-                `;
-                
-                productsContainer.appendChild(productCard);
-            });
-            
-            // تعبئة قائمة الولايات
-            const stateSelect = document.getElementById('state');
-            algeriaStates.forEach(state => {
-                const option = document.createElement('option');
-                option.value = state.name;
-                option.textContent = state.name;
-                stateSelect.appendChild(option);
-            });
-            
-            // تغيير الولاية وتحديث البلديات
-            stateSelect.addEventListener('change', function() {
-                const municipalitySelect = document.getElementById('municipality');
-                municipalitySelect.innerHTML = '<option value="">اختر البلدية</option>';
-                municipalitySelect.disabled = true;
-                
-                if (this.value) {
-                    const selectedState = algeriaStates.find(state => state.name === this.value);
-                    if (selectedState) {
-                        selectedState.municipalities.forEach(municipality => {
-                            const option = document.createElement('option');
-                            option.value = municipality;
-                            option.textContent = municipality;
-                            municipalitySelect.appendChild(option);
-                        });
-                        municipalitySelect.disabled = false;
-                    }
-                }
-            });
-            
-            // التحكم في الكمية
-            const quantityInput = document.getElementById('quantity');
-            const decreaseBtn = document.getElementById('decrease-qty');
-            const increaseBtn = document.getElementById('increase-qty');
-            const funnyMessage = document.getElementById('funny-message');
-            
-            decreaseBtn.addEventListener('click', () => {
-                let value = parseInt(quantityInput.value);
-                if (value > 1) {
-                    quantityInput.value = value - 1;
-                    funnyMessage.style.display = 'none';
-                }
-            });
-            
-            increaseBtn.addEventListener('click', () => {
-                let value = parseInt(quantityInput.value);
-                if (value < 30) {
-                    quantityInput.value = value + 1;
-                    funnyMessage.style.display = 'none';
-                } else {
-                    funnyMessage.style.display = 'block';
-                }
-            });
-            
-            // فتح نافذة الطلب
-            document.querySelectorAll('.buy-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const productId = parseInt(this.getAttribute('data-id'));
-                    const product = products.find(p => p.id === productId);
-                    
-                    // تعبئة بيانات المنتج في النموذج
-                    document.getElementById('type').value = product.type;
-                    
-                    // عرض النافذة المنبثقة
-                    document.getElementById('order-modal').style.display = 'block';
-                });
-            });
-            
-            // إغلاق نافذة الطلب
-            document.querySelector('.close-modal').addEventListener('click', function() {
-                document.getElementById('order-modal').style.display = 'none';
-            });
-            
-            // إغلاق النافذة عند النقر خارجها
-            window.addEventListener('click', function(event) {
-                const modal = document.getElementById('order-modal');
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-            
-            // إرسال الطلب عبر Formspree
-            const form = document.getElementById('order-form');
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // إخفاء الرسائل السابقة
-                document.getElementById('success-message').style.display = 'none';
-                document.getElementById('error-message').style.display = 'none';
-                
-                // جمع بيانات النموذج
-                const data = {
-                    fullname: document.getElementById('fullname').value,
-                    phone: document.getElementById('phone').value,
-                    state: document.getElementById('state').value,
-                    municipality: document.getElementById('municipality').value,
-                    size: document.getElementById('size').value,
-                    type: document.getElementById('type').value,
-                    quantity: document.getElementById('quantity').value,
-                    product: "تيشيرت EzzineStyle"
-                };
-                
-                try {
-                    // إرسال البيانات إلى Formspree
-                    const response = await fetch("https://formspree.io/f/mqkrbwzw", {
-                        method: "POST",
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-                    
-                    // معالجة الاستجابة
-                    if (response.ok) {
-                        document.getElementById("success-message").style.display = "block";
-                        document.getElementById("error-message").style.display = "none";
-                        
-                        // إعادة تعيين النموذج وإغلاق النافذة بعد 3 ثوان
-                        setTimeout(() => {
-                            form.reset();
-                            document.getElementById('order-modal').style.display = 'none';
-                            document.getElementById('municipality').disabled = true;
-                            document.getElementById('success-message').style.display = 'none';
-                        }, 3000);
-                    } else {
-                        document.getElementById("error-message").style.display = "block";
-                        document.getElementById("success-message").style.display = "none";
-                    }
-                } catch (error) {
-                    document.getElementById("error-message").style.display = "block";
-                    document.getElementById("success-message").style.display = "none";
-                }
-            });
+    decreaseBtn.addEventListener("click", () => {
+      let val = parseInt(quantityInput.value);
+      if(val > 1){
+        quantityInput.value = val - 1;
+        funnyMessage.style.display = "none";
+      }
+    });
+    increaseBtn.addEventListener("click", () => {
+      let val = parseInt(quantityInput.value);
+      if(val < 30){
+        quantityInput.value = val + 1;
+        funnyMessage.style.display = "none";
+      } else {
+        funnyMessage.style.display = "block";
+      }
+    });
+
+    document.querySelectorAll(".buy-button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = parseInt(btn.dataset.id);
+        const product = products.find(p => p.id === id);
+        if(product){
+          typeSelect.value = product.type;
+          form.reset();
+          municipalitySelect.disabled = true;
+          funnyMessage.style.display = "none";
+          successMessage.style.display = "none";
+          errorMessage.style.display = "none";
+          quantityInput.value = 1;
+          modal.style.display = "block";
+        }
+      });
+    });
+
+    closeModalBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+    window.addEventListener("click", e => {
+      if(e.target === modal){
+        modal.style.display = "none";
+      }
+    });
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      successMessage.style.display = "none";
+      errorMessage.style.display = "none";
+
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+
+      const data = {
+        fullname: document.getElementById("fullname").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        state: stateSelect.value,
+        municipality: municipalitySelect.value,
+        size: document.getElementById("size").value,
+        type: typeSelect.value,
+        quantity: quantityInput.value
+      };
+
+      try {
+        const response = await fetch("https://formspree.io/f/abgamer0177", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
         });
-    </script>
+        if(response.ok){
+          successMessage.style.display = "block";
+          errorMessage.style.display = "none";
+          form.reset();
+          municipalitySelect.disabled = true;
+          quantityInput.value = 1;
+          setTimeout(() => {
+            successMessage.style.display = "none";
+            modal.style.display = "none";
+          }, 3000);
+        } else {
+          throw new Error("خطأ في الإرسال");
+        }
+      } catch {
+        errorMessage.style.display = "block";
+        successMessage.style.display = "none";
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
