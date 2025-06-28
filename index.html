@@ -1,298 +1,297 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>EzzineStyle - متجر تيشيرتات</title>
 <style>
-/* ... نفس ستايلات النسخة السابقة ... */
-body {
-  background: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-  margin: 0; padding: 0; line-height: 1.6;
-}
-header {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: #f8f9fa;
-  border-bottom: 1px solid #eaeaea;
-}
-.logo {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #1a56db;
-  margin-bottom: 0.5rem;
-}
-.welcome {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #444;
-}
-.tagline {
-  font-size: 1.1rem;
-  color: #666;
-}
-.products-grid {
-  max-width: 1400px;
-  margin: 2rem auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
-  gap: 2rem;
-  padding: 0 1rem;
-}
-.product-card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
-  overflow: hidden;
-  transition: 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-.product-image {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-bottom: 1px solid #eee;
-  background: #f7f7f7;
-}
-.product-info {
-  padding: 1.2rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.product-model {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: #222;
-}
-.type-switch {
-  margin-bottom: 0.8rem;
-  display: flex;
-  gap: 1rem;
-}
-.type-option {
-  cursor: pointer;
-  padding: 0.3rem 1.2rem;
-  border-radius: 20px;
-  font-size: 1rem;
-  border: 2px solid #eee;
-  background: #f6f6f6;
-  color: #444;
-  transition: all 0.2s;
-  font-weight: bold;
-}
-.type-option.selected, .type-option:hover {
-  border-color: #1a56db;
-  background: #e0e7ff;
-  color: #1a56db;
-}
-.product-price {
-  font-weight: bold;
-  font-size: 1.3rem;
-  margin: 0.5rem 0;
-  color: #1a56db;
-}
-.buy-button {
-  width: 100%;
-  background-color: #1a56db;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 0.8rem;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 1rem;
-}
-.buy-button:hover {
-  background-color: #1e40af;
-}
-.whatsapp-button {
-  position: fixed;
-  bottom: 30px;
-  left: 30px;
-  width: 60px;
-  height: 60px;
-  background: #25d366;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
-  z-index: 999;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.whatsapp-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 12px rgb(0 0 0 / 0.3);
-}
-.whatsapp-icon {
-  width: 36px;
-  height: 36px;
-  filter: brightness(0) invert(1);
-}
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 1000;
-  overflow-y: auto;
-}
-.modal-content {
-  background: white;
-  max-width: 600px;
-  margin: 5% auto;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgb(0 0 0 / 0.3);
-  animation: modalopen 0.4s ease forwards;
-}
-@keyframes modalopen {
-  from {opacity:0; transform: translateY(-50px);}
-  to {opacity:1; transform: translateY(0);}
-}
-.modal-header {
-  background: #1a56db;
-  color: white;
-  padding: 1.2rem;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  position: relative;
-}
-.modal-title {
-  font-size: 1.4rem;
-}
-.close-modal {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: white;
-  background: none;
-  border: none;
-}
-.modal-body {
-  padding: 1.5rem;
-}
-.form-group {
-  margin-bottom: 1.5rem;
-}
-label.form-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #444;
-}
-input.form-input, select.form-input {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-input.form-input:focus, select.form-input:focus {
-  outline: none;
-  border-color: #1a56db;
-  box-shadow: 0 0 0 3px rgba(29,78,216,0.1);
-}
-.quantity-control {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-.quantity-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  background: #e5e7eb;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.quantity-btn:hover {
-  background: #d1d5db;
-}
-.quantity-input {
-  width: 70px;
-  text-align: center;
-  font-size: 1.1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 0.5rem;
-  pointer-events: none;
-}
-.funny-message {
-  color: #dc2626;
-  font-weight: bold;
-  margin-top: 0.5rem;
-  display: none;
-}
-.submit-button {
-  width: 100%;
-  padding: 1rem 1.5rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  background-color: #1a56db;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.submit-button:hover {
-  background-color: #1e40af;
-}
-.message {
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 5px;
-  font-weight: bold;
-  text-align: center;
-  display: none;
-}
-.success-message {
-  background: #dcfce7;
-  color: #166534;
-  border: 1px solid #bbf7d0;
-}
-.error-message {
-  background: #fee2e2;
-  color: #b91c1c;
-  border: 1px solid #fecaca;
-}
-@media (max-width: 768px) {
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
-    padding: 0 1rem;
-    gap: 1.5rem;
+  body {
+    background: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0; padding: 0; line-height: 1.6;
   }
-  .product-image {
-    height: 250px;
+  header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eaeaea;
   }
   .logo {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1a56db;
+    margin-bottom: 0.5rem;
   }
   .welcome {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #444;
   }
   .tagline {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  .products-grid {
+    max-width: 1400px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+  .product-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+    background: #f7f7f7;
+  }
+  .product-info {
+    padding: 1.2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .product-model {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+  }
+  .type-switch {
+    margin-bottom: 0.8rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .type-option {
+    cursor: pointer;
+    padding: 0.3rem 1.2rem;
+    border-radius: 20px;
     font-size: 1rem;
+    border: 2px solid #eee;
+    background: #f6f6f6;
+    color: #444;
+    transition: all 0.2s;
+    font-weight: bold;
+  }
+  .type-option.selected, .type-option:hover {
+    border-color: #1a56db;
+    background: #e0e7ff;
+    color: #1a56db;
+  }
+  .product-price {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin: 0.5rem 0;
+    color: #1a56db;
+  }
+  .buy-button {
+    width: 100%;
+    background-color: #1a56db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+  }
+  .buy-button:hover {
+    background-color: #1e40af;
+  }
+  .whatsapp-button {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
+    z-index: 999;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgb(0 0 0 / 0.3);
+  }
+  .whatsapp-icon {
+    width: 36px;
+    height: 36px;
+    filter: brightness(0) invert(1);
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    overflow-y: auto;
   }
   .modal-content {
-    width: 95%;
-    margin: 2% auto;
+    background: white;
+    max-width: 600px;
+    margin: 5% auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 0.3);
+    animation: modalopen 0.4s ease forwards;
   }
-}
+  @keyframes modalopen {
+    from {opacity:0; transform: translateY(-50px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+  .modal-header {
+    background: #1a56db;
+    color: white;
+    padding: 1.2rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative;
+  }
+  .modal-title {
+    font-size: 1.4rem;
+  }
+  .close-modal {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: white;
+    background: none;
+    border: none;
+  }
+  .modal-body {
+    padding: 1.5rem;
+  }
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  label.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #444;
+  }
+  input.form-input, select.form-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  input.form-input:focus, select.form-input:focus {
+    outline: none;
+    border-color: #1a56db;
+    box-shadow: 0 0 0 3px rgba(29,78,216,0.1);
+  }
+  .quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .quantity-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #e5e7eb;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .quantity-btn:hover {
+    background: #d1d5db;
+  }
+  .quantity-input {
+    width: 70px;
+    text-align: center;
+    font-size: 1.1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.5rem;
+    pointer-events: none;
+  }
+  .funny-message {
+    color: #dc2626;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    display: none;
+  }
+  .submit-button {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #1a56db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .submit-button:hover {
+    background-color: #1e40af;
+  }
+  .message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: none;
+  }
+  .success-message {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+  }
+  .error-message {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+  }
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+      padding: 0 1rem;
+      gap: 1.5rem;
+    }
+    .product-image {
+      height: 250px;
+    }
+    .logo {
+      font-size: 2rem;
+    }
+    .welcome {
+      font-size: 1.2rem;
+    }
+    .tagline {
+      font-size: 1rem;
+    }
+    .modal-content {
+      width: 95%;
+      margin: 2% auto;
+    }
+  }
 </style>
 </head>
 <body>
@@ -373,169 +372,187 @@ input.form-input:focus, select.form-input:focus {
 </a>
 
 <script>
-const algeriaStates = [
-  {name:"أدرار",municipalities:["أدرار","تامست","شروين","رقان","إن زغمير","تيت","قصر قدور","تسابيت","تيميمون","أولاد السعيد","زاوية كنتة","أولف","تيمقطن","تامنطيط","فنوغيل","تنركوك","دلدول","سالي","اقبلي","أولاد أحمد تيمي","بودة","سبع"]},
-  {name:"الشلف",municipalities:["الشلف","تنس","بنايرية","الكريمية","تاجنة","تاقريت","بني حواء","صبحة","حرشون","أولاد فارس","سيدي عكاشة","بوقادير","بني راشد","تلعصة","الهرنفة","وادي قوسين","الظهر","أولاد عباس","السنجاس","الزبوجة","وادي سلي"]},
-  // ... أكمل باقي الولايات والبلديات هنا (الكود طويل جدا للعرض هنا بالكامل)
-];
+  const algeriaStates = [
+    {name:"أدرار",municipalities:["أدرار","تامست","شروين","رقان","إن زغمير","تيت","قصر قدور","تسابيت","تيميمون","أولاد السعيد","زاوية كنتة","أولف","تيمقطن","تامنطيط","فنوغيل","تنركوك","دلدول","سالي","اقبلي","أولاد أحمد تيمي","بودة","سبع"]},
+    {name:"الشلف",municipalities:["الشلف","تنس","بنايرية","الكريمية","تاجنة","تاقريت","بني حواء","صبحة","حرشون","أولاد فارس","سيدي عكاشة","بوقادير","بني راشد","تلعصة","الهرنفة","وادي قوسين","الظهر","أولاد عباس","السنجاس","الزبوجة","وادي سلي"]},
+    // أضف باقي الولايات والبلديات كاملة هنا حسب حاجتك
+  ];
 
-const products = [];
-for(let i=1; i<=19; i++){
-  products.push({
-    id: `${i}`,
-    model: `Model ${i}`,
-    image: `t${i}.jpg`
-  });
-}
+  const products = [];
+  for(let i=1; i<=19; i++){
+    products.push({
+      id: `${i}`,
+      model: `Model ${i}`,
+      image: `t${i}.jpg`
+    });
+  }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // عرض المنتجات
-  const productsContainer = document.getElementById("products-container");
-  products.forEach(product => {
-    const card = document.createElement("div");
-    card.className = "product-card";
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.model}" class="product-image" onerror="this.src='https://via.placeholder.com/300x400?text=EzzineStyle'"/>
-      <div class="product-info">
-        <div class="product-model">${product.model}</div>
-        <div class="type-switch">
-          <span class="type-option regular selected" data-type="Regular" data-price="2700 دج">Regular</span>
-          <span class="type-option oversize" data-type="Oversize" data-price="2900 دج">Oversize</span>
+  document.addEventListener("DOMContentLoaded", () => {
+    const productsContainer = document.getElementById("products-container");
+    const stateSelect = document.getElementById("state");
+    const municipalitySelect = document.getElementById("municipality");
+    const quantityInput = document.getElementById("quantity");
+    const decreaseBtn = document.getElementById("decrease-qty");
+    const increaseBtn = document.getElementById("increase-qty");
+    const funnyMessage = document.getElementById("funny-message");
+    const modal = document.getElementById("order-modal");
+    const closeModalBtn = document.querySelector(".close-modal");
+    const form = document.getElementById("order-form");
+    const successMessage = document.getElementById("success-message");
+    const errorMessage = document.getElementById("error-message");
+    const typeSelect = document.getElementById("type");
+    const modelInput = document.getElementById("model");
+    const productTypeInput = document.getElementById("productType");
+
+    // عرض المنتجات
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.model}" class="product-image" onerror="this.src='https://via.placeholder.com/300x400?text=EzzineStyle'"/>
+        <div class="product-info">
+          <div class="product-model">${product.model}</div>
+          <div class="type-switch">
+            <span class="type-option regular selected" data-type="Regular" data-price="2700 دج">Regular</span>
+            <span class="type-option oversize" data-type="Oversize" data-price="2900 دج">Oversize</span>
+          </div>
+          <div class="product-price">2700 دج</div>
+          <button class="buy-button">اشترِ الآن</button>
         </div>
-        <div class="product-price">2700 دج</div>
-        <button class="buy-button">اشترِ الآن</button>
-      </div>
-    `;
-    productsContainer.appendChild(card);
+      `;
+      productsContainer.appendChild(card);
 
-    // تغيير النوع والسعر
-    const typeOptions = card.querySelectorAll('.type-option');
-    const priceDiv = card.querySelector('.product-price');
-    let selectedType = "Regular";
-    typeOptions.forEach(opt => {
-      opt.addEventListener('click', function() {
-        typeOptions.forEach(o=>o.classList.remove('selected'));
-        this.classList.add('selected');
-        priceDiv.textContent = this.dataset.price;
-        selectedType = this.dataset.type;
-      });
-    });
-
-    // فتح نافذة الطلب
-    card.querySelector('.buy-button').addEventListener('click', function() {
-      document.getElementById("model").value = product.model;
-      document.getElementById("productType").value = selectedType;
-      document.getElementById("type").value = selectedType;
-      document.getElementById("quantity").value = 1;
-      document.getElementById("success-message").style.display = "none";
-      document.getElementById("error-message").style.display = "none";
-      document.getElementById("order-form").reset();
-      document.getElementById("state").value = "";
-      document.getElementById("municipality").innerHTML = '<option value="">اختر البلدية</option>';
-      document.getElementById("municipality").disabled = true;
-      document.getElementById("order-modal").style.display = "block";
-    });
-  });
-
-  // الولايات
-  const stateSelect = document.getElementById("state");
-  const municipalitySelect = document.getElementById("municipality");
-  algeriaStates.forEach(state => {
-    const option = document.createElement("option");
-    option.value = state.name;
-    option.textContent = state.name;
-    stateSelect.appendChild(option);
-  });
-
-  stateSelect.addEventListener("change", () => {
-    municipalitySelect.innerHTML = '<option value="">اختر البلدية</option>';
-    municipalitySelect.disabled = true;
-    if(stateSelect.value){
-      const selected = algeriaStates.find(s => s.name === stateSelect.value);
-      if(selected){
-        selected.municipalities.forEach(mun => {
-          const opt = document.createElement("option");
-          opt.value = mun;
-          opt.textContent = mun;
-          municipalitySelect.appendChild(opt);
+      // تغيير النوع والسعر داخل البطاقة
+      const typeOptions = card.querySelectorAll('.type-option');
+      const priceDiv = card.querySelector('.product-price');
+      let selectedType = "Regular";
+      typeOptions.forEach(opt => {
+        opt.addEventListener('click', function() {
+          typeOptions.forEach(o=>o.classList.remove('selected'));
+          this.classList.add('selected');
+          priceDiv.textContent = this.dataset.price;
+          selectedType = this.dataset.type;
         });
-        municipalitySelect.disabled = false;
-      }
-    }
-  });
-
-  // كمية
-  const quantityInput = document.getElementById("quantity");
-  const decreaseBtn = document.getElementById("decrease-qty");
-  const increaseBtn = document.getElementById("increase-qty");
-  const funnyMessage = document.getElementById("funny-message");
-  decreaseBtn.addEventListener("click", () => {
-    let val = parseInt(quantityInput.value);
-    if(val > 1){
-      quantityInput.value = val - 1;
-      funnyMessage.style.display = "none";
-    }
-  });
-  increaseBtn.addEventListener("click", () => {
-    let val = parseInt(quantityInput.value);
-    if(val < 30){
-      quantityInput.value = val + 1;
-      funnyMessage.style.display = "none";
-    } else {
-      funnyMessage.style.display = "block";
-    }
-  });
-
-  // إغلاق النافذة
-  document.querySelector(".close-modal").addEventListener("click", () => {
-    document.getElementById("order-modal").style.display = "none";
-  });
-  window.addEventListener("click", e => {
-    if(e.target === document.getElementById("order-modal")){
-      document.getElementById("order-modal").style.display = "none";
-    }
-  });
-
-  // إرسال الطلب عبر Formspree
-  document.getElementById("order-form").addEventListener("submit", async e => {
-    e.preventDefault();
-    document.getElementById("success-message").style.display = "none";
-    document.getElementById("error-message").style.display = "none";
-    const data = {
-      fullname: document.getElementById("fullname").value.trim(),
-      phone: document.getElementById("phone").value.trim(),
-      state: stateSelect.value,
-      municipality: municipalitySelect.value,
-      size: document.getElementById("size").value,
-      type: document.getElementById("type").value,
-      quantity: quantityInput.value,
-      model: document.getElementById("model").value
-    };
-    try {
-      const response = await fetch("https://formspree.io/f/abgamer0177", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
       });
-      if(response.ok){
-        document.getElementById("success-message").style.display = "block";
-        document.getElementById("error-message").style.display = "none";
-        document.getElementById("order-form").reset();
-        municipalitySelect.disabled = true;
+
+      // زر اشتري الآن يفتح نافذة الطلب
+      card.querySelector('.buy-button').addEventListener('click', () => {
+        modelInput.value = product.model;
+        productTypeInput.value = selectedType;
+        typeSelect.value = selectedType;
         quantityInput.value = 1;
-        setTimeout(() => {
-          document.getElementById("success-message").style.display = "none";
-          document.getElementById("order-modal").style.display = "none";
-        }, 3000);
-      } else {
-        throw new Error("خطأ في الإرسال");
+        form.reset();
+        stateSelect.value = "";
+        municipalitySelect.innerHTML = '<option value="">اختر البلدية</option>';
+        municipalitySelect.disabled = true;
+        funnyMessage.style.display = "none";
+        successMessage.style.display = "none";
+        errorMessage.style.display = "none";
+        modal.style.display = "block";
+      });
+    });
+
+    // تعبئة الولايات
+    algeriaStates.forEach(state => {
+      const option = document.createElement("option");
+      option.value = state.name;
+      option.textContent = state.name;
+      stateSelect.appendChild(option);
+    });
+
+    // تحديث البلديات عند اختيار الولاية
+    stateSelect.addEventListener("change", () => {
+      municipalitySelect.innerHTML = '<option value="">اختر البلدية</option>';
+      municipalitySelect.disabled = true;
+      if(stateSelect.value){
+        const selected = algeriaStates.find(s => s.name === stateSelect.value);
+        if(selected){
+          selected.municipalities.forEach(mun => {
+            const opt = document.createElement("option");
+            opt.value = mun;
+            opt.textContent = mun;
+            municipalitySelect.appendChild(opt);
+          });
+          municipalitySelect.disabled = false;
+        }
       }
-    } catch {
-      document.getElementById("error-message").style.display = "block";
-      document.getElementById("success-message").style.display = "none";
-    }
+    });
+
+    // التحكم في الكمية
+    decreaseBtn.addEventListener("click", () => {
+      let val = parseInt(quantityInput.value);
+      if(val > 1){
+        quantityInput.value = val - 1;
+        funnyMessage.style.display = "none";
+      }
+    });
+    increaseBtn.addEventListener("click", () => {
+      let val = parseInt(quantityInput.value);
+      if(val < 30){
+        quantityInput.value = val + 1;
+        funnyMessage.style.display = "none";
+      } else {
+        funnyMessage.style.display = "block";
+      }
+    });
+
+    // إغلاق النافذة
+    closeModalBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+    window.addEventListener("click", e => {
+      if(e.target === modal){
+        modal.style.display = "none";
+      }
+    });
+
+    // إرسال الطلب عبر Formspree
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      successMessage.style.display = "none";
+      errorMessage.style.display = "none";
+
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+
+      const data = {
+        fullname: document.getElementById("fullname").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        state: stateSelect.value,
+        municipality: municipalitySelect.value,
+        size: document.getElementById("size").value,
+        type: typeSelect.value,
+        quantity: quantityInput.value,
+        model: modelInput.value
+      };
+
+      try {
+        const response = await fetch("https://formspree.io/f/abgamer0177", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        if(response.ok){
+          successMessage.style.display = "block";
+          errorMessage.style.display = "none";
+          form.reset();
+          municipalitySelect.disabled = true;
+          quantityInput.value = 1;
+          setTimeout(() => {
+            successMessage.style.display = "none";
+            modal.style.display = "none";
+          }, 3000);
+        } else {
+          throw new Error("خطأ في الإرسال");
+        }
+      } catch {
+        errorMessage.style.display = "block";
+        successMessage.style.display = "none";
+      }
+    });
   });
-});
 </script>
 
 </body>
