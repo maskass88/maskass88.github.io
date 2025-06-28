@@ -262,20 +262,23 @@
                 <div id="selectedModel" class="selected-model"></div>
                 <div id="priceDisplay" class="price-display"></div>
                 
-                <form id="orderForm">
+                <form id="orderForm" action="https://formspree.io/f/abgamer0177@gmail.com" method="POST">
+                    <input type="hidden" name="product" id="formProduct">
+                    <input type="hidden" name="price" id="formPrice">
+                    
                     <div class="form-group">
                         <label for="name">الاسم الكامل:</label>
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="phone">رقم الهاتف:</label>
-                        <input type="tel" id="phone" required>
+                        <input type="tel" id="phone" name="phone" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="wilaya">الولاية:</label>
-                        <select id="wilaya" required>
+                        <select id="wilaya" name="wilaya" required>
                             <option value="">اختر الولاية</option>
                             <!-- سيتم ملؤها بالجافاسكريبت -->
                         </select>
@@ -283,14 +286,14 @@
                     
                     <div class="form-group">
                         <label for="commune">البلدية:</label>
-                        <select id="commune" required disabled>
+                        <select id="commune" name="commune" required disabled>
                             <option value="">اختر البلدية</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="size">المقاس:</label>
-                        <select id="size" required>
+                        <select id="size" name="size" required>
                             <option value="">اختر المقاس</option>
                             <option value="S">S</option>
                             <option value="M">M</option>
@@ -302,7 +305,7 @@
                     
                     <div class="form-group">
                         <label for="type">النوع:</label>
-                        <select id="type" required onchange="updatePrice()">
+                        <select id="type" name="type" required onchange="updatePrice()">
                             <option value="">اختر النوع</option>
                             <option value="Oversize">Oversize - 2900 دج</option>
                             <option value="Regular">Regular - 2700 دج</option>
@@ -313,7 +316,7 @@
                         <label>الكمية:</label>
                         <div class="quantity-control">
                             <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
-                            <input type="number" id="quantity" class="quantity-input" value="1" min="1" onchange="updatePrice()">
+                            <input type="number" id="quantity" class="quantity-input" value="1" min="1" name="quantity" onchange="updatePrice()">
                             <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
                         </div>
                     </div>
@@ -376,6 +379,7 @@
         
         function openOrderModal(productId) {
             currentProduct = products.find(p => p.id === productId);
+            document.getElementById('formProduct').value = currentProduct.name;
             
             document.getElementById('selectedModel').textContent = currentProduct.name;
             document.getElementById('selectedProductImage').src = currentProduct.image;
@@ -400,7 +404,12 @@
         // إدارة الكمية
         function increaseQuantity() {
             const qtyInput = document.getElementById('quantity');
-            qtyInput.value = parseInt(qtyInput.value) + 1;
+            let newValue = parseInt(qtyInput.value) + 1;
+            if (newValue > 30) {
+                alert("راك منيتك صاحبي!");
+                newValue = 30;
+            }
+            qtyInput.value = newValue;
             updatePrice();
         }
         
@@ -434,6 +443,7 @@
             
             const total = price * quantity;
             document.getElementById('totalPrice').textContent = `المجموع: ${total} دج`;
+            document.getElementById('formPrice').value = `${total} دج`;
         }
         
         // جميع الولايات الجزائرية الـ58 مع جميع البلديات
@@ -471,133 +481,67 @@
             "31": {name: "وهران", communes: ["وهران", "عين الترك", "أرزيو", "بطيوة", "السانية", "بئر الجير", "حاسي بونيف", "بوسفر", "العنصر", "قديل"]},
             "32": {name: "البيض", communes: ["البيض", "بوقطب", "البنود", "بريزينة", "الغاسول", "الأبيض سيدي الشيخ", "بوسمغون", "الخيثر", "الرجم", "الطوابين"]},
             "33": {name: "إيليزي", communes: ["إيليزي", "جانت", "برج الحواس", "عين أمقل", "تيمياوين", "أبلسة", "تاهيفاوين", "تيت", "تاظروك", "إينغر"]},
-            "34": {name: "برج بوعريريج", communes: ["برج بوعريريج", "رأس الوادي", "برج الغدير", "المنصورة", "مجانة", "بئر قاصد علي", "الحمادية", "الأصنام", "بليمور", "تكلاليت"]},
-            "35": {name: "بومرداس", communes: ["بومرداس", "بغلية", "بودواو", "الثنية", "خميس الخشنة", "الناصرية", "دلس", "أولاد هداج", "ثنية بني عائشة", "سي مصطفى"]},
-            "36": {name: "الطارف", communes: ["الطارف", "بني مهيل", "البسباس", "بوحجار", "الشط", "العيون", "الذرعان", "بوثلجة", "القالة", "الشقفة"]},
-            "37": {name: "تندوف", communes: ["تندوف", "أولاد خضير", "أم العسل", "المريجة", "السبع", "الزويرات", "بئر أم قرين", "بئر الحلو", "بئر العاتر", "بئر مقدم"]},
-            "38": {name: "تيسمسيلت", communes: ["تيسمسيلت", "خميستي", "ثنية الأحد", "العيون", "الأزهرية", "برج الأمير عبد القادر", "بوقايد", "سيدي عابد", "سيدي بوتوشنت", "تاقدمت"]},
-            "39": {name: "الوادي", communes: ["الوادي", "قمار", "الرباح", "البياضة", "حاسي خليفة", "المقرن", "الطالب العربي", "الدبيلة", "الرقيبة", "الزقم"]},
-            "40": {name: "خنشلة", communes: ["خنشلة", "بابار", "ششار", "أولاد رشاش", "بغاي", "بوحمامة", "يابوس", "تاكسلانت", "أولاد زواوي", "الحامة"]},
-            "41": {name: "سوق أهراس", communes: ["سوق أهراس", "سدراتة", "أم العظائم", "تاورة", "الحدادة", "المراهنة", "بئر بوحوش", "العلمة", "الولجة", "الزعرورية"]},
-            "42": {name: "تيبازة", communes: ["تيبازة", "شرشال", "دواودة", "فوكة", "بوهارون", "القليعة", "حجوط", "سيدي غيلاس", "الناظور", "خميستي"]},
-            "43": {name: "ميلة", communes: ["ميلة", "فرجيوة", "شلغوم العيد", "تاجنانت", "ترعي باينان", "سيدي مروان", "وادي العثمانية", "أحمد راشدي", "عين البيضاء", "التلاغمة"]},
-            "44": {name: "عين الدفلى", communes: ["عين الدفلى", "مليانة", "بومدفع", "خميس مليانة", "العامرية", "العبادية", "بئر ولد خليفة", "بربوش", "الروينة", "الطاهير"]},
-            "45": {name: "النعامة", communes: ["النعامة", "مغرار", "عين الصفراء", "تيوت", "الصفيصيفة", "المشرية", "عسلة", "جنين بورزق", "مكمن بن عمار", "سفيسيفة"]},
-            "46": {name: "عين تموشنت", communes: ["عين تموشنت", "بني صاف", "حمام بوحجر", "العين", "الأزهرية", "السهل", "وادي برقش", "بوجبهة", "سيدي بن عدة", "تافنة"]},
-            "47": {name: "غرداية", communes: ["غرداية", "متليلي", "زلفانة", "منيعة", "القرارة", "بريان", "العطف", "بنورة", "حاسي القارة", "ضاية بن ضحوة"]},
-            "48": {name: "غليزان", communes: ["غليزان", "وادي رهيو", "المطمر", "يلل", "عمي موسى", "القلعة", "الحمادنة", "المنور", "سيدي سعادة", "عين طارق"]},
-            "49": {name: "تيميمون", communes: ["تيميمون", "أولاد السعيد", "أولاد عيسى", "تيت", "تامست", "تامنطيط", "أولاد راشد", "أولاد سيدي الشيخ", "أولاد يحيى", "أولاد ميمون"]},
-            "50": {name: "برج باجي مختار", communes: ["برج باجي مختار", "تيمياوين", "أبلسة", "تاهيفاوين", "تيت", "تاظروك", "إينغر", "عين صالح", "إين أمقل", "تمنراست"]},
-            "51": {name: "أولاد جلال", communes: ["أولاد جلال", "بني وسين", "بوسعادة", "المعاضيد", "سيدي عامر", "المسيلة", "جبل مساعد", "خضرة", "مقرة", "الهامل"]},
-            "52": {name: "بني عباس", communes: ["بني عباس", "تيمودي", "كرزاز", "تاغيت", "بوكايس", "القنادسة", "موغل", "عرق فراج", "العبادلة", "بشار"]},
-            "53": {name: "عين صالح", communes: ["عين صالح", "إين أمقل", "تيمياوين", "أبلسة", "تاهيفاوين", "تيت", "تاظروك", "إينغر", "تمنراست", "برج باجي مختار"]},
-            "54": {name: "عين قزام", communes: ["عين قزام", "تيمياوين", "أبلسة", "تاهيفاوين", "تيت", "تاظروك", "إينغر", "عين صالح", "إين أمقل", "تمنراست"]},
-            "55": {name: "تقرت", communes: ["تقرت", "تماسين", "الرويسات", "بلدة", "سيدي خويلد", "النزلة", "البرمة", "حاسي مسعود", "تقورت", "ورقلة"]},
-            "56": {name: "جانت", communes: ["جانت", "إيليزي", "برج الحواس", "عين أمقل", "تيمياوين", "أبلسة", "تاهيفاوين", "تيت", "تاظروك", "إينغر"]},
-            "57": {name: "المغير", communes: ["المغير", "المنيعة", "حاسي القارة", "ضاية بن ضحوة", "بريان", "العطف", "بنورة", "غرداية", "متليلي", "زلفانة"]},
-            "58": {name: "المنيعة", communes: ["المنيعة", "حاسي القارة", "ضاية بن ضحوة", "بريان", "العطف", "بنورة", "غرداية", "متليلي", "زلفانة", "المغير"]}
+            "34": {name: "برج بوعريريج", communes: ["برج بوعريريج", "رأس الوادي", "برج الغدير", "المنصورة", "مجانة", "بئر قاصد علي", "الحمادية", "الأصنام", "بليمور", "تكل"]}
         };
-        
+
         // ملء قائمة الولايات
         function populateWilayas() {
             const wilayaSelect = document.getElementById('wilaya');
-            
             for (const [code, wilaya] of Object.entries(wilayas)) {
                 const option = document.createElement('option');
-                option.value = code;
+                option.value = wilaya.name;
                 option.textContent = wilaya.name;
                 wilayaSelect.appendChild(option);
             }
             
-            // تحديث البلديات عند اختيار الولاية
             wilayaSelect.addEventListener('change', function() {
                 const communeSelect = document.getElementById('commune');
                 communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
+                communeSelect.disabled = !this.value;
                 
-                if (this.value && wilayas[this.value]) {
-                    communeSelect.disabled = false;
-                    wilayas[this.value].communes.forEach(commune => {
+                if (this.value) {
+                    const selectedWilaya = Object.values(wilayas).find(w => w.name === this.value);
+                    selectedWilaya.communes.forEach(commune => {
                         const option = document.createElement('option');
                         option.value = commune;
                         option.textContent = commune;
                         communeSelect.appendChild(option);
                     });
-                } else {
-                    communeSelect.disabled = true;
                 }
             });
         }
         
-        // إرسال الطلب تلقائياً
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // جمع بيانات الطلب
-            const orderData = {
-                product: currentProduct.name,
-                image: currentProduct.image,
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                wilaya: document.getElementById('wilaya').options[document.getElementById('wilaya').selectedIndex].text,
-                commune: document.getElementById('commune').value,
-                size: document.getElementById('size').value,
-                type: document.getElementById('type').value,
-                quantity: document.getElementById('quantity').value,
-                totalPrice: document.getElementById('totalPrice').textContent,
-                date: new Date().toLocaleString('ar-DZ')
-            };
-            
-            // إرسال الطلب تلقائياً
-            sendOrderAutomatically(orderData);
-            
-            // عرض رسالة الشكر وإخفاء النموذج
-            document.getElementById('orderForm').style.display = 'none';
-            document.getElementById('thankYouMessage').style.display = 'block';
-            
-            // إغلاق النافذة بعد 3 ثواني
-            setTimeout(closeOrderModal, 3000);
-        });
-        
-        // دالة إرسال الطلب تلقائياً
-        function sendOrderAutomatically(orderData) {
-            // هنا نستخدم Formspree لإرسال البريد تلقائياً
-            const formData = new FormData();
-            formData.append('product', orderData.product);
-            formData.append('name', orderData.name);
-            formData.append('phone', orderData.phone);
-            formData.append('wilaya', orderData.wilaya);
-            formData.append('commune', orderData.commune);
-            formData.append('size', orderData.size);
-            formData.append('type', orderData.type);
-            formData.append('quantity', orderData.quantity);
-            formData.append('totalPrice', orderData.totalPrice);
-            formData.append('date', orderData.date);
-            
-            // استبدل YOUR_FORMSPREE_ID بالمعرف الخاص بك من Formspree
-            fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('تم إرسال الطلب بنجاح');
-                } else {
-                    console.error('خطأ في إرسال الطلب');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
+        // إعداد النموذج
+        function setupForm() {
+            const form = document.getElementById('orderForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        document.getElementById('orderForm').style.display = 'none';
+                        document.getElementById('thankYouMessage').style.display = 'block';
+                        setTimeout(closeOrderModal, 2000);
+                        form.reset();
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
             });
         }
         
-        // تهيئة الصفحة عند التحميل
-        window.addEventListener('DOMContentLoaded', function() {
+        // تهيئة الصفحة
+        window.onload = function() {
             displayProducts();
             populateWilayas();
-        });
+            setupForm();
+        };
     </script>
 </body>
 </html>
