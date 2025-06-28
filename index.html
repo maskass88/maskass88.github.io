@@ -2,51 +2,73 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>EzzineStyle - متجر التيشيرتات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: white;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+        
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            background-color: #f5f5f5;
             color: #333;
+            line-height: 1.6;
         }
         
         header {
+            background: linear-gradient(135deg, #007bff 0%, #00bfff 100%);
+            color: white;
+            padding: 15px;
             text-align: center;
-            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
-        h1 {
-            color: #333;
-            margin-bottom: 5px;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
         }
         
         .welcome {
-            color: #666;
-            margin-top: 0;
+            font-size: 0.9rem;
+            margin-top: 5px;
         }
         
         .products-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-            padding: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 10px;
         }
         
-        .item {
-            border: 1px solid #eee;
-            border-radius: 5px;
+        @media (min-width: 768px) {
+            .products-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .product-item {
+            background: white;
+            border-radius: 10px;
             overflow: hidden;
-            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
         
-        .item img {
+        .product-item:active {
+            transform: scale(0.98);
+        }
+        
+        .product-image {
             width: 100%;
             height: 180px;
             object-fit: cover;
+            border-bottom: 1px solid #eee;
         }
         
         .buy-btn {
@@ -55,36 +77,61 @@
             border: none;
             padding: 8px;
             width: 100%;
-            cursor: pointer;
             font-size: 14px;
+            cursor: pointer;
         }
         
-        .modal {
+        /* نافذة الطلب الموسعة */
+        .order-modal {
             display: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+        
+        .order-content {
+            background: white;
+            margin: 0 auto;
+            width: 95%;
+            max-width: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .selected-product-image {
             width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            height: 300px;
+            object-fit: cover;
         }
         
-        .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 5px;
-            width: 90%;
-            max-width: 400px;
+        .product-details {
+            padding: 15px;
         }
         
-        .close {
-            color: #aaa;
-            float: left;
-            font-size: 28px;
+        .selected-model {
             font-weight: bold;
-            cursor: pointer;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        
+        .price-display {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #28a745;
+            margin: 10px 0;
         }
         
         .form-group {
@@ -95,13 +142,15 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            font-size: 14px;
         }
         
         input, select {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 5px;
+            font-size: 14px;
         }
         
         .quantity-control {
@@ -112,38 +161,59 @@
         }
         
         .quantity-btn {
-            background-color: #007bff;
+            width: 40px;
+            height: 40px;
+            background: #007bff;
             color: white;
             border: none;
-            width: 30px;
-            height: 30px;
-            font-size: 16px;
+            border-radius: 5px;
+            font-size: 18px;
             cursor: pointer;
-            border-radius: 4px;
         }
         
         .quantity-input {
-            width: 50px;
+            width: 60px;
             text-align: center;
             margin: 0 10px;
+            font-size: 16px;
+            padding: 8px;
         }
         
         .submit-btn {
-            background-color: #28a745;
+            background: #28a745;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 12px;
             width: 100%;
-            cursor: pointer;
+            border-radius: 5px;
             font-size: 16px;
-            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1001;
         }
         
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background-color: #25D366;
+            background: #25D366;
             color: white;
             width: 50px;
             height: 50px;
@@ -159,164 +229,94 @@
         footer {
             text-align: center;
             padding: 15px;
-            color: #666;
+            background: white;
+            margin-top: 20px;
             border-top: 1px solid #eee;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>EzzineStyle</h1>
-        <p class="welcome">Welcome to EzzineStyle – Your Fashion, Your Style.</p>
+        <div class="logo">EzzineStyle</div>
+        <div class="welcome">موضة تميزك بأسلوب</div>
     </header>
     
-    <div class="products-container">
-        <!-- Start of T-shirt Models -->
-        <div class="item">
-            <img src="t1.jpg" alt="Model 1" onerror="this.src='https://via.placeholder.com/300x400?text=Model+1'">
-            <button class="buy-btn" onclick="openPopup('Model 1')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t2.jpg" alt="Model 2" onerror="this.src='https://via.placeholder.com/300x400?text=Model+2'">
-            <button class="buy-btn" onclick="openPopup('Model 2')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t3.jpg" alt="Model 3" onerror="this.src='https://via.placeholder.com/300x400?text=Model+3'">
-            <button class="buy-btn" onclick="openPopup('Model 3')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t4.jpg" alt="Model 4" onerror="this.src='https://via.placeholder.com/300x400?text=Model+4'">
-            <button class="buy-btn" onclick="openPopup('Model 4')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t5.jpg" alt="Model 5" onerror="this.src='https://via.placeholder.com/300x400?text=Model+5'">
-            <button class="buy-btn" onclick="openPopup('Model 5')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t6.jpg" alt="Model 6" onerror="this.src='https://via.placeholder.com/300x400?text=Model+6'">
-            <button class="buy-btn" onclick="openPopup('Model 6')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t7.jpg" alt="Model 7" onerror="this.src='https://via.placeholder.com/300x400?text=Model+7'">
-            <button class="buy-btn" onclick="openPopup('Model 7')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t8.jpg" alt="Model 8" onerror="this.src='https://via.placeholder.com/300x400?text=Model+8'">
-            <button class="buy-btn" onclick="openPopup('Model 8')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t9.jpg" alt="Model 9" onerror="this.src='https://via.placeholder.com/300x400?text=Model+9'">
-            <button class="buy-btn" onclick="openPopup('Model 9')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t10.jpg" alt="Model 10" onerror="this.src='https://via.placeholder.com/300x400?text=Model+10'">
-            <button class="buy-btn" onclick="openPopup('Model 10')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t11.jpg" alt="Model 11" onerror="this.src='https://via.placeholder.com/300x400?text=Model+11'">
-            <button class="buy-btn" onclick="openPopup('Model 11')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t12.jpg" alt="Model 12" onerror="this.src='https://via.placeholder.com/300x400?text=Model+12'">
-            <button class="buy-btn" onclick="openPopup('Model 12')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t13.jpg" alt="Model 13" onerror="this.src='https://via.placeholder.com/300x400?text=Model+13'">
-            <button class="buy-btn" onclick="openPopup('Model 13')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t14.jpg" alt="Model 14" onerror="this.src='https://via.placeholder.com/300x400?text=Model+14'">
-            <button class="buy-btn" onclick="openPopup('Model 14')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t15.jpg" alt="Model 15" onerror="this.src='https://via.placeholder.com/300x400?text=Model+15'">
-            <button class="buy-btn" onclick="openPopup('Model 15')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t16.jpg" alt="Model 16" onerror="this.src='https://via.placeholder.com/300x400?text=Model+16'">
-            <button class="buy-btn" onclick="openPopup('Model 16')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t17.jpg" alt="Model 17" onerror="this.src='https://via.placeholder.com/300x400?text=Model+17'">
-            <button class="buy-btn" onclick="openPopup('Model 17')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t18.jpg" alt="Model 18" onerror="this.src='https://via.placeholder.com/300x400?text=Model+18'">
-            <button class="buy-btn" onclick="openPopup('Model 18')">اشترِ الآن</button>
-        </div>
-        <div class="item">
-            <img src="t19.jpg" alt="Model 19" onerror="this.src='https://via.placeholder.com/300x400?text=Model+19'">
-            <button class="buy-btn" onclick="openPopup('Model 19')">اشترِ الآن</button>
-        </div>
+    <div class="products-container" id="productsContainer">
+        <!-- سيتم ملؤها بالجافاسكريبت -->
     </div>
     
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <h2>طلب التيشيرت</h2>
-            <p id="selectedModel" style="text-align: center; font-weight: bold;"></p>
-            
-            <form id="orderForm">
-                <div class="form-group">
-                    <label for="name">الاسم الكامل:</label>
-                    <input type="text" id="name" required>
-                </div>
+    <div id="orderModal" class="order-modal">
+        <div class="close-btn" onclick="closeOrderModal()">&times;</div>
+        <div class="order-content">
+            <img id="selectedProductImage" class="selected-product-image" src="" alt="">
+            <div class="product-details">
+                <div id="selectedModel" class="selected-model"></div>
+                <div id="priceDisplay" class="price-display"></div>
                 
-                <div class="form-group">
-                    <label for="phone">رقم الهاتف:</label>
-                    <input type="tel" id="phone" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="wilaya">الولاية:</label>
-                    <select id="wilaya" required>
-                        <option value="">اختر الولاية</option>
-                        <option value="16">الجزائر</option>
-                        <option value="31">وهران</option>
-                        <option value="19">سطيف</option>
-                        <!-- يمكنك إضافة جميع الولايات هنا -->
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="commune">البلدية:</label>
-                    <select id="commune" required>
-                        <option value="">اختر البلدية</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="size">المقاس:</label>
-                    <select id="size" required>
-                        <option value="">اختر المقاس</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                        <option value="XXL">XXL</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="type">النوع:</label>
-                    <select id="type" required>
-                        <option value="">اختر النوع</option>
-                        <option value="Oversize">Oversize - 2900 دج</option>
-                        <option value="Regular">Regular - 2700 دج</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>الكمية:</label>
-                    <div class="quantity-control">
-                        <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
-                        <input type="number" id="quantity" class="quantity-input" value="1" min="1">
-                        <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل:</label>
+                        <input type="text" id="name" required>
                     </div>
-                </div>
-                
-                <button type="submit" class="submit-btn">إرسال الطلب</button>
-            </form>
+                    
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف:</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wilaya">الولاية:</label>
+                        <select id="wilaya" required>
+                            <option value="">اختر الولاية</option>
+                            <!-- سيتم ملؤها بالجافاسكريبت -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="commune">البلدية:</label>
+                        <select id="commune" required disabled>
+                            <option value="">اختر البلدية</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="size">المقاس:</label>
+                        <select id="size" required>
+                            <option value="">اختر المقاس</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="type">النوع:</label>
+                        <select id="type" required onchange="updatePrice()">
+                            <option value="">اختر النوع</option>
+                            <option value="Oversize">Oversize - 2900 دج</option>
+                            <option value="Regular">Regular - 2700 دج</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>الكمية:</label>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                            <input type="number" id="quantity" class="quantity-input" value="1" min="1" onchange="updatePrice()">
+                            <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+                        </div>
+                    </div>
+                    
+                    <div id="totalPrice" style="text-align: center; margin: 15px 0; font-weight: bold; font-size: 1.2rem;">
+                        المجموع: 0 دج
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">تأكيد الطلب</button>
+                </form>
+            </div>
         </div>
     </div>
     
@@ -325,102 +325,267 @@
     </a>
     
     <footer>
-        Made by EzzineStyle
+        Made with <i class="fas fa-heart" style="color: red;"></i> by EzzineStyle
     </footer>
 
     <script>
-        // متغير لحفظ الموديل المختار
-        let selectedModel = '';
+        // بيانات المنتجات
+        const products = [];
+        for (let i = 1; i <= 19; i++) {
+            products.push({
+                id: i,
+                name: `Model ${i}`,
+                image: `t${i}.jpg`,
+                oversizePrice: 2900,
+                regularPrice: 2700
+            });
+        }
+        
+        // عرض المنتجات
+        function displayProducts() {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+            
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product-item';
+                
+                productDiv.innerHTML = `
+                    <img src="${product.image}" class="product-image" onerror="this.src='https://via.placeholder.com/300x400?text=Model+${product.id}'">
+                    <button class="buy-btn" onclick="openOrderModal(${product.id})">اشترِ الآن</button>
+                `;
+                
+                container.appendChild(productDiv);
+            });
+        }
         
         // فتح نافذة الطلب
-        function openPopup(model) {
-            selectedModel = model;
-            document.getElementById('selectedModel').textContent = model;
+        let currentProduct = null;
+        
+        function openOrderModal(productId) {
+            currentProduct = products.find(p => p.id === productId);
+            
+            document.getElementById('selectedModel').textContent = currentProduct.name;
+            document.getElementById('selectedProductImage').src = currentProduct.image;
+            document.getElementById('selectedProductImage').onerror = function() {
+                this.src = 'https://via.placeholder.com/300x400?text=' + currentProduct.name;
+            };
+            
+            updatePrice();
             document.getElementById('orderModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
         
         // إغلاق نافذة الطلب
-        function closePopup() {
+        function closeOrderModal() {
             document.getElementById('orderModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
             document.getElementById('orderForm').reset();
         }
         
-        // زيادة الكمية
+        // إدارة الكمية
         function increaseQuantity() {
-            const quantityInput = document.getElementById('quantity');
-            quantityInput.value = parseInt(quantityInput.value) + 1;
+            const qtyInput = document.getElementById('quantity');
+            qtyInput.value = parseInt(qtyInput.value) + 1;
+            updatePrice();
         }
         
-        // تقليل الكمية
         function decreaseQuantity() {
-            const quantityInput = document.getElementById('quantity');
-            if (parseInt(quantityInput.value) > 1) {
-                quantityInput.value = parseInt(quantityInput.value) - 1;
+            const qtyInput = document.getElementById('quantity');
+            if (parseInt(qtyInput.value) > 1) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+                updatePrice();
             }
         }
         
-        // إرسال الطلب إلى الجيميل
+        // تحديث السعر
+        function updatePrice() {
+            if (!currentProduct) return;
+            
+            const type = document.getElementById('type').value;
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            let price = 0;
+            
+            if (type === 'Oversize') {
+                price = currentProduct.oversizePrice;
+                document.getElementById('priceDisplay').textContent = 'السعر: 2900 دج';
+            } else if (type === 'Regular') {
+                price = currentProduct.regularPrice;
+                document.getElementById('priceDisplay').textContent = 'السعر: 2700 دج';
+            } else {
+                document.getElementById('priceDisplay').textContent = 'اختر النوع لرؤية السعر';
+                document.getElementById('totalPrice').textContent = 'المجموع: 0 دج';
+                return;
+            }
+            
+            const total = price * quantity;
+            document.getElementById('totalPrice').textContent = `المجموع: ${total} دج`;
+        }
+        
+        // جميع الولايات الجزائرية الـ58
+        const wilayas = {
+            "1": "أدرار",
+            "2": "الشلف",
+            "3": "الأغواط",
+            "4": "أم البواقي",
+            "5": "باتنة",
+            "6": "بجاية",
+            "7": "بسكرة",
+            "8": "بشار",
+            "9": "البليدة",
+            "10": "البويرة",
+            "11": "تمنراست",
+            "12": "تبسة",
+            "13": "تلمسان",
+            "14": "تيارت",
+            "15": "تيزي وزو",
+            "16": "الجزائر",
+            "17": "الجلفة",
+            "18": "جيجل",
+            "19": "سطيف",
+            "20": "سعيدة",
+            "21": "سكيكدة",
+            "22": "سيدي بلعباس",
+            "23": "عنابة",
+            "24": "قالمة",
+            "25": "قسنطينة",
+            "26": "المدية",
+            "27": "مستغانم",
+            "28": "المسيلة",
+            "29": "معسكر",
+            "30": "ورقلة",
+            "31": "وهران",
+            "32": "البيض",
+            "33": "إليزي",
+            "34": "برج بوعريريج",
+            "35": "بومرداس",
+            "36": "الطارف",
+            "37": "تندوف",
+            "38": "تيسمسيلت",
+            "39": "الوادي",
+            "40": "خنشلة",
+            "41": "سوق أهراس",
+            "42": "تيبازة",
+            "43": "ميلة",
+            "44": "عين الدفلى",
+            "45": "النعامة",
+            "46": "عين تموشنت",
+            "47": "غرداية",
+            "48": "غليزان",
+            "49": "تيميمون",
+            "50": "برج باجي مختار",
+            "51": "أولاد جلال",
+            "52": "بني عباس",
+            "53": "عين صالح",
+            "54": "عين قزام",
+            "55": "تقرت",
+            "56": "جانت",
+            "57": "المغير",
+            "58": "المنيعة"
+        };
+        
+        // البلديات لكل ولاية (مثال لبعض الولايات)
+        const communes = {
+            "1": ["أدرار", "تمقطن", "زاوية كنتة", "رقان", "تسابيت", "أولف", "تيميمون", "أوقروت", "برج باجي مختار", "فنوغيل"],
+            "2": ["الشلف", "وادي الفضة", "بني حواء", "الكريمية", "الزبوجة", "بوعينان", "أولاد فارس", "أولاد بن عبد القادر", "تاجنة", "المرسى"],
+            "3": ["الأغواط", "قصر الحيران", "حاسي الدلاعة", "تاجموت", "أفلو", "سيدي مخلوف", "الحويطة", "الغيشة", "سبقاق", "بريان"],
+            "4": ["أم البواقي", "عين البيضاء", "سوق نعمان", "عين مليلة", "سيقوس", "مسكيانة", "فكيرينة", "عين فكرون", "بئر الشهداء", "العامرية"],
+            "5": ["باتنة", "فسديس", "مروانة", "رأس العيون", "تازولت", "نقاوس", "إشمول", "بريكة", "الجزار", "تكوت"],
+            "6": ["بجاية", "أقبو", "تازمالت", "خراطة", "صدوق", "سيدي عيش", "أوزلاقن", "تيمزريت", "أيت سماعيل", "توجة"],
+            "7": ["بسكرة", "أورلال", "زريبة الوادي", "ليشانة", "مليلي", "القنطرة", "أوماش", "الوطاية", "سيدي عقبة", "فوغالة"],
+            "8": ["بشار", "بني ونيف", "تاغيت", "بوكايس", "القنادسة", "موغل", "عرق فراج", "العبادلة", "تيمودي", "كرزاز"],
+            "9": ["البليدة", "بوفاريك", "بوعينان", "الأربعاء", "مفتاح", "بوقرة", "حمام ملوان", "وادي العلايق", "بني تامو", "بني مراد"],
+            "10": ["البويرة", "الأخضرية", "سور الغزلان", "بشلول", "الأصنام", "المعمورة", "حيزر", "سوق الخميس", "الهاشمية", "روراوة"],
+            // يمكنك إضافة باقي الولايات والبلديات بنفس الطريقة
+            "16": ["الجزائر الوسطى", "باب الوادي", "الحراش", "بئر مراد رايس", "بئر خادم", "الدار البيضاء", "بولوغين", "القبة", "الحمامات", "الرويبة"],
+            "31": ["وهران", "عين الترك", "أرزيو", "بطيوة", "السانية", "بئر الجير", "حاسي بونيف", "بوسفر", "العنصر", "قديل"]
+        };
+        
+        // ملء قائمة الولايات
+        function populateWilayas() {
+            const wilayaSelect = document.getElementById('wilaya');
+            
+            for (const [code, name] of Object.entries(wilayas)) {
+                const option = document.createElement('option');
+                option.value = code;
+                option.textContent = name;
+                wilayaSelect.appendChild(option);
+            }
+            
+            // تحديث البلديات عند اختيار الولاية
+            wilayaSelect.addEventListener('change', function() {
+                const communeSelect = document.getElementById('commune');
+                communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
+                
+                if (this.value && communes[this.value]) {
+                    communeSelect.disabled = false;
+                    communes[this.value].forEach(commune => {
+                        const option = document.createElement('option');
+                        option.value = commune;
+                        option.textContent = commune;
+                        communeSelect.appendChild(option);
+                    });
+                } else {
+                    communeSelect.disabled = true;
+                }
+            });
+        }
+        
+        // إرسال الطلب
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const wilaya = document.getElementById('wilaya').value;
-            const commune = document.getElementById('commune').value;
-            const size = document.getElementById('size').value;
-            const type = document.getElementById('type').value;
-            const quantity = document.getElementById('quantity').value;
+            // جمع بيانات الطلب
+            const orderData = {
+                product: currentProduct.name,
+                image: currentProduct.image,
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                wilaya: document.getElementById('wilaya').options[document.getElementById('wilaya').selectedIndex].text,
+                commune: document.getElementById('commune').value,
+                size: document.getElementById('size').value,
+                type: document.getElementById('type').value,
+                quantity: document.getElementById('quantity').value,
+                totalPrice: document.getElementById('totalPrice').textContent,
+                date: new Date().toLocaleString('ar-DZ')
+            };
             
-            // حساب السعر حسب النوع
-            const price = type === 'Oversize' ? 2900 : 2700;
-            const total = price * quantity;
+            // إرسال الطلب إلى الجيميل
+            sendOrderByEmail(orderData);
             
-            // إنشاء رابط إرسال إلى الجيميل
-            const subject = `طلب جديد - ${selectedModel}`;
+            // إغلاق النافذة
+            closeOrderModal();
+            
+            // رسالة تأكيد
+            alert('تم إرسال طلبك بنجاح! سنتواصل معك قريباً');
+        });
+        
+        // دالة إرسال الطلب إلى الجيميل
+        function sendOrderByEmail(orderData) {
+            const subject = `طلب جديد - ${orderData.product}`;
             const body = `
                 تفاصيل الطلب:
-                النموذج: ${selectedModel}
-                الاسم: ${name}
-                الهاتف: ${phone}
-                الولاية: ${document.getElementById('wilaya').options[document.getElementById('wilaya').selectedIndex].text}
-                البلدية: ${commune}
-                المقاس: ${size}
-                النوع: ${type}
-                الكمية: ${quantity}
-                السعر الإجمالي: ${total} دج
+                -------------------------
+                النموذج: ${orderData.product}
+                الاسم: ${orderData.name}
+                الهاتف: ${orderData.phone}
+                الولاية: ${orderData.wilaya}
+                البلدية: ${orderData.commune}
+                المقاس: ${orderData.size}
+                النوع: ${orderData.type}
+                الكمية: ${orderData.quantity}
+                ${orderData.totalPrice}
+                -------------------------
+                تاريخ الطلب: ${orderData.date}
             `;
             
             window.location.href = `mailto:abgamer0177@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // إغلاق النافذة بعد الإرسال
-            setTimeout(closePopup, 1000);
-        });
+        }
         
-        // تحديث البلديات عند اختيار الولاية
-        document.getElementById('wilaya').addEventListener('change', function() {
-            const wilaya = this.value;
-            const communeSelect = document.getElementById('commune');
-            communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
-            
-            if (wilaya === '16') { // الجزائر
-                const communes = ['الجزائر الوسطى', 'باب الوادي', 'الحراش', 'بئر مراد رايس', 'بئر خادم'];
-                communes.forEach(commune => {
-                    const option = document.createElement('option');
-                    option.value = commune;
-                    option.textContent = commune;
-                    communeSelect.appendChild(option);
-                });
-            }
-            else if (wilaya === '31') { // وهران
-                const communes = ['وهران', 'عين الترك', 'أرزيو', 'بطيوة', 'السانية'];
-                communes.forEach(commune => {
-                    const option = document.createElement('option');
-                    option.value = commune;
-                    option.textContent = commune;
-                    communeSelect.appendChild(option);
-                });
-            }
-            // يمكنك إضافة المزيد من الولايات والبلديات هنا
+        // تهيئة الصفحة عند التحميل
+        window.addEventListener('DOMContentLoaded', function() {
+            displayProducts();
+            populateWilayas();
         });
     </script>
 </body>
