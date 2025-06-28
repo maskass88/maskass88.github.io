@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>EzzineStyle - متجر تيشيرتات</title>
 <style>
+/* ... نفس ستايلات النسخة السابقة ... */
 body {
   background: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -372,7 +373,6 @@ input.form-input:focus, select.form-input:focus {
 </a>
 
 <script>
-// كل الولايات الجزائرية مع البلديات (مقتطف - ضع كل الولايات والبلديات هنا)
 const algeriaStates = [
   {name:"أدرار",municipalities:["أدرار","تامست","شروين","رقان","إن زغمير","تيت","قصر قدور","تسابيت","تيميمون","أولاد السعيد","زاوية كنتة","أولف","تيمقطن","تامنطيط","فنوغيل","تنركوك","دلدول","سالي","اقبلي","أولاد أحمد تيمي","بودة","سبع"]},
   {name:"الشلف",municipalities:["الشلف","تنس","بنايرية","الكريمية","تاجنة","تاقريت","بني حواء","صبحة","حرشون","أولاد فارس","سيدي عكاشة","بوقادير","بني راشد","تلعصة","الهرنفة","وادي قوسين","الظهر","أولاد عباس","السنجاس","الزبوجة","وادي سلي"]},
@@ -430,8 +430,9 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("success-message").style.display = "none";
       document.getElementById("error-message").style.display = "none";
       document.getElementById("order-form").reset();
-      municipalitySelect.disabled = true;
-      funnyMessage.style.display = "none";
+      document.getElementById("state").value = "";
+      document.getElementById("municipality").innerHTML = '<option value="">اختر البلدية</option>';
+      document.getElementById("municipality").disabled = true;
       document.getElementById("order-modal").style.display = "block";
     });
   });
