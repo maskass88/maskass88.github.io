@@ -6,321 +6,8 @@
     <title>EzzineStyle - متجر التيشيرتات المميزة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* التنسيقات العامة */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            padding-bottom: 60px;
-        }
-
-        header {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-
-        .logo {
-            color: #3498db;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .welcome {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 5px;
-        }
-
-        .slogan {
-            font-size: 1rem;
-            color: #777;
-        }
-
-        /* أقسام المنتجات */
-        .category {
-            margin: 30px 10px;
-        }
-
-        .category-title {
-            text-align: center;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            color: white;
-        }
-
-        .category-title.anime {
-            background-color: #9b59b6;
-        }
-
-        .category-title.foot {
-            background-color: #3498db;
-        }
-
-        .category-title.rap {
-            background-color: #e74c3c;
-        }
-
-        .category-title.extra {
-            background-color: #2c3e50;
-        }
-
-        .products-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 0 15px;
-        }
-
-        /* بطاقة المنتج */
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 15px;
-        }
-
-        .product-model {
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .product-type {
-            margin-bottom: 15px;
-        }
-
-        .type-options {
-            display: flex;
-            gap: 10px;
-            margin-top: 5px;
-        }
-
-        .type-option {
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .type-option.selected {
-            background-color: #3498db;
-            color: white;
-            border-color: #3498db;
-        }
-
-        .product-price {
-            font-weight: bold;
-            color: #e74c3c;
-            margin: 15px 0;
-            font-size: 1.2rem;
-        }
-
-        .buy-btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .buy-btn:hover {
-            background-color: #2980b9;
-        }
-
-        /* نافذة الطلب */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0,0,0,0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            float: left;
-        }
-
-        .modal h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            clear: both;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        .quantity-btn {
-            padding: 5px 15px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .quantity-btn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        #quantity {
-            text-align: center;
-            margin: 0 10px;
-            width: 50px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .submit-btn:hover {
-            background-color: #27ae60;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        #quantityMessage {
-            color: #e74c3c;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 5px;
-        }
-
-        /* زر واتساب */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #25D366;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 999;
-            transition: transform 0.3s;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-            color: white;
-        }
-
-        /* التصميم المتجاوب */
-        @media (max-width: 768px) {
-            .products-container {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            
-            .logo {
-                font-size: 2rem;
-            }
-            
-            .welcome {
-                font-size: 1rem;
-            }
-            
-            .slogan {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .products-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .modal {
-                width: 95%;
-            }
-        }
+        /* ... نفس التنسيقات من الكود السابق ... */
+        /* (انسخ كل التنسيقات من ملفك السابق هنا كما هي) */
     </style>
 </head>
 <body>
@@ -333,34 +20,23 @@
     <main>
         <!-- قسم Anime -->
         <section class="category">
-            <h2 class="category-title anime">Anime Section</h2>
-            <div class="products-container" id="anime-products">
-                <!-- سيتم إضافة المنتجات هنا عبر JavaScript -->
-            </div>
+            <h2 class="category-title anime">قسم الأنمي</h2>
+            <div class="products-container" id="anime-products"></div>
         </section>
-
         <!-- قسم Foot -->
         <section class="category">
-            <h2 class="category-title foot">Foot Section</h2>
-            <div class="products-container" id="foot-products">
-                <!-- سيتم إضافة المنتجات هنا عبر JavaScript -->
-            </div>
+            <h2 class="category-title foot">قسم الفوت</h2>
+            <div class="products-container" id="foot-products"></div>
         </section>
-
         <!-- قسم Rap -->
         <section class="category">
-            <h2 class="category-title rap">Rap Section</h2>
-            <div class="products-container" id="rap-products">
-                <!-- سيتم إضافة المنتجات هنا عبر JavaScript -->
-            </div>
+            <h2 class="category-title rap">قسم الراب</h2>
+            <div class="products-container" id="rap-products"></div>
         </section>
-
         <!-- قسم Skull/Extra -->
         <section class="category">
-            <h2 class="category-title extra">Skull / Extra Section</h2>
-            <div class="products-container" id="extra-products">
-                <!-- سيتم إضافة المنتجات هنا عبر JavaScript -->
-            </div>
+            <h2 class="category-title extra">قسم الإكسترا (السكول)</h2>
+            <div class="products-container" id="extra-products"></div>
         </section>
     </main>
 
@@ -369,30 +45,25 @@
         <div class="modal">
             <button class="close-modal">&times;</button>
             <h2>إكمال الطلب</h2>
-            <form id="orderForm" action="https://formspree.io/f/maskass88@gmail.com" method="POST">
+            <form id="orderForm" action="https://formspree.io/f/abgamer0177" method="POST">
                 <input type="hidden" id="productModel" name="productModel">
                 <input type="hidden" id="productType" name="productType">
-                
                 <div class="form-group">
                     <label for="fullName">الاسم الكامل:</label>
                     <input type="text" id="fullName" name="fullName" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="phone">رقم الهاتف:</label>
                     <input type="tel" id="phone" name="phone" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="state">الولاية:</label>
                     <input type="text" id="state" name="state" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="city">البلدية:</label>
                     <input type="text" id="city" name="city" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="size">المقاس:</label>
                     <select id="size" name="size" required>
@@ -403,7 +74,6 @@
                         <option value="XXL">XXL</option>
                     </select>
                 </div>
-                
                 <div class="form-group">
                     <label for="type">النوع:</label>
                     <select id="type" name="type" required>
@@ -411,7 +81,6 @@
                         <option value="Oversize">Oversize - 2900 دج</option>
                     </select>
                 </div>
-                
                 <div class="form-group">
                     <label for="quantity">الكمية:</label>
                     <div class="quantity-selector">
@@ -421,7 +90,6 @@
                     </div>
                     <p id="quantityMessage" class="hidden">راك منيتك صاحبي 😂</p>
                 </div>
-                
                 <button type="submit" class="submit-btn">إرسال الطلب</button>
             </form>
         </div>
@@ -433,194 +101,157 @@
     </a>
 
     <script>
-        // بيانات المنتجات
+        // بيانات المنتجات بالأسماء الحقيقية للصور
         const products = {
             anime: [
-                { id: 't1', name: 't1-akatsuki.jpg', model: 'Model 1' },
-                { id: 't2', name: 't2-itachi-crow.jpg', model: 'Model 2' },
-                { id: 't3', name: 't3-gojo-purple.jpg', model: 'Model 3' },
-                { id: 't4', name: 't4-eren-fight.jpg', model: 'Model 4' },
-                { id: 't5', name: 't5-zoro-blade.jpg', model: 'Model 5' },
-                { id: 't6', name: 't6-luffy-gear5.jpg', model: 'Model 6' },
-                { id: 't7', name: 't7-naruto-kurama.jpg', model: 'Model 7' },
-                { id: 't8', name: 't8-jujutsu-team.jpg', model: 'Model 8' },
-                { id: 't9', name: 't9-deathnote.jpg', model: 'Model 9' },
-                { id: 't10', name: 't10-onepiece-skull.jpg', model: 'Model 10' }
+                { id: 't1', name: 't1 solo leaving.png', model: 'Solo Leaving' },
+                { id: 't2', name: 't2 goku.png', model: 'Goku' },
+                { id: 't2-2', name: 't2 goku 2.png', model: 'Goku 2' },
+                { id: 't3', name: 't3 hisoka.png', model: 'Hisoka' },
+                { id: 't3-2', name: 't3 hisoka 2.png', model: 'Hisoka 2' },
+                { id: 't4', name: 't4 kokoshibo.png', model: 'Kokoshibo' },
+                { id: 't4-2', name: 't4 kokoshibo 2.png', model: 'Kokoshibo 2' },
+                { id: 't5', name: 't5 whitebeard.png', model: 'Whitebeard' },
+                { id: 't5-2', name: 't5 whitebeard 2.png', model: 'Whitebeard 2' },
+                { id: 't6', name: 't6 zoro 2.png', model: 'Zoro' },
+                { id: 't7', name: 't7 zoro2.png', model: 'Zoro2' },
+                { id: 't7-2', name: 't7 zoro2 2.png', model: 'Zoro2 2' },
+                { id: 't14', name: 't14 the last of us mode2.png', model: 'The Last of Us Mode2' },
+                { id: 't14-2', name: 't14 the last of us mode2 2.png', model: 'The Last of Us Mode2 2' },
+                { id: 't15', name: 't15 sheep.png', model: 'Sheep' }
             ],
             foot: [
-                { id: 'tf1', name: 'tf1-mbappe.jpg', model: 'Model Foot 1' },
-                { id: 'tf2', name: 'tf2-madrid-white.jpg', model: 'Model Foot 2' },
-                { id: 'tf3', name: 'tf3-ronaldo-cr7.jpg', model: 'Model Foot 3' },
-                { id: 'tf4', name: 'tf4-benzema.jpg', model: 'Model Foot 4' },
-                { id: 'tf5', name: 'tf5-haaland.jpg', model: 'Model Foot 5' }
+                { id: 'tf1', name: 'tf1 cr7.png', model: 'CR7' },
+                { id: 'tf1-2', name: 'tf1 cr7 2.png', model: 'CR7 2' },
+                { id: 'tf2', name: 'tf2 real madrid.png', model: 'Real Madrid' },
+                { id: 'tf2-2', name: 'tf2 real madrid 2.png', model: 'Real Madrid 2' },
+                { id: 'tf3', name: 'tf3 real mod.png', model: 'Real Mod' },
+                { id: 'tf3-2', name: 'tf3 real mod 2.png', model: 'Real Mod 2' }
             ],
             rap: [
-                { id: 'tr1', name: 'tr1-2pac.jpg', model: 'Model Rap 1' },
-                { id: 'tr2', name: 'tr2-eminem-fire.jpg', model: 'Model Rap 2' },
-                { id: 'tr3', name: 'tr3-drake-owl.jpg', model: 'Model Rap 3' },
-                { id: 'tr4', name: 'tr4-travis-astro.jpg', model: 'Model Rap 4' },
-                { id: 'tr5', name: 'tr5-xxtentacion.jpg', model: 'Model Rap 5' }
+                { id: 'tr1', name: 'tr1 billlie.png', model: 'Billie' },
+                { id: 'tr1-2', name: 'tr1 billie 2.png', model: 'Billie 2' },
+                { id: 'tr2', name: 'tr2 eminem.png', model: 'Eminem' },
+                { id: 'tr2-2', name: 'tr2 eminem 2.png', model: 'Eminem 2' },
+                { id: 'tr3', name: 'tr3 la mass.png', model: 'La Mass' },
+                { id: 'tr3-2', name: 'tr3 la mass 2.png', model: 'La Mass 2' },
+                { id: 'tr4', name: 'tr4 dak.png', model: 'Dak' },
+                { id: 'tr4-2', name: 'tr4 dak 2.png', model: 'Dak 2' },
+                { id: 'tr5', name: 'tr5 toto.png', model: 'Toto' },
+                { id: 'tr6', name: 'tr6 skorp.png', model: 'Skorp' },
+                { id: 'tr6-2', name: 'tr6 skorp 2.png', model: 'Skorp 2' }
             ],
             extra: [
-                { id: 'te1', name: 'te1-skullfire.jpg', model: 'Model Extra 1' },
-                { id: 'te2', name: 'te2-darkangel.jpg', model: 'Model Extra 2' },
-                { id: 'te3', name: 'te3-vampire-blood.jpg', model: 'Model Extra 3' },
-                { id: 'te4', name: 'te4-reaper-dark.jpg', model: 'Model Extra 4' }
+                { id: 'te1', name: 'te1 constontine B.png', model: 'Constantine B' },
+                { id: 'te2', name: 'te2 constontine W.png', model: 'Constantine W' },
+                { id: 'te3', name: 'te3 chill.png', model: 'Chill' },
+                { id: 'te4', name: 'te4 skull.png', model: 'Skull' },
+                { id: 'te5', name: 'te5 boy.png', model: 'Boy' },
+                { id: 'te6', name: 'te6 dragon.png', model: 'Dragon' },
+                { id: 'te7', name: 'te7 my rules.png', model: 'My Rules' },
+                { id: 'te8', name: 'te8 gta.png', model: 'GTA' },
+                { id: 'te9', name: 'te9 olmpus.png', model: 'Olympus' },
+                { id: 'te10', name: 'te10 save them.png', model: 'Save Them' },
+                { id: 'te11', name: 'te11 stranger things.png', model: 'Stranger Things' },
+                { id: 'te11-2', name: 'te11 stranger things 2.png', model: 'Stranger Things 2' },
+                { id: 'te12', name: 'te12 the last of us.png', model: 'The Last of Us' },
+                { id: 'te12-2', name: 'te12 the last of us 2.png', model: 'The Last of Us 2' },
+                { id: 'te13', name: 'te13 the boys.png', model: 'The Boys' },
+                { id: 'te13-2', name: 'te13 the boys 2.png', model: 'The Boys 2' }
             ]
         };
 
-        // DOM elements
-        const modalOverlay = document.getElementById('modalOverlay');
-        const closeModalBtn = document.querySelector('.close-modal');
-        const orderForm = document.getElementById('orderForm');
-        const productModelInput = document.getElementById('productModel');
-        const productTypeInput = document.getElementById('productType');
-        const typeSelect = document.getElementById('type');
-        const quantityInput = document.getElementById('quantity');
-        const quantityMessage = document.getElementById('quantityMessage');
-        const plusBtn = document.querySelector('.plus');
-        const minusBtn = document.querySelector('.minus');
-
-        // عرض المنتجات
-        function displayProducts() {
-            // قسم Anime
-            const animeContainer = document.getElementById('anime-products');
-            products.anime.forEach(product => {
-                animeContainer.appendChild(createProductCard(product));
-            });
-            
-            // قسم Foot
-            const footContainer = document.getElementById('foot-products');
-            products.foot.forEach(product => {
-                footContainer.appendChild(createProductCard(product));
-            });
-            
-            // قسم Rap
-            const rapContainer = document.getElementById('rap-products');
-            products.rap.forEach(product => {
-                rapContainer.appendChild(createProductCard(product));
-            });
-            
-            // قسم Extra
-            const extraContainer = document.getElementById('extra-products');
-            products.extra.forEach(product => {
-                extraContainer.appendChild(createProductCard(product));
-            });
-        }
-
-        // إنشاء بطاقة منتج
+        // دالة إنشاء بطاقة منتج
         function createProductCard(product) {
-            const productCard = document.createElement('div');
-            productCard.className = 'product-card';
-            productCard.innerHTML = `
-                <img src="${product.name}" alt="${product.model}" class="product-image">
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img class="product-image" src="${product.name}" alt="${product.model}" onerror="this.src='https://via.placeholder.com/250x250?text=No+Image';">
                 <div class="product-info">
                     <div class="product-model">${product.model}</div>
                     <div class="product-type">
-                        <div>اختر النوع:</div>
+                        <span>النوع:</span>
                         <div class="type-options">
-                            <div class="type-option selected" data-type="Regular">Regular</div>
-                            <div class="type-option" data-type="Oversize">Oversize</div>
+                            <span class="type-option selected" data-type="Regular">Regular</span>
+                            <span class="type-option" data-type="Oversize">Oversize</span>
                         </div>
                     </div>
-                    <div class="product-price">السعر: <span>2700</span> دج</div>
-                    <button class="buy-btn" data-model="${product.model}" data-id="${product.id}">اشترِ الآن</button>
+                    <div class="product-price">2700 دج</div>
+                    <button class="buy-btn">اشترِ الآن</button>
                 </div>
             `;
-            return productCard;
+            // تغيير السعر حسب النوع
+            const typeOptions = card.querySelectorAll('.type-option');
+            const priceDiv = card.querySelector('.product-price');
+            let selectedType = 'Regular';
+            typeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    typeOptions.forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedType = this.dataset.type;
+                    priceDiv.textContent = (selectedType === 'Regular') ? '2700 دج' : '2900 دج';
+                });
+            });
+            // فتح نافذة الطلب
+            card.querySelector('.buy-btn').addEventListener('click', function() {
+                document.getElementById('productModel').value = product.model;
+                document.getElementById('productType').value = selectedType;
+                document.getElementById('type').value = selectedType;
+                document.getElementById('quantity').value = 1;
+                document.getElementById('quantityMessage').classList.add('hidden');
+                modalOverlay.style.display = 'flex';
+            });
+            return card;
         }
 
-        // تغيير نوع المنتج والسعر
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('type-option')) {
-                const optionsContainer = e.target.parentElement;
-                const productCard = e.target.closest('.product-card');
-                const priceElement = productCard.querySelector('.product-price span');
-                
-                // تحديث الخيار المحدد
-                optionsContainer.querySelectorAll('.type-option').forEach(option => {
-                    option.classList.remove('selected');
-                });
-                e.target.classList.add('selected');
-                
-                // تحديث السعر
-                const type = e.target.dataset.type;
-                priceElement.textContent = type === 'Regular' ? '2700' : '2900';
-            }
-            
-            // فتح نافذة الطلب
-            if (e.target.classList.contains('buy-btn')) {
-                const model = e.target.dataset.model;
-                const productId = e.target.dataset.id;
-                const productCard = e.target.closest('.product-card');
-                const selectedType = productCard.querySelector('.type-option.selected').dataset.type;
-                
-                productModelInput.value = model;
-                productTypeInput.value = selectedType;
-                typeSelect.value = selectedType;
-                
-                modalOverlay.style.display = 'flex';
-            }
-        });
+        // عرض المنتجات في الأقسام
+        function displayProducts() {
+            document.getElementById('anime-products').innerHTML = '';
+            document.getElementById('foot-products').innerHTML = '';
+            document.getElementById('rap-products').innerHTML = '';
+            document.getElementById('extra-products').innerHTML = '';
+            products.anime.forEach(product => {
+                document.getElementById('anime-products').appendChild(createProductCard(product));
+            });
+            products.foot.forEach(product => {
+                document.getElementById('foot-products').appendChild(createProductCard(product));
+            });
+            products.rap.forEach(product => {
+                document.getElementById('rap-products').appendChild(createProductCard(product));
+            });
+            products.extra.forEach(product => {
+                document.getElementById('extra-products').appendChild(createProductCard(product));
+            });
+        }
+        displayProducts();
 
-        // إغلاق نافذة الطلب
-        closeModalBtn.addEventListener('click', () => {
-            modalOverlay.style.display = 'none';
-        });
+        // نافذة الطلب
+        const modalOverlay = document.getElementById('modalOverlay');
+        const closeModalBtn = document.querySelector('.close-modal');
+        closeModalBtn.onclick = () => modalOverlay.style.display = 'none';
+        window.onclick = e => { if (e.target === modalOverlay) modalOverlay.style.display = 'none'; };
 
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.style.display = 'none';
-            }
-        });
-
-        // تغيير الكمية
-        plusBtn.addEventListener('click', () => {
-            let quantity = parseInt(quantityInput.value);
-            if (quantity < 30) {
-                quantityInput.value = quantity + 1;
-            }
-            checkQuantity();
-        });
-
-        minusBtn.addEventListener('click', () => {
-            let quantity = parseInt(quantityInput.value);
-            if (quantity > 1) {
-                quantityInput.value = quantity - 1;
-            }
-            checkQuantity();
-        });
-
-        function checkQuantity() {
-            if (parseInt(quantityInput.value) === 30) {
-                quantityMessage.classList.remove('hidden');
+        // كمية الطلب
+        const plusBtn = document.querySelector('.plus');
+        const minusBtn = document.querySelector('.minus');
+        const quantityInput = document.getElementById('quantity');
+        const quantityMessage = document.getElementById('quantityMessage');
+        plusBtn.onclick = () => {
+            let val = parseInt(quantityInput.value);
+            if(val < 30) {
+                quantityInput.value = val + 1;
+                quantityMessage.classList.add('hidden');
             } else {
+                quantityMessage.classList.remove('hidden');
+            }
+        };
+        minusBtn.onclick = () => {
+            let val = parseInt(quantityInput.value);
+            if(val > 1) {
+                quantityInput.value = val - 1;
                 quantityMessage.classList.add('hidden');
             }
-        }
-
-        // تغيير النوع في النموذج
-        typeSelect.addEventListener('change', () => {
-            productTypeInput.value = typeSelect.value;
-        });
-
-        // إرسال النموذج
-        orderForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // يمكنك إضافة أي تحقق إضافي هنا قبل الإرسال
-            
-            this.submit();
-            modalOverlay.style.display = 'none';
-            
-            // إظهار رسالة نجاح (يمكن تخصيصها)
-            alert('تم إرسال طلبك بنجاح! سنتصل بك قريباً.');
-        });
-
-        // تهيئة الصفحة
-        document.addEventListener('DOMContentLoaded', () => {
-            displayProducts();
-        });
+        };
     </script>
 </body>
 </html>
