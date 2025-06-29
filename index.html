@@ -6,8 +6,9 @@
     <title>EzzineStyle - متجر التيشيرتات المميزة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ... نفس التنسيقات من الكود السابق ... */
+        /* ... نفس التنسيقات من كودك الأصلي ... */
         /* (انسخ كل التنسيقات من ملفك السابق هنا كما هي) */
+        /* ... تم حذفها هنا للاختصار ... */
     </style>
 </head>
 <body>
@@ -101,7 +102,7 @@
     </a>
 
     <script>
-        // بيانات المنتجات بالأسماء الحقيقية للصور
+        // بيانات المنتجات (تم تصحيح أسماء الصور فقط)
         const products = {
             anime: [
                 { id: 't1', name: 't1 solo leaving.png', model: 'Solo Leaving' },
@@ -161,7 +162,43 @@
             ]
         };
 
-        // دالة إنشاء بطاقة منتج
+        // DOM elements
+        const modalOverlay = document.getElementById('modalOverlay');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const orderForm = document.getElementById('orderForm');
+        const productModelInput = document.getElementById('productModel');
+        const productTypeInput = document.getElementById('productType');
+        const typeSelect = document.getElementById('type');
+        const quantityInput = document.getElementById('quantity');
+        const quantityMessage = document.getElementById('quantityMessage');
+        const plusBtn = document.querySelector('.plus');
+        const minusBtn = document.querySelector('.minus');
+
+        // عرض المنتجات
+        function displayProducts() {
+            // قسم Anime
+            const animeContainer = document.getElementById('anime-products');
+            products.anime.forEach(product => {
+                animeContainer.appendChild(createProductCard(product));
+            });
+            // قسم Foot
+            const footContainer = document.getElementById('foot-products');
+            products.foot.forEach(product => {
+                footContainer.appendChild(createProductCard(product));
+            });
+            // قسم Rap
+            const rapContainer = document.getElementById('rap-products');
+            products.rap.forEach(product => {
+                rapContainer.appendChild(createProductCard(product));
+            });
+            // قسم Extra
+            const extraContainer = document.getElementById('extra-products');
+            products.extra.forEach(product => {
+                extraContainer.appendChild(createProductCard(product));
+            });
+        }
+
+        // إنشاء بطاقة منتج
         function createProductCard(product) {
             const card = document.createElement('div');
             card.className = 'product-card';
@@ -194,48 +231,21 @@
             });
             // فتح نافذة الطلب
             card.querySelector('.buy-btn').addEventListener('click', function() {
-                document.getElementById('productModel').value = product.model;
-                document.getElementById('productType').value = selectedType;
-                document.getElementById('type').value = selectedType;
-                document.getElementById('quantity').value = 1;
-                document.getElementById('quantityMessage').classList.add('hidden');
+                productModelInput.value = product.model;
+                productTypeInput.value = selectedType;
+                typeSelect.value = selectedType;
+                quantityInput.value = 1;
+                quantityMessage.classList.add('hidden');
                 modalOverlay.style.display = 'flex';
             });
             return card;
         }
 
-        // عرض المنتجات في الأقسام
-        function displayProducts() {
-            document.getElementById('anime-products').innerHTML = '';
-            document.getElementById('foot-products').innerHTML = '';
-            document.getElementById('rap-products').innerHTML = '';
-            document.getElementById('extra-products').innerHTML = '';
-            products.anime.forEach(product => {
-                document.getElementById('anime-products').appendChild(createProductCard(product));
-            });
-            products.foot.forEach(product => {
-                document.getElementById('foot-products').appendChild(createProductCard(product));
-            });
-            products.rap.forEach(product => {
-                document.getElementById('rap-products').appendChild(createProductCard(product));
-            });
-            products.extra.forEach(product => {
-                document.getElementById('extra-products').appendChild(createProductCard(product));
-            });
-        }
-        displayProducts();
-
         // نافذة الطلب
-        const modalOverlay = document.getElementById('modalOverlay');
-        const closeModalBtn = document.querySelector('.close-modal');
         closeModalBtn.onclick = () => modalOverlay.style.display = 'none';
         window.onclick = e => { if (e.target === modalOverlay) modalOverlay.style.display = 'none'; };
 
         // كمية الطلب
-        const plusBtn = document.querySelector('.plus');
-        const minusBtn = document.querySelector('.minus');
-        const quantityInput = document.getElementById('quantity');
-        const quantityMessage = document.getElementById('quantityMessage');
         plusBtn.onclick = () => {
             let val = parseInt(quantityInput.value);
             if(val < 30) {
@@ -252,6 +262,9 @@
                 quantityMessage.classList.add('hidden');
             }
         };
+
+        // عرض المنتجات عند تحميل الصفحة
+        displayProducts();
     </script>
 </body>
 </html>
