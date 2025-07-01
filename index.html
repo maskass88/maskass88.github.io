@@ -372,42 +372,67 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Products data with correct image names
+            // Products data with updated image names
             const products = {
                 anime: [
-                    { id: 1, name: 'Akatsuki', img: 't1-akatsuki.jpg' },
-                    { id: 2, name: 'Itachi Crow', img: 't2-itachi-crow.jpg' },
-                    { id: 3, name: 'Gojo Purple', img: 't3-gojo-purple.jpg' },
-                    { id: 4, name: 'Eren Fight', img: 't4-eren-fight.jpg' },
-                    { id: 5, name: 'Zoro Blade', img: 't5-zoro-blade.jpg' },
-                    { id: 6, name: 'Luffy Gear5', img: 't6-luffy-gear5.jpg' },
-                    { id: 7, name: 'Naruto Kurama', img: 't7-naruto-kurama.jpg' },
-                    { id: 8, name: 'Jujutsu Team', img: 't8-jujutsu-team.jpg' },
-                    { id: 9, name: 'Deathnote', img: 't9-deathnote.jpg' },
-                    { id: 10, name: 'Onepiece Skull', img: 't10-onepiece-skull.jpg' }
+                    { id: 1, name: 'Solo Leaving', img: 't1 solo leaving.png' },
+                    { id: 2, name: 'Goku', img: 't2 goku.png' },
+                    { id: 3, name: 'Goku 2', img: 't2 goku 2.png' },
+                    { id: 4, name: 'Hisoka', img: 't3 hisoka.png' },
+                    { id: 5, name: 'Hisoka 2', img: 't3 hisoka 2.png' },
+                    { id: 6, name: 'Kokoshibo', img: 't4 kokoshibo.png' },
+                    { id: 7, name: 'Kokoshibo 2', img: 't4 kokoshibo 2.png' },
+                    { id: 8, name: 'Whitebeard', img: 't5 whitebeard.png' },
+                    { id: 9, name: 'Whitebeard 2', img: 't5 whitebeard 2.png' },
+                    { id: 10, name: 'Zoro', img: 't6 zoro 2.png' },
+                    { id: 11, name: 'Zoro 2', img: 't7 zoro2.png' },
+                    { id: 12, name: 'Zoro 2 Version 2', img: 't7 zoro2 2.png' },
+                    { id: 13, name: 'The Last of Us', img: 't14 the last of us mode2.png' },
+                    { id: 14, name: 'The Last of Us 2', img: 't14 the last of us mode2 2.png' },
+                    { id: 15, name: 'Sheep', img: 't15 sheep.png' }
                 ],
                 foot: [
-                    { id: 1, name: 'Mbappe', img: 'tf1-mbappe.jpg' },
-                    { id: 2, name: 'Madrid White', img: 'tf2-madrid-white.jpg' },
-                    { id: 3, name: 'Ronaldo CR7', img: 'tf3-ronaldo-cr7.jpg' },
-                    { id: 4, name: 'Benzema', img: 'tf4-benzema.jpg' },
-                    { id: 5, name: 'Haaland', img: 'tf5-haaland.jpg' }
+                    { id: 1, name: 'CR7', img: 'tf1 cr7.png' },
+                    { id: 2, name: 'CR7 2', img: 'tf1 cr7 2.png' },
+                    { id: 3, name: 'Real Madrid', img: 'tf2 real madrid.png' },
+                    { id: 4, name: 'Real Madrid 2', img: 'tf2 real madrid 2.png' },
+                    { id: 5, name: 'Real Mod', img: 'tf3 real mod.png' },
+                    { id: 6, name: 'Real Mod 2', img: 'tf3 real mod 2.png' }
                 ],
                 rap: [
-                    { id: 1, name: '2Pac', img: 'tr1-2pac.jpg' },
-                    { id: 2, name: 'Eminem Fire', img: 'tr2-eminem-fire.jpg' },
-                    { id: 3, name: 'Drake Owl', img: 'tr3-drake-owl.jpg' },
-                    { id: 4, name: 'Travis Astro', img: 'tr4-travis-astro.jpg' },
-                    { id: 5, name: 'XXTentacion', img: 'tr5-xxtentacion.jpg' }
+                    { id: 1, name: 'Billie', img: 'tr1 billlie.png' },
+                    { id: 2, name: 'Billie 2', img: 'tr1 billie 2.png' },
+                    { id: 3, name: 'Eminem', img: 'tr2 eminem.png' },
+                    { id: 4, name: 'Eminem 2', img: 'tr2 eminem 2.png' },
+                    { id: 5, name: 'La Mass', img: 'tr3 la mass.png' },
+                    { id: 6, name: 'La Mass 2', img: 'tr3 la mass 2.png' },
+                    { id: 7, name: 'Dak', img: 'tr4 dak.png' },
+                    { id: 8, name: 'Dak 2', img: 'tr4 dak 2.png' },
+                    { id: 9, name: 'Toto', img: 'tr5 toto.png' },
+                    { id: 10, name: 'Skorp', img: 'tr6 skorp.png' },
+                    { id: 11, name: 'Skorp 2', img: 'tr6 skorp 2.png' }
                 ],
                 extra: [
-                    { id: 1, name: 'Skull Fire', img: 'te1-skullfire.jpg' },
-                    { id: 2, name: 'Dark Angel', img: 'te2-darkangel.jpg' },
-                    { id: 3, name: 'Vampire Blood', img: 'te3-vampire-blood.jpg' },
-                    { id: 4, name: 'Reaper Dark', img: 'te4-reaper-dark.jpg' }
+                    { id: 1, name: 'Constontine Black', img: 'te1 constontine B.png' },
+                    { id: 2, name: 'Constontine White', img: 'te2 constontine W.png' },
+                    { id: 3, name: 'Chill', img: 'te3 chill.png' },
+                    { id: 4, name: 'Skull', img: 'te4 skull.png' },
+                    { id: 5, name: 'Boy', img: 'te5 boy.png' },
+                    { id: 6, name: 'Dragon', img: 'te6 dragon.png' },
+                    { id: 7, name: 'My Rules', img: 'te7 my rules.png' },
+                    { id: 8, name: 'GTA', img: 'te8 gta.png' },
+                    { id: 9, name: 'Olympus', img: 'te9 olmpus.png' },
+                    { id: 10, name: 'Save Them', img: 'te10 save them.png' },
+                    { id: 11, name: 'Stranger Things', img: 'te11 stranger things.png' },
+                    { id: 12, name: 'Stranger Things 2', img: 'te11 stranger things 2.png' },
+                    { id: 13, name: 'The Last of Us', img: 'te12 the last of us.png' },
+                    { id: 14, name: 'The Last of Us 2', img: 'te12 the last of us 2.png' },
+                    { id: 15, name: 'The Boys', img: 'te13 the boys.png' },
+                    { id: 16, name: 'The Boys 2', img: 'te13 the boys 2.png' }
                 ]
             };
             
+            // Rest of the JavaScript code remains the same...
             // DOM elements
             const productsContainer = document.getElementById('products-container');
             const categoryBtns = document.querySelectorAll('.category-btn');
