@@ -3,70 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EzzineStyle - متجر التيشيرتات المميزة</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>EzzineStyle</title>
     <style>
-        /* ... نفس التنسيقات من كودك الأصلي ... */
-        /* (انسخ كل التنسيقات من ملفك السابق هنا كما هي) */
-        /* ... تم حذفها هنا للاختصار ... */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: white;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            color: #0066cc;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .category-btn:hover {
+            background-color: #0055aa;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .product {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .product-type {
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .buy-btn {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .buy-btn:hover {
+            background-color: #0055aa;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .quantity-btn {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            margin: 0 10px;
+        }
+        
+        .submit-btn {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #0055aa;
+        }
+        
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        
+        .success-message, .error-message {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2rem;
+            display: none;
+        }
+        
+        .success-message {
+            color: #0066cc;
+        }
+        
+        .error-message {
+            color: #cc0000;
+        }
+        
+        .funny-message {
+            color: #cc0066;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1 class="logo">EzzineStyle</h1>
-        <p class="welcome">مرحباً بكم في متجر EzzineStyle</p>
-        <p class="slogan">جودة عالية - تصميمات مميزة - أسعار تنافسية</p>
-    </header>
-
-    <main>
-        <!-- قسم Anime -->
-        <section class="category">
-            <h2 class="category-title anime">قسم الأنمي</h2>
-            <div class="products-container" id="anime-products"></div>
-        </section>
-        <!-- قسم Foot -->
-        <section class="category">
-            <h2 class="category-title foot">قسم الفوت</h2>
-            <div class="products-container" id="foot-products"></div>
-        </section>
-        <!-- قسم Rap -->
-        <section class="category">
-            <h2 class="category-title rap">قسم الراب</h2>
-            <div class="products-container" id="rap-products"></div>
-        </section>
-        <!-- قسم Skull/Extra -->
-        <section class="category">
-            <h2 class="category-title extra">قسم الإكسترا (السكول)</h2>
-            <div class="products-container" id="extra-products"></div>
-        </section>
-    </main>
-
-    <!-- نافذة الطلب -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <button class="close-modal">&times;</button>
-            <h2>إكمال الطلب</h2>
-            <form id="orderForm" action="https://formspree.io/f/abgamer0177" method="POST">
-                <input type="hidden" id="productModel" name="productModel">
-                <input type="hidden" id="productType" name="productType">
+    <div class="container">
+        <header>
+            <h1>EzzineStyle</h1>
+            <p>مرحباً بكم في متجر EzzineStyle</p>
+            <p class="subtitle">جودة عالية - تصميمات مميزة - أسعار تنافسية</p>
+        </header>
+        
+        <div class="categories">
+            <button class="category-btn" data-category="anime">Anime</button>
+            <button class="category-btn" data-category="foot">Foot</button>
+            <button class="category-btn" data-category="rap">Rap</button>
+            <button class="category-btn" data-category="extra">Skull/Extra</button>
+        </div>
+        
+        <div class="products" id="products-container">
+            <!-- Products will be loaded here -->
+        </div>
+    </div>
+    
+    <div class="modal" id="order-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2>طلب شراء</h2>
+            <form id="order-form" action="https://formspree.io/f/xbjndvzl" method="POST">
+                <input type="hidden" id="product-name" name="product-name">
+                <input type="hidden" id="product-type" name="product-type">
+                <input type="hidden" id="product-category" name="product-category">
+                
                 <div class="form-group">
-                    <label for="fullName">الاسم الكامل:</label>
-                    <input type="text" id="fullName" name="fullName" required>
+                    <label for="full-name">الاسم الكامل</label>
+                    <input type="text" id="full-name" name="full-name" required>
                 </div>
+                
                 <div class="form-group">
-                    <label for="phone">رقم الهاتف:</label>
+                    <label for="phone">رقم الهاتف</label>
                     <input type="tel" id="phone" name="phone" required>
                 </div>
+                
                 <div class="form-group">
-                    <label for="state">الولاية:</label>
-                    <input type="text" id="state" name="state" required>
-                </div>
-                <div class="form-group">
-                    <label for="city">البلدية:</label>
-                    <input type="text" id="city" name="city" required>
-                </div>
-                <div class="form-group">
-                    <label for="size">المقاس:</label>
+                    <label for="size">المقاس</label>
                     <select id="size" name="size" required>
                         <option value="S">S</option>
                         <option value="M">M</option>
@@ -75,196 +320,279 @@
                         <option value="XXL">XXL</option>
                     </select>
                 </div>
+                
                 <div class="form-group">
-                    <label for="type">النوع:</label>
-                    <select id="type" name="type" required>
-                        <option value="Regular">Regular - 2700 دج</option>
-                        <option value="Oversize">Oversize - 2900 دج</option>
-                    </select>
+                    <label for="wilaya">الولاية</label>
+                    <input type="text" id="wilaya" name="wilaya" required>
                 </div>
+                
                 <div class="form-group">
-                    <label for="quantity">الكمية:</label>
-                    <div class="quantity-selector">
-                        <button type="button" class="quantity-btn minus">-</button>
-                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="30" readonly>
-                        <button type="button" class="quantity-btn plus">+</button>
+                    <label for="city">البلدية</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>نوع المنتج</label>
+                    <div>
+                        <input type="radio" id="regular" name="product-type-radio" value="Regular" checked>
+                        <label for="regular" style="display: inline;">Regular (2700 دج)</label>
                     </div>
-                    <p id="quantityMessage" class="hidden">راك منيتك صاحبي 😂</p>
+                    <div>
+                        <input type="radio" id="oversize" name="product-type-radio" value="Oversize">
+                        <label for="oversize" style="display: inline;">Oversize (2900 دج)</label>
+                    </div>
                 </div>
-                <button type="submit" class="submit-btn">إرسال الطلب</button>
+                
+                <div class="form-group">
+                    <label>الكمية</label>
+                    <div class="quantity-control">
+                        <button type="button" class="quantity-btn" id="decrease-qty">-</button>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-input" readonly>
+                        <button type="button" class="quantity-btn" id="increase-qty">+</button>
+                    </div>
+                    <p class="funny-message" id="funny-message">راك منيتك صاحبي 😂</p>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="submit-btn">إرسال الطلب</button>
+                </div>
             </form>
+            
+            <div class="success-message" id="success-message">
+                EzzineStyle تشكركم على الطلب 💜
+            </div>
+            
+            <div class="error-message" id="error-message">
+                حدثت مشكلة، حاول مرة أخرى
+            </div>
         </div>
     </div>
-
-    <!-- زر واتساب -->
-    <a href="https://wa.me/213781059339" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
+    
+    <a href="https://wa.me/213781059339" class="whatsapp-btn" target="_blank">&#x2709;</a>
+    
     <script>
-        // بيانات المنتجات (تم تصحيح أسماء الصور فقط)
-        const products = {
-            anime: [
-                { id: 't1', name: 't1 solo leaving.png', model: 'Solo Leaving' },
-                { id: 't2', name: 't2 goku.png', model: 'Goku' },
-                { id: 't2-2', name: 't2 goku 2.png', model: 'Goku 2' },
-                { id: 't3', name: 't3 hisoka.png', model: 'Hisoka' },
-                { id: 't3-2', name: 't3 hisoka 2.png', model: 'Hisoka 2' },
-                { id: 't4', name: 't4 kokoshibo.png', model: 'Kokoshibo' },
-                { id: 't4-2', name: 't4 kokoshibo 2.png', model: 'Kokoshibo 2' },
-                { id: 't5', name: 't5 whitebeard.png', model: 'Whitebeard' },
-                { id: 't5-2', name: 't5 whitebeard 2.png', model: 'Whitebeard 2' },
-                { id: 't6', name: 't6 zoro 2.png', model: 'Zoro' },
-                { id: 't7', name: 't7 zoro2.png', model: 'Zoro2' },
-                { id: 't7-2', name: 't7 zoro2 2.png', model: 'Zoro2 2' },
-                { id: 't14', name: 't14 the last of us mode2.png', model: 'The Last of Us Mode2' },
-                { id: 't14-2', name: 't14 the last of us mode2 2.png', model: 'The Last of Us Mode2 2' },
-                { id: 't15', name: 't15 sheep.png', model: 'Sheep' }
-            ],
-            foot: [
-                { id: 'tf1', name: 'tf1 cr7.png', model: 'CR7' },
-                { id: 'tf1-2', name: 'tf1 cr7 2.png', model: 'CR7 2' },
-                { id: 'tf2', name: 'tf2 real madrid.png', model: 'Real Madrid' },
-                { id: 'tf2-2', name: 'tf2 real madrid 2.png', model: 'Real Madrid 2' },
-                { id: 'tf3', name: 'tf3 real mod.png', model: 'Real Mod' },
-                { id: 'tf3-2', name: 'tf3 real mod 2.png', model: 'Real Mod 2' }
-            ],
-            rap: [
-                { id: 'tr1', name: 'tr1 billlie.png', model: 'Billie' },
-                { id: 'tr1-2', name: 'tr1 billie 2.png', model: 'Billie 2' },
-                { id: 'tr2', name: 'tr2 eminem.png', model: 'Eminem' },
-                { id: 'tr2-2', name: 'tr2 eminem 2.png', model: 'Eminem 2' },
-                { id: 'tr3', name: 'tr3 la mass.png', model: 'La Mass' },
-                { id: 'tr3-2', name: 'tr3 la mass 2.png', model: 'La Mass 2' },
-                { id: 'tr4', name: 'tr4 dak.png', model: 'Dak' },
-                { id: 'tr4-2', name: 'tr4 dak 2.png', model: 'Dak 2' },
-                { id: 'tr5', name: 'tr5 toto.png', model: 'Toto' },
-                { id: 'tr6', name: 'tr6 skorp.png', model: 'Skorp' },
-                { id: 'tr6-2', name: 'tr6 skorp 2.png', model: 'Skorp 2' }
-            ],
-            extra: [
-                { id: 'te1', name: 'te1 constontine B.png', model: 'Constantine B' },
-                { id: 'te2', name: 'te2 constontine W.png', model: 'Constantine W' },
-                { id: 'te3', name: 'te3 chill.png', model: 'Chill' },
-                { id: 'te4', name: 'te4 skull.png', model: 'Skull' },
-                { id: 'te5', name: 'te5 boy.png', model: 'Boy' },
-                { id: 'te6', name: 'te6 dragon.png', model: 'Dragon' },
-                { id: 'te7', name: 'te7 my rules.png', model: 'My Rules' },
-                { id: 'te8', name: 'te8 gta.png', model: 'GTA' },
-                { id: 'te9', name: 'te9 olmpus.png', model: 'Olympus' },
-                { id: 'te10', name: 'te10 save them.png', model: 'Save Them' },
-                { id: 'te11', name: 'te11 stranger things.png', model: 'Stranger Things' },
-                { id: 'te11-2', name: 'te11 stranger things 2.png', model: 'Stranger Things 2' },
-                { id: 'te12', name: 'te12 the last of us.png', model: 'The Last of Us' },
-                { id: 'te12-2', name: 'te12 the last of us 2.png', model: 'The Last of Us 2' },
-                { id: 'te13', name: 'te13 the boys.png', model: 'The Boys' },
-                { id: 'te13-2', name: 'te13 the boys 2.png', model: 'The Boys 2' }
-            ]
-        };
-
-        // DOM elements
-        const modalOverlay = document.getElementById('modalOverlay');
-        const closeModalBtn = document.querySelector('.close-modal');
-        const orderForm = document.getElementById('orderForm');
-        const productModelInput = document.getElementById('productModel');
-        const productTypeInput = document.getElementById('productType');
-        const typeSelect = document.getElementById('type');
-        const quantityInput = document.getElementById('quantity');
-        const quantityMessage = document.getElementById('quantityMessage');
-        const plusBtn = document.querySelector('.plus');
-        const minusBtn = document.querySelector('.minus');
-
-        // عرض المنتجات
-        function displayProducts() {
-            // قسم Anime
-            const animeContainer = document.getElementById('anime-products');
-            products.anime.forEach(product => {
-                animeContainer.appendChild(createProductCard(product));
-            });
-            // قسم Foot
-            const footContainer = document.getElementById('foot-products');
-            products.foot.forEach(product => {
-                footContainer.appendChild(createProductCard(product));
-            });
-            // قسم Rap
-            const rapContainer = document.getElementById('rap-products');
-            products.rap.forEach(product => {
-                rapContainer.appendChild(createProductCard(product));
-            });
-            // قسم Extra
-            const extraContainer = document.getElementById('extra-products');
-            products.extra.forEach(product => {
-                extraContainer.appendChild(createProductCard(product));
-            });
-        }
-
-        // إنشاء بطاقة منتج
-        function createProductCard(product) {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.innerHTML = `
-                <img class="product-image" src="${product.name}" alt="${product.model}" onerror="this.src='https://via.placeholder.com/250x250?text=No+Image';">
-                <div class="product-info">
-                    <div class="product-model">${product.model}</div>
-                    <div class="product-type">
-                        <span>النوع:</span>
-                        <div class="type-options">
-                            <span class="type-option selected" data-type="Regular">Regular</span>
-                            <span class="type-option" data-type="Oversize">Oversize</span>
-                        </div>
-                    </div>
-                    <div class="product-price">2700 دج</div>
-                    <button class="buy-btn">اشترِ الآن</button>
-                </div>
-            `;
-            // تغيير السعر حسب النوع
-            const typeOptions = card.querySelectorAll('.type-option');
-            const priceDiv = card.querySelector('.product-price');
-            let selectedType = 'Regular';
-            typeOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    typeOptions.forEach(o => o.classList.remove('selected'));
-                    this.classList.add('selected');
-                    selectedType = this.dataset.type;
-                    priceDiv.textContent = (selectedType === 'Regular') ? '2700 دج' : '2900 دج';
+        document.addEventListener('DOMContentLoaded', function() {
+            // Products data with correct image names
+            const products = {
+                anime: [
+                    { id: 1, name: 'Akatsuki', img: 't1-akatsuki.jpg' },
+                    { id: 2, name: 'Itachi Crow', img: 't2-itachi-crow.jpg' },
+                    { id: 3, name: 'Gojo Purple', img: 't3-gojo-purple.jpg' },
+                    { id: 4, name: 'Eren Fight', img: 't4-eren-fight.jpg' },
+                    { id: 5, name: 'Zoro Blade', img: 't5-zoro-blade.jpg' },
+                    { id: 6, name: 'Luffy Gear5', img: 't6-luffy-gear5.jpg' },
+                    { id: 7, name: 'Naruto Kurama', img: 't7-naruto-kurama.jpg' },
+                    { id: 8, name: 'Jujutsu Team', img: 't8-jujutsu-team.jpg' },
+                    { id: 9, name: 'Deathnote', img: 't9-deathnote.jpg' },
+                    { id: 10, name: 'Onepiece Skull', img: 't10-onepiece-skull.jpg' }
+                ],
+                foot: [
+                    { id: 1, name: 'Mbappe', img: 'tf1-mbappe.jpg' },
+                    { id: 2, name: 'Madrid White', img: 'tf2-madrid-white.jpg' },
+                    { id: 3, name: 'Ronaldo CR7', img: 'tf3-ronaldo-cr7.jpg' },
+                    { id: 4, name: 'Benzema', img: 'tf4-benzema.jpg' },
+                    { id: 5, name: 'Haaland', img: 'tf5-haaland.jpg' }
+                ],
+                rap: [
+                    { id: 1, name: '2Pac', img: 'tr1-2pac.jpg' },
+                    { id: 2, name: 'Eminem Fire', img: 'tr2-eminem-fire.jpg' },
+                    { id: 3, name: 'Drake Owl', img: 'tr3-drake-owl.jpg' },
+                    { id: 4, name: 'Travis Astro', img: 'tr4-travis-astro.jpg' },
+                    { id: 5, name: 'XXTentacion', img: 'tr5-xxtentacion.jpg' }
+                ],
+                extra: [
+                    { id: 1, name: 'Skull Fire', img: 'te1-skullfire.jpg' },
+                    { id: 2, name: 'Dark Angel', img: 'te2-darkangel.jpg' },
+                    { id: 3, name: 'Vampire Blood', img: 'te3-vampire-blood.jpg' },
+                    { id: 4, name: 'Reaper Dark', img: 'te4-reaper-dark.jpg' }
+                ]
+            };
+            
+            // DOM elements
+            const productsContainer = document.getElementById('products-container');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const orderModal = document.getElementById('order-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const orderForm = document.getElementById('order-form');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const productNameInput = document.getElementById('product-name');
+            const productTypeInput = document.getElementById('product-type');
+            const productCategoryInput = document.getElementById('product-category');
+            const decreaseQtyBtn = document.getElementById('decrease-qty');
+            const increaseQtyBtn = document.getElementById('increase-qty');
+            const quantityInput = document.getElementById('quantity');
+            const funnyMessage = document.getElementById('funny-message');
+            const productTypeRadios = document.querySelectorAll('input[name="product-type-radio"]');
+            
+            // Current category
+            let currentCategory = 'anime';
+            
+            // Load products for the initial category
+            loadProducts(currentCategory);
+            
+            // Category buttons event listeners
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    currentCategory = this.dataset.category;
+                    loadProducts(currentCategory);
                 });
             });
-            // فتح نافذة الطلب
-            card.querySelector('.buy-btn').addEventListener('click', function() {
-                productModelInput.value = product.model;
-                productTypeInput.value = selectedType;
-                typeSelect.value = selectedType;
-                quantityInput.value = 1;
-                quantityMessage.classList.add('hidden');
-                modalOverlay.style.display = 'flex';
+            
+            // Close modal event listener
+            closeModalBtn.addEventListener('click', function() {
+                orderModal.style.display = 'none';
             });
-            return card;
-        }
-
-        // نافذة الطلب
-        closeModalBtn.onclick = () => modalOverlay.style.display = 'none';
-        window.onclick = e => { if (e.target === modalOverlay) modalOverlay.style.display = 'none'; };
-
-        // كمية الطلب
-        plusBtn.onclick = () => {
-            let val = parseInt(quantityInput.value);
-            if(val < 30) {
-                quantityInput.value = val + 1;
-                quantityMessage.classList.add('hidden');
-            } else {
-                quantityMessage.classList.remove('hidden');
+            
+            // Form submission
+            orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        orderForm.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        
+                        // Reset form after 3 seconds
+                        setTimeout(() => {
+                            orderModal.style.display = 'none';
+                            orderForm.style.display = 'block';
+                            successMessage.style.display = 'none';
+                            this.reset();
+                            quantityInput.value = 1;
+                        }, 3000);
+                    } else {
+                        errorMessage.style.display = 'block';
+                        
+                        setTimeout(() => {
+                            errorMessage.style.display = 'none';
+                        }, 3000);
+                    }
+                })
+                .catch(error => {
+                    errorMessage.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                });
+            });
+            
+            // Quantity controls
+            decreaseQtyBtn.addEventListener('click', function() {
+                let qty = parseInt(quantityInput.value);
+                if (qty > 1) {
+                    quantityInput.value = qty - 1;
+                }
+                
+                if (quantityInput.value <= 30) {
+                    funnyMessage.style.display = 'none';
+                }
+            });
+            
+            increaseQtyBtn.addEventListener('click', function() {
+                let qty = parseInt(quantityInput.value);
+                quantityInput.value = qty + 1;
+                
+                if (quantityInput.value > 30) {
+                    funnyMessage.style.display = 'block';
+                } else {
+                    funnyMessage.style.display = 'none';
+                }
+            });
+            
+            // Product type radio buttons
+            productTypeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    productTypeInput.value = this.value;
+                });
+            });
+            
+            // Load products function
+            function loadProducts(category) {
+                productsContainer.innerHTML = '';
+                
+                products[category].forEach(product => {
+                    const productElement = document.createElement('div');
+                    productElement.className = 'product';
+                    productElement.innerHTML = `
+                        <img src="${product.img}" alt="${product.name}" class="product-img">
+                        <div class="product-info">
+                            <div class="product-name">${product.name}</div>
+                            <div class="product-type">
+                                <div>
+                                    <input type="radio" id="${product.id}-regular-${category}" name="${product.id}-type-${category}" value="Regular" checked>
+                                    <label for="${product.id}-regular-${category}" style="display: inline;">Regular</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="${product.id}-oversize-${category}" name="${product.id}-type-${category}" value="Oversize">
+                                    <label for="${product.id}-oversize-${category}" style="display: inline;">Oversize</label>
+                                </div>
+                            </div>
+                            <div class="product-price" id="price-${product.id}-${category}">2700 دج</div>
+                            <button class="buy-btn" data-id="${product.id}" data-name="${product.name}" data-category="${category}">اشترِ الآن</button>
+                        </div>
+                    `;
+                    
+                    productsContainer.appendChild(productElement);
+                    
+                    // Add event listeners for radio buttons in this product
+                    const regularRadio = document.getElementById(`${product.id}-regular-${category}`);
+                    const oversizeRadio = document.getElementById(`${product.id}-oversize-${category}`);
+                    const priceElement = document.getElementById(`price-${product.id}-${category}`);
+                    
+                    regularRadio.addEventListener('change', function() {
+                        if (this.checked) {
+                            priceElement.textContent = '2700 دج';
+                        }
+                    });
+                    
+                    oversizeRadio.addEventListener('change', function() {
+                        if (this.checked) {
+                            priceElement.textContent = '2900 دج';
+                        }
+                    });
+                    
+                    // Add event listener for buy button
+                    const buyBtn = productElement.querySelector('.buy-btn');
+                    buyBtn.addEventListener('click', function() {
+                        const productId = this.dataset.id;
+                        const productName = this.dataset.name;
+                        const productCategory = this.dataset.category;
+                        const productType = document.querySelector(`input[name="${productId}-type-${productCategory}"]:checked`).value;
+                        
+                        productNameInput.value = productName;
+                        productTypeInput.value = productType;
+                        productCategoryInput.value = productCategory;
+                        
+                        // Set the radio button in modal
+                        if (productType === 'Regular') {
+                            document.getElementById('regular').checked = true;
+                        } else {
+                            document.getElementById('oversize').checked = true;
+                        }
+                        
+                        orderModal.style.display = 'flex';
+                    });
+                });
             }
-        };
-        minusBtn.onclick = () => {
-            let val = parseInt(quantityInput.value);
-            if(val > 1) {
-                quantityInput.value = val - 1;
-                quantityMessage.classList.add('hidden');
-            }
-        };
-
-        // عرض المنتجات عند تحميل الصفحة
-        displayProducts();
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === orderModal) {
+                    orderModal.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
